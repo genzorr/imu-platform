@@ -55,4 +55,4 @@ dkms.conf
 .cproject
 .settings
 
-/Debug/
+board/Debug/
