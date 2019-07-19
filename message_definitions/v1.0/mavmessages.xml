@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<mavlink>
+        <include>common.xml</include>
+        <!-- NOTE: If the included file already contains a version tag, remove the version tag here, else uncomment to enable. -->
+        <!--<version>3</version>-->
+    <enums>
+    </enums>
+
+    <messages>
+
+        <message id="150" name="STATE">
+            <description>State of all devices</description>
+            <field type="float" name="time">current time</field>
+            <field type="uint8_t" name="MPU_state">state of MPU9255</field>
+            <field type="uint8_t" name="NRF_state">state of nRF24L01</field>
+        </message>
+
+
+        <message id="151" name="IMU_rsc">
+            <description>IMU data in RSC</description>
+            <field type="float[3]" name="accel">accelerations</field>
+            <field type="float[3]" name="gyro">angle velocities</field>
+            <field type="float[3]" name="magn">compass (magnetometer) vector</field>
+            <field type="float" name="time">current time</field>
+        </message>
+
+
+        <message id="152" name="IMU_isc">
+            <description>IMU data in ISC</description>
+            <field type="float[3]" name="accel">accelerations</field>
+            <field type="float[3]" name="magn">compass (magnetometer) vector</field>
+            <field type="float[4]" name="quaternion">quaternion for translating RSC to ISC</field>
+            <field type="float" name="time">current time</field>
+        </message>
+
+    </messages>
+</mavlink>

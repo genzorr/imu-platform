@@ -12,6 +12,7 @@
 
 #include "diag/Trace.h"
 #include "sensors.h"
+#include "telemetry.h"
 //#include <FreeRTOS.h>
 //#include <FreeRTOSConfig.h>
 //#include <tasks/control_task.h>
@@ -126,8 +127,12 @@ int main(int argc, char* argv[])
 		IMU_updateDataAll();
 		_IMUtask_updateData();
 
-		stateMsg_fill(&msg);
-		HAL_USART_Transmit(&usart_dbg, (uint8_t*)&msg, sizeof(msg), 10);
+//		stateMsg_fill(&msg);
+//		HAL_USART_Transmit(&usart_dbg, (uint8_t*)&msg, sizeof(msg), 10);
+
+		mavlink_msg_imu_rsc_send();
+		mavlink_msg_imu_isc_send();
+
 //		HAL_Delay(93);
 	}
 
