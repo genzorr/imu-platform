@@ -11,26 +11,13 @@
 
 
 #include "diag/Trace.h"
+#include "state.h"
 #include "sensors.h"
 #include "telemetry.h"
-//#include <FreeRTOS.h>
-//#include <FreeRTOSConfig.h>
-//#include <tasks/control_task.h>
-//#include <tasks/sensors_task.h>
-//#include <tasks/telemetry.h>
-//#include "task.h"
-//#include "mavlink/UNISAT/mavlink.h"
-
-
-#include "state.h"
 #include "MPU9255.h"
 #include "nRF24L01.h"
+#include "xprintf.h"
 
-// ----- Timing definitions -------------------------------------------------
-
-// Keep the LED on for 2/3 of a second.
-#define BLINK_ON_TICKS  (TIMER_FREQUENCY_HZ * 3 / 4)
-#define BLINK_OFF_TICKS (TIMER_FREQUENCY_HZ - BLINK_ON_TICKS)
 
 // ----- main() ---------------------------------------------------------------
 
@@ -73,6 +60,9 @@ int main(int argc, char* argv[])
 
 	_init_leds();
 
+	if (DBGU)
+		_init_usart_dbg();
+
 	//	Peripheral initialization
 	if (IMU)
 	{
@@ -86,22 +76,24 @@ int main(int argc, char* argv[])
 
 	for (; ; )
 	{
-		if (IMU)
-		{
+		#if (IMU)
 			IMU_updateDataAll();
 			_IMUtask_updateData();
-		}
+		#endif
 
-		if (RF)
-		{
+		#if (RF)
 			mavlink_msg_state_send();
 			mavlink_msg_imu_rsc_send();
 			mavlink_msg_imu_isc_send();
-		}
+		#endif
+
+		#if (DBGU)
+			xprintf("hey\n");
+		#endif
 
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
 
-		HAL_Delay(93);
+		HAL_Delay(200);
 	}
 
 	return 0;
@@ -117,18 +109,8 @@ void _init_leds()
 	gpio.Pull = GPIO_PULLUP;
 	gpio.Speed = GPIO_SPEED_FAST;
 	HAL_GPIO_Init(GPIOA, &gpio);
-}
-
-
-void _init_usart_dbg()
-{
-	usart_dbg.Instance = USART1;
-	usart_dbg.Init.BaudRate = 115200;
-	usart_dbg.Init.WordLength = UART_WORDLENGTH_8B;
-	usart_dbg.Init.StopBits = UART_STOPBITS_1;
-	usart_dbg.Init.Parity = UART_PARITY_NONE;
-	usart_dbg.Init.Mode = UART_MODE_TX_RX;
-	HAL_USART_Init(&usart_dbg);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
 }
 
 

@@ -5,14 +5,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/drivers/MPU9255.c \
+../src/drivers/dbgu.c \
 ../src/drivers/nRF24L01.c 
 
 OBJS += \
 ./src/drivers/MPU9255.o \
+./src/drivers/dbgu.o \
 ./src/drivers/nRF24L01.o 
 
 C_DEPS += \
 ./src/drivers/MPU9255.d \
+./src/drivers/dbgu.d \
 ./src/drivers/nRF24L01.d 
 
 

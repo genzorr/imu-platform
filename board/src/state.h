@@ -23,19 +23,13 @@
 
 #include "quaternion.h"
 
+#define DBGU			1
 //#define SD 			0
 #define RF				1
 #define IMU				0
 #define IMU_CALIBRATION	1
-//#define IMU_BMP		0
-//#define BMP			0
 //#define GPS			0
-//#define LED			1
-//#define CONTROL 	0
-//#define EXCHANGE	0
-//
-//#define GROUND		0
-//#define SERVO		0
+
 
 // if error set value and go to end
 #define PROCESS_ERROR(x) if (0 != (error = (x))) { goto end; }

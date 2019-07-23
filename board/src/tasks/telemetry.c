@@ -5,6 +5,7 @@
  *      Author: michael
  */
 #include <stdint.h>
+#include "diag/Trace.h"
 
 #include "state.h"
 #include "nRF24L01.h"
