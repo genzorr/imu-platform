@@ -39,6 +39,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "nRF24L01.h"
 
 // [ILG]
 #if defined ( __GNUC__ )
@@ -225,35 +226,24 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 {
 	if (hspi->Instance == SPI1) {
 		__SPI1_CLK_ENABLE();
-		__GPIOA_CLK_ENABLE();
-		__GPIOC_CLK_ENABLE();
+		__GPIOB_CLK_ENABLE();
 
 		//	nRF24L01
-		GPIO_InitTypeDef gpioa;
-		gpioa.Alternate = GPIO_AF5_SPI1;
-		gpioa.Mode = GPIO_MODE_AF_PP;
-		gpioa.Pin = GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7;
-		gpioa.Pull = GPIO_NOPULL;
-		gpioa.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpioa);
+		GPIO_InitTypeDef gpio;
+		gpio.Alternate = GPIO_AF5_SPI1;
+		gpio.Mode = GPIO_MODE_AF_PP;
+		gpio.Pin = nRF24L01_SCK_PIN | nRF24L01_MISO_PIN | nRF24L01_MOSI_PIN;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(nRF24L01_PORT, &gpio);
 
-		gpioa.Mode = GPIO_MODE_OUTPUT_PP;
-		gpioa.Pin = GPIO_PIN_4 | GPIO_PIN_8;
-		gpioa.Pull = GPIO_NOPULL;
-		gpioa.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpioa);
+		gpio.Mode = GPIO_MODE_OUTPUT_PP;
+		gpio.Pin = nRF24L01_CS_PIN | nRF24L01_CE_PIN;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(nRF24L01_PORT, &gpio);
 
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, SET);
-
-		//	SD
-		GPIO_InitTypeDef gpioc;
-		gpioc.Mode = GPIO_MODE_OUTPUT_PP;
-		gpioc.Pin = GPIO_PIN_3;
-		gpioc.Pull = GPIO_NOPULL;
-		gpioc.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOC, &gpioc);
-
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, SET);
+		HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CS_PIN, SET);
 	}
 }
 

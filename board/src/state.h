@@ -24,8 +24,8 @@
 #include "quaternion.h"
 
 //#define SD 			0
-//#define RF			0 	//Влияет на отправку телеметрии
-#define IMU				1
+#define RF				1
+#define IMU				0
 #define IMU_CALIBRATION	1
 //#define IMU_BMP		0
 //#define BMP			0

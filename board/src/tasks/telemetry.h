@@ -16,5 +16,7 @@ uint8_t mavlink_msg_imu_rsc_send();
 
 uint8_t mavlink_msg_imu_isc_send();
 
+void TM_Init();
+
 
 #endif /* SRC_TASKS_TELEMETRY_H_ */

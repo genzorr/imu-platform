@@ -27,7 +27,6 @@ void 			get_staticShifts();
 void 			IMU_Init();
 int 			IMU_updateDataAll();
 void 			_IMUtask_updateData();
-void 			stateMsg_fill(state_msg_t* msg);
 
 
 /**
@@ -139,10 +138,9 @@ void get_staticShifts()
   */
 void IMU_Init()
 {
-
-	//	I2C init
 	if(IMU)
 	{
+		//	I2C init
 		i2c_mpu9255.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
 		i2c_mpu9255.Init.ClockSpeed = 400000;
 		i2c_mpu9255.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -151,7 +149,6 @@ void IMU_Init()
 		i2c_mpu9255.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
 
 		i2c_mpu9255.Init.OwnAddress1 = 0x00;
-//		i2c_mpu9255.Init.OwnAddress2 = 0x00;
 
 		i2c_mpu9255.Instance = I2C1;
 		i2c_mpu9255.Mode = HAL_I2C_MODE_MASTER;
@@ -268,12 +265,18 @@ int IMU_updateDataAll()
 	}
 
 end:
+	state_system.MPU_state = error;
+	if (error)
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
+	else
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+
 	return error;
 }
 
 
 /**
-  * @brief	Special function for updatind previous values structures by current values
+  * @brief	Special function for updating previous values structures by current values
   */
 void _IMUtask_updateData()
 {
@@ -283,34 +286,3 @@ void _IMUtask_updateData()
 //taskEXIT_CRITICAL();
 }
 
-
-/**
-  * @brief	Fills state_msg_t structure to transmit it
-  * @param	msg	Structure that used to store and transmit data
-  */
-void stateMsg_fill(state_msg_t* msg)
-{
-    static int number = 0;
-
-    msg->descr_val1 = 0xFF;
-    msg->descr_val2 = 0xFE;
-
-    msg->number = number;
-
-    msg->time = state_system.time;
-
-    for (uint8_t i = 0; i < 3; i++)
-    {
-        msg->accel[i]   = stateIMU_rsc.accel[i];
-        msg->gyro[i]    = stateIMU_rsc.gyro[i];
-        msg->magn[i]    = stateIMU_rsc.magn[i];
-    }
-
-    for (uint8_t i = 0; i < 4; i++)
-        msg->quaternion[i] = stateIMU_isc.quaternion[i];
-
-    msg->crc = 0;
-//    msg->crc = crc32((uint8_t*)msg, sizeof(*msg));
-
-    number++;
-}

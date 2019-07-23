@@ -40,13 +40,12 @@
 
 #define nRF24L01_BUFFER_LEN			32
 
-#define nRF24L01_CS_PORT GPIOA
-//#define nRF24L01_CS_DDR  DDRB
-#define nRF24L01_CS_PIN  GPIO_PIN_4
-
-#define nRF24L01_CE_PORT GPIOA
-//#define nRF24L01_CE_DDR  DDRB
-#define nRF24L01_CE_PIN  GPIO_PIN_8
+#define nRF24L01_PORT 		GPIOB
+#define nRF24L01_SCK_PIN	GPIO_PIN_3
+#define nRF24L01_MISO_PIN	GPIO_PIN_4
+#define nRF24L01_MOSI_PIN	GPIO_PIN_5
+#define nRF24L01_CS_PIN  	GPIO_PIN_7
+#define nRF24L01_CE_PIN  	GPIO_PIN_6
 
 extern uint32_t tickstart_;
 extern uint32_t tick_;

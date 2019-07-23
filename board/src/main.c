@@ -55,44 +55,14 @@ stateIMU_isc_t		stateIMU_isc_prev;
 state_system_t		state_system_prev;
 
 
-void Init_led(){
-	GPIO_InitTypeDef gpioc;
-	gpioc.Mode = GPIO_MODE_OUTPUT_PP;
-	gpioc.Pin = GPIO_PIN_12;
-	gpioc.Pull = GPIO_NOPULL;
-	gpioc.Speed = GPIO_SPEED_HIGH;
-	HAL_GPIO_Init(GPIOC, &gpioc);
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, SET);
-}
+void _init_leds();
+void _init_usart_dbg();
 
-void led(){
-	if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12))
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, RESET);
-	else
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, SET);
-}
-
-
-//void LED_task(){
-//	for(;;){
-//		taskENTER_CRITICAL();
-//		if (/*(state_system.BMP_state == 0) & */(state_system.IMU_BMP_state == 0) & (state_system.MPU_state == 0)
-//				& /*(state_system.GPS_state == 0) & (state_system.NRF_state == 0) & */ (state_system.SD_state == 0))
-//				HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, RESET);
-//		taskEXIT_CRITICAL();
-//		vTaskDelay(30);
-//		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, SET);
-//		vTaskDelay(250);
-//	}
-//}
 
 
 int main(int argc, char* argv[])
 {
-//	HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
-
-	// Инициализация структур глобального состояния (в нашем случае просто заполняем их нулями)
-//	memset(&stateGPS, 				0x00, sizeof(stateGPS));
+	//	Global structures init
 	memset(&stateIMU_rsc, 			0x00, sizeof(stateIMU_rsc));
 	memset(&stateIMU_isc, 			0x00, sizeof(stateIMU_isc));
 	memset(&state_system, 			0x00, sizeof(state_system));
@@ -100,13 +70,58 @@ int main(int argc, char* argv[])
 	memset(&stateIMU_isc_prev, 		0x00, sizeof(stateIMU_isc_prev));
 	memset(&state_system_prev, 		0x00, sizeof(state_system_prev));
 
-//	__enable_irq();
-//
-//	HAL_InitTick(15);
-//
-//	vTaskStartScheduler();
 
-	//	usart_dbg init
+	_init_leds();
+
+	//	Peripheral initialization
+	if (IMU)
+	{
+		IMU_Init();
+		get_staticShifts();
+	}
+
+	if (RF)
+		TM_Init();
+
+
+	for (; ; )
+	{
+		if (IMU)
+		{
+			IMU_updateDataAll();
+			_IMUtask_updateData();
+		}
+
+		if (RF)
+		{
+			mavlink_msg_state_send();
+			mavlink_msg_imu_rsc_send();
+			mavlink_msg_imu_isc_send();
+		}
+
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
+
+		HAL_Delay(93);
+	}
+
+	return 0;
+}
+
+
+void _init_leds()
+{
+	__GPIOA_CLK_ENABLE();
+	GPIO_InitTypeDef gpio;
+	gpio.Mode = GPIO_MODE_OUTPUT_PP;
+	gpio.Pin = GPIO_PIN_6 | GPIO_PIN_7;
+	gpio.Pull = GPIO_PULLUP;
+	gpio.Speed = GPIO_SPEED_FAST;
+	HAL_GPIO_Init(GPIOA, &gpio);
+}
+
+
+void _init_usart_dbg()
+{
 	usart_dbg.Instance = USART1;
 	usart_dbg.Init.BaudRate = 115200;
 	usart_dbg.Init.WordLength = UART_WORDLENGTH_8B;
@@ -114,30 +129,8 @@ int main(int argc, char* argv[])
 	usart_dbg.Init.Parity = UART_PARITY_NONE;
 	usart_dbg.Init.Mode = UART_MODE_TX_RX;
 	HAL_USART_Init(&usart_dbg);
-
-	state_msg_t msg;
-
-	IMU_Init();
-	get_staticShifts();
-
-	__enable_irq();
-
-	for (; ; )
-	{
-		IMU_updateDataAll();
-		_IMUtask_updateData();
-
-//		stateMsg_fill(&msg);
-//		HAL_USART_Transmit(&usart_dbg, (uint8_t*)&msg, sizeof(msg), 10);
-
-		mavlink_msg_imu_rsc_send();
-		mavlink_msg_imu_isc_send();
-
-//		HAL_Delay(93);
-	}
-
-	return 0;
 }
+
 
 #pragma GCC diagnostic pop
 

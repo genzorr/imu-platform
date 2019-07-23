@@ -75,3 +75,12 @@ uint8_t mavlink_msg_imu_isc_send()
 
 	return error;
 }
+
+
+void TM_Init()
+{
+	uint8_t error = nRF24L01_init(&spi_nRF24L01);
+	state_system.NRF_state = error;
+	trace_printf("nRF: %d\n", error);
+}
+
