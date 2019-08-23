@@ -23,11 +23,11 @@
 
 #include "quaternion.h"
 
-#define DBGU			1
+#define DBGU			0
 //#define SD 			0
 #define RF				1
-#define IMU				0
-#define IMU_CALIBRATION	1
+#define IMU				1
+#define IMU_CALIBRATION	0
 //#define GPS			0
 
 
