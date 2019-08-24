@@ -326,7 +326,7 @@ _start (void)
   // Get the argc/argv (useful in semihosting configurations).
   int argc;
   char** argv;
-  __initialize_args (&argc, &argv);
+//  __initialize_args (&argc, &argv);
 
   // Call the standard library initialisation (mandatory for C++ to
   // execute the constructors for the static objects).

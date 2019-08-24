@@ -22,7 +22,7 @@ uint8_t mavlink_msg_state_send()
 //taskEXIT_CRITICAL();
 
 	mavlink_message_t msg;
-	uint16_t len = mavlink_msg_state_encode(0x00, 0x00, &msg, &msg_state);
+	uint16_t len = mavlink_msg_state_encode(0x00, 0x01, &msg, &msg_state);
 	uint8_t buffer[50];
 	len = mavlink_msg_to_send_buffer(buffer, &msg);
 	uint8_t error = nRF24L01_send(&spi_nRF24L01, buffer, len, 1);
@@ -45,7 +45,7 @@ uint8_t mavlink_msg_imu_rsc_send()
 //taskEXIT_CRITICAL();
 
 	mavlink_message_t msg;
-	uint16_t len = mavlink_msg_imu_rsc_encode(0x00, 0x00, &msg, &msg_imu_rsc);
+	uint16_t len = mavlink_msg_imu_rsc_encode(0x00, 0x01, &msg, &msg_imu_rsc);
 	uint8_t buffer[100];
 	len = mavlink_msg_to_send_buffer(buffer, &msg);
 	uint8_t error = nRF24L01_send(&spi_nRF24L01, buffer, len, 1);
@@ -69,7 +69,7 @@ uint8_t mavlink_msg_imu_isc_send()
 //taskEXIT_CRITICAL();
 
 	mavlink_message_t msg;
-	uint16_t len = mavlink_msg_imu_isc_encode(0x00, 0x00, &msg, &msg_imu_isc);
+	uint16_t len = mavlink_msg_imu_isc_encode(0x00, 0x01, &msg, &msg_imu_isc);
 	uint8_t buffer[100];
 	len = mavlink_msg_to_send_buffer(buffer, &msg);
 	uint8_t error = nRF24L01_send(&spi_nRF24L01, buffer, len, 1);
