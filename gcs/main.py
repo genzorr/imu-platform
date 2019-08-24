@@ -14,6 +14,8 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     myapp = MyWin()
 
+    # self.centralwidget.setLayout(self.horizontalLayout)
+
     myapp.show()
     ######################################
 

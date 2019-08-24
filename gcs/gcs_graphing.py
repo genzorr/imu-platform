@@ -94,9 +94,13 @@ class MyWin(QtWidgets.QMainWindow):
         pg.setConfigOption('foreground', 'k')
 
         # Variables
-        self.accel_x = []
-        self.accel_y = []
-        self.accel_z = []
+        self.accel_rsc_x = []
+        self.accel_rsc_y = []
+        self.accel_rsc_z = []
+
+        self.accel_isc_x = []
+        self.accel_isc_y = []
+        self.accel_isc_z = []
 
         self.gyro_x = []
         self.gyro_y = []
@@ -106,200 +110,103 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y = []
         self.magn_z = []
 
-        self.time = []
+        self.time_rsc = []
+        self.time_isc = []
+        self.time_state = []
 
         self.length = 150
         self.cut = 11
 
+        # GLV
+        self.ui.glv = pg.GraphicsLayoutWidget(self.ui.centralwidget)
+        self.ui.graph_layout.addWidget(self.ui.glv)
 
-        # Accel graph
-        self.ui.graph_w_top = pg.GraphicsLayoutWidget(self.ui.centralwidget)
-        self.ui.verticalLayout_5.addWidget(self.ui.graph_w_top)
-        self.ui.plot_layout_top = pg.GraphicsLayout()
-        self.ui.graph_w_top.addItem(self.ui.plot_layout_top)
+        self.plot_item_accel_rsc = pg.PlotItem(title='Accelerometer RSC')
+        self.ui.glv.ci.addItem(self.plot_item_accel_rsc)
+        self.accel_rsc_graph = pg.PlotCurveItem()
+        self.plot_item_accel_rsc.addItem(self.accel_rsc_graph)
 
-        self.graph_accel = pg.PlotItem(title='Accel', labels={'left': 'accel', 'bottom': 'time'})
-        self.ui.plot_layout_top.addItem(self.graph_accel)
+        self.ui.glv.ci.nextRow()
 
-        self.accel_x_plot = self.graph_accel.plot()
-        self.accel_y_plot = self.graph_accel.plot()
-        self.accel_z_plot = self.graph_accel.plot()
+        self.plot_item_accel_isc = pg.PlotItem(title='Accelerometer ISC')
+        self.ui.glv.ci.addItem(self.plot_item_accel_isc)
+        self.accel_isc_graph = pg.PlotCurveItem()
+        self.plot_item_accel_isc.addItem(self.accel_isc_graph)
 
+        self.ui.glv.ci.nextRow()
 
-        # Gyro graph
-        self.ui.graph_w_middle = pg.GraphicsLayoutWidget(self.ui.centralwidget)
-        self.ui.verticalLayout_5.addWidget(self.ui.graph_w_middle)
-        self.ui.plot_layout_middle = pg.GraphicsLayout()
-        self.ui.graph_w_middle.addItem(self.ui.plot_layout_middle)
+        self.plot_item_gyro = pg.PlotItem(title='Gyroscope')
+        self.ui.glv.ci.addItem(self.plot_item_gyro)
+        self.gyro_graph = pg.PlotCurveItem()
+        self.plot_item_gyro.addItem(self.gyro_graph)
 
-        self.graph_gyro = pg.PlotItem(title="Gyro", labels={'left': 'gyro', 'bottom': 'time'})
-        self.ui.plot_layout_middle.addItem(self.graph_gyro)
+        self.ui.glv.ci.nextRow()
 
-        self.gyro_x_plot = self.graph_gyro.plot()
-        self.gyro_y_plot = self.graph_gyro.plot()
-        self.gyro_z_plot = self.graph_gyro.plot()
-
-
-        # Magneto graph
-        self.ui.graph_w_bottom = pg.GraphicsLayoutWidget(self.ui.centralwidget)
-        self.ui.verticalLayout_5.addWidget(self.ui.graph_w_bottom)
-        self.ui.plot_layout_bottom = pg.GraphicsLayout()
-        self.ui.graph_w_bottom.addItem(self.ui.plot_layout_bottom)
-
-        self.graph_magn = pg.PlotItem(title="Magnetometer", labels={'left': 'magnetometer', 'bottom': 'time'})
-        self.ui.plot_layout_bottom.addItem(self.graph_magn)
-
-        self.magn_x_plot = self.graph_magn.plot()
-        self.magn_y_plot = self.graph_magn.plot()
-        self.magn_z_plot = self.graph_magn.plot()
+        self.plot_item_magn = pg.PlotItem(title='Magnetometer')
+        self.ui.glv.ci.addItem(self.plot_item_magn)
+        self.magn_graph = pg.PlotCurveItem()
+        self.plot_item_magn.addItem(self.magn_graph)
 
 
-        # 3D graph
+        # Text and 3D
         self.ui.dockwid = QtWidgets.QDockWidget()
-        self.ui.grid3DGrafLayout.addWidget(self.ui.dockwid)
+        self.ui.graph_3d_layout.addWidget(self.ui.dockwid)
+
         self.ui.glwid = self.plane_widget
         self.ui.dockwid.setWidget(self.ui.glwid)
-
+        self.isc_coord = gl.GLAxisItem()
+        self.isc_coord.setSize(25, 25, 25)
         self.ui.glwid.show()
 
-    def clear_log(self):
-        self.ui.textBrowser.setText('')
+        # graphs
+        self.accel_rsc_x_graph = self.plot_item_accel_rsc.plot()
+        self.accel_rsc_y_graph = self.plot_item_accel_rsc.plot()
+        self.accel_rsc_z_graph = self.plot_item_accel_rsc.plot()
 
+        self.accel_isc_x_graph = self.plot_item_accel_rsc.plot()
+        self.accel_isc_y_graph = self.plot_item_accel_rsc.plot()
+        self.accel_isc_z_graph = self.plot_item_accel_rsc.plot()
 
-    def log_add(self, log_msg):
-        self.ui.textBrowser.setText(str(log_msg) + '\n')
+        self.gyro_x_graph = self.plot_item_gyro.plot()
+        self.gyro_y_graph = self.plot_item_gyro.plot()
+        self.gyro_z_graph = self.plot_item_gyro.plot()
+
+        self.magn_x_graph = self.plot_item_magn.plot()
+        self.magn_y_graph = self.plot_item_magn.plot()
+        self.magn_z_graph = self.plot_item_magn.plot()
 
 
     @QtCore.pyqtSlot(list)
-    def msg(self, msgs):
+    def state_msg(self, msgs):
         for i in range(len(msgs)):
-            self.accel_x.append(msgs[i].accelData[0])
-            self.accel_y.append(msgs[i].accelData[1])
-            self.accel_z.append(msgs[i].accelData[2])
-
-            self.gyro_x.append(msgs[i].gyroData[0])
-            self.gyro_y.append(msgs[i].gyroData[1])
-            self.gyro_z.append(msgs[i].gyroData[2])
-
-            self.magn_x.append(msgs[i].magnData[0])
-            self.magn_y.append(msgs[i].magnData[1])
-            self.magn_z.append(msgs[i].magnData[2])
-
-            self.time.append(msgs[i].time)
-
-            quat = pyquaternion.Quaternion(msgs[i].quaternion)
-            self.plane_widget._update_rotation(quat)
-
-            # # -----------------------------------------------------------------------
-            # self.accel_file = open(ACCEL_PATH, 'a')
-            # self.magn_file = open(MAGN_PATH, 'a')
-            # # -----------------------------------------------------------------------
-            # self.accel_file.write(str(msgs[i].accelData[0]) + '\t' + str(msgs[i].accelData[1]) + '\t' + str(msgs[i].accelData[2]) + '\n')
-            # self.magn_file.write(str(msgs[i].magnData[0]) + '\t' + str(msgs[i].magnData[1]) + '\t' + str(msgs[i].magnData[2]) + '\n')
-            # # -----------------------------------------------------------------------
-            # self.accel_file.close()
-            # self.magn_file.close()
-
-
-        if len(self.time) > self.length:
-            self.accel_x = self.accel_x[self.cut:(self.length - 1)]
-            self.accel_y = self.accel_y[self.cut:(self.length - 1)]
-            self.accel_z = self.accel_z[self.cut:(self.length - 1)]
-
-            self.gyro_x = self.gyro_x[self.cut:(self.length - 1)]
-            self.gyro_y = self.gyro_y[self.cut:(self.length - 1)]
-            self.gyro_z = self.gyro_z[self.cut:(self.length - 1)]
-
-            self.magn_x = self.magn_x[self.cut:(self.length - 1)]
-            self.magn_y = self.magn_y[self.cut:(self.length - 1)]
-            self.magn_z = self.magn_z[self.cut:(self.length - 1)]
-
-            self.time = self.time[self.cut:(self.length - 1)]
-
-
-        self.accel_x_plot.setData(x=self.time, y=self.accel_x, pen=('r'), width=0.5)
-        self.accel_y_plot.setData(x=self.time, y=self.accel_y, pen=('g'), width=0.5)
-        self.accel_z_plot.setData(x=self.time, y=self.accel_z, pen=('b'), width=0.5)
-
-        self.gyro_x_plot.setData(x=self.time, y=self.gyro_x, pen=('r'), width=0.5)
-        self.gyro_y_plot.setData(x=self.time, y=self.gyro_y, pen=('g'), width=0.5)
-        self.gyro_z_plot.setData(x=self.time, y=self.gyro_z, pen=('b'), width=0.5)
-
-        self.magn_x_plot.setData(x=self.time, y=self.magn_x, pen=('r'), width=0.5)
-        self.magn_y_plot.setData(x=self.time, y=self.magn_y, pen=('g'), width=0.5)
-        self.magn_z_plot.setData(x=self.time, y=self.magn_z, pen=('b'), width=0.5)
+            pass
 
     @QtCore.pyqtSlot(list)
     def imu_rsc_msg(self, msgs):
+        print('got')
         for i in range(len(msgs)):
-            self.a_RSC_x.append(msgs[i].accel[0])
-            self.a_RSC_y.append(msgs[i].accel[1])
-            self.a_RSC_z.append(msgs[i].accel[2])
+            self.accel_rsc_x.append(msgs[i].accel[0])
+            self.accel_rsc_y.append(msgs[i].accel[1])
+            self.accel_rsc_z.append(msgs[i].accel[2])
+
+            self.time_rsc.append(msgs[i].time)
 
             # self.accel_f.write("%f\t%f\t%f\n" % (msgs[i].accel[0], msgs[i].accel[1], msgs[i].accel[2]))
             # self.compass_f.write("%f\t%f\t%f\n" % (msgs[i].compass[0], msgs[i].compass[1], msgs[i].compass[2]))
 
-            self.time_RSC.append(msgs[i].time)
+        if len(self.time_rsc) > self.length:
+            self.time_rsc = self.time_rsc[self.cut:(self.lenght - 1)]
 
-            self.av_x.append(msgs[i].gyro[0])
-            self.av_y.append(msgs[i].gyro[1])
-            self.av_z.append(msgs[i].gyro[2])
+            self.accel_rsc_x = self.accel_rsc_x[self.cut:(self.length - 1)]
+            self.accel_rsc_y = self.accel_rsc_y[self.cut:(self.length - 1)]
+            self.accel_rsc_z = self.accel_rsc_z[self.cut:(self.length - 1)]
 
-            self.vmf_x.append(msgs[i].compass[0])
-            self.vmf_y.append(msgs[i].compass[1])
-            self.vmf_z.append(msgs[i].compass[2])
-
-        if len(self.time_RSC) > self.lenght:
-            self.time_RSC = self.time_RSC[self.cut:(self.lenght - 1)]
-            self.av_x = self.av_x[self.cut:(self.lenght - 1)]
-            self.av_y = self.av_y[self.cut:(self.lenght - 1)]
-            self.av_z = self.av_z[self.cut:(self.lenght - 1)]
-
-            self.vmf_x = self.vmf_x[self.cut:(self.lenght - 1)]
-            self.vmf_y = self.vmf_y[self.cut:(self.lenght - 1)]
-            self.vmf_z = self.vmf_z[self.cut:(self.lenght - 1)]
-
-            self.a_RSC_x = self.a_RSC_x[self.cut:(self.lenght - 1)]
-            self.a_RSC_y = self.a_RSC_y[self.cut:(self.lenght - 1)]
-            self.a_RSC_z = self.a_RSC_z[self.cut:(self.lenght - 1)]
-
-        self.pl_graf_top1_x.setData(x=self.time_RSC, y=self.a_RSC_x, pen=('r'), width=0.5)
-        self.pl_graf_top1_y.setData(x=self.time_RSC, y=self.a_RSC_y, pen=('g'), width=0.5)
-        self.pl_graf_top1_z.setData(x=self.time_RSC, y=self.a_RSC_z, pen=('b'), width=0.5)
-
-        self.pl_graf_middle1_x.setData(x=self.time_RSC, y=self.av_x, pen=('r'), width=0.5)
-        self.pl_graf_middle1_y.setData(x=self.time_RSC, y=self.av_y, pen=('g'), width=0.5)
-        self.pl_graf_middle1_z.setData(x=self.time_RSC, y=self.av_z, pen=('b'), width=0.5)
-
-        self.pl_graf_middle2_x.setData(x=self.time_RSC, y=self.vmf_x, pen=('r'), width=0.5)
-        self.pl_graf_middle2_y.setData(x=self.time_RSC, y=self.vmf_y, pen=('g'), width=0.5)
-        self.pl_graf_middle2_z.setData(x=self.time_RSC, y=self.vmf_z, pen=('b'), width=0.5)
+        self.accel_rsc_x_graph.setData(x=self.time_rsc, y=self.accel_rsc_x, pen=('r'), width=0.5)
+        self.accel_rsc_y_graph.setData(x=self.time_rsc, y=self.accel_rsc_y, pen=('r'), width=0.5)
+        self.accel_rsc_z_graph.setData(x=self.time_rsc, y=self.accel_rsc_z, pen=('r'), width=0.5)
 
     # Слот для разбора пакета imu_isc
     @QtCore.pyqtSlot(list)
     def imu_isc_msg(self, msgs):
-        print('msg_imu_isc')
         for i in range(len(msgs)):
-            self.quat.append(msgs[i].quaternion)
-
-            if FILE_WRITE:
-                self.buffer_imu_isc_msg.append(str(msgs[i].time) + '\t' + '\t' +
-                                               str(msgs[i].accel[0]) + ' ' + str(msgs[i].accel[1]) + ' ' + str(
-                    msgs[i].accel[2]) + '\t' + '\t' +
-                                               str(msgs[i].compass[0]) + ' ' + str(msgs[i].compass[1]) + ' ' + str(
-                    msgs[i].compass[2]) + '\t' + '\t' +
-                                               str(msgs[i].quaternion[0]) + ' ' + str(
-                    msgs[i].quaternion[1]) + ' ' + str(msgs[i].quaternion[2]) + ' ' + str(msgs[i].quaternion[3]) + '\n')
-
-            quat = pyquaternion.Quaternion(msgs[i].quaternion)
-            self.plane_widget._update_rotation(quat)
-
-        if TELEM:
-            self.telem_widget_quat.set_value_1(round(self.quat[len(self.quat) - 1][0], 3))
-            self.telem_widget_quat.set_value_2(round(self.quat[len(self.quat) - 1][1], 3))
-            self.telem_widget_quat.set_value_3(round(self.quat[len(self.quat) - 1][2], 3))
-            self.telem_widget_quat.set_value_4(round(self.quat[len(self.quat) - 1][3], 3))
-
-        if FILE_WRITE:
-            self.write_to_file(self.buffer_imu_isc_msg, file_imu_isc)
-            self.buffer_imu_isc_msg = []
+            pass

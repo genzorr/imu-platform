@@ -3,8 +3,6 @@ from pymavlink.dialects.v10.mavmessages import *
 from pymavlink import mavutil
 import struct
 
-from pymavlink.dialects.v10.mavmessages import MAVLink_state_message, MAVLink_imu_isc_message
-
 ACCUM_LEN = 10
 
 class MsgAccumulator:
@@ -42,8 +40,10 @@ class MavlinkThread(QThread):
 
 
     def run(self):
-        mav = mavutil.mavlink_connection("udpin:0.0.0.0:10000")
+        mav = mavutil.mavlink_connection("udpin:192.168.0.103:10000")
 
         while True:
             pack = mav.recv_match(blocking=False)
-            self.record_accum.push_message(pack)
+            if pack:
+                print(pack)
+            self.process_message(pack)
