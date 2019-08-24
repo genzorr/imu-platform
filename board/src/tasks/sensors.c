@@ -142,7 +142,7 @@ void IMU_Init()
 	{
 		//	I2C init
 		i2c_mpu9255.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-		i2c_mpu9255.Init.ClockSpeed = 400000;
+		i2c_mpu9255.Init.ClockSpeed = 200000;
 		i2c_mpu9255.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
 		i2c_mpu9255.Init.DutyCycle = I2C_DUTYCYCLE_2;
 		i2c_mpu9255.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;

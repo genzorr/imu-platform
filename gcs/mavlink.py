@@ -40,7 +40,7 @@ class MavlinkThread(QThread):
 
 
     def run(self):
-        mav = mavutil.mavlink_connection("udpin:192.168.0.103:10000")
+        mav = mavutil.mavlink_connection("udpin:0.0.0.0:10000")
 
         while True:
             pack = mav.recv_match(blocking=False)
