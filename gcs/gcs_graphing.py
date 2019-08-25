@@ -110,9 +110,17 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y = []
         self.magn_z = []
 
+        self.q0 = []
+        self.q1 = []
+        self.q2 = []
+        self.q3 = []
+
         self.time_rsc = []
         self.time_isc = []
         self.time_state = []
+
+        self.imu_state = 255
+        self.nrf_state = 255
 
         self.length = 150
         self.cut = 11
@@ -179,7 +187,13 @@ class MyWin(QtWidgets.QMainWindow):
     @QtCore.pyqtSlot(list)
     def state_msg(self, msgs):
         for i in range(len(msgs)):
-            pass
+            tmp = msgs[i].MPU_state
+            if tmp != self.imu_state:
+                self.imu_state = tmp
+                phrase = 'IMU state {}'.format(tmp)
+                self.ui.textBrowser.setText(phrase)
+            else:
+                pass
 
     @QtCore.pyqtSlot(list)
     def imu_rsc_msg(self, msgs):
@@ -188,6 +202,10 @@ class MyWin(QtWidgets.QMainWindow):
             self.accel_rsc_x.append(msgs[i].accel[0])
             self.accel_rsc_y.append(msgs[i].accel[1])
             self.accel_rsc_z.append(msgs[i].accel[2])
+
+            self.gyro_x.append(msgs[i].gyro[0])
+            self.gyro_y.append(msgs[i].gyro[1])
+            self.gyro_z.append(msgs[i].gyro[2])
 
             self.time_rsc.append(msgs[i].time)
 
@@ -201,12 +219,60 @@ class MyWin(QtWidgets.QMainWindow):
             self.accel_rsc_y = self.accel_rsc_y[self.cut:(self.length - 1)]
             self.accel_rsc_z = self.accel_rsc_z[self.cut:(self.length - 1)]
 
+            self.gyro_x = self.gyro_x[self.cut:(self.length - 1)]
+            self.gyro_y = self.gyro_y[self.cut:(self.length - 1)]
+            self.gyro_z = self.gyro_z[self.cut:(self.length - 1)]
+
         self.accel_rsc_x_graph.setData(x=self.time_rsc, y=self.accel_rsc_x, pen=('r'), width=0.5)
         self.accel_rsc_y_graph.setData(x=self.time_rsc, y=self.accel_rsc_y, pen=('r'), width=0.5)
         self.accel_rsc_z_graph.setData(x=self.time_rsc, y=self.accel_rsc_z, pen=('r'), width=0.5)
+
+        self.gyro_x_graph.setData(x=self.time_rsc, y=self.gyro_x_graph, pen=('r'), width=0.5)
+        self.gyro_y_graph.setData(x=self.time_rsc, y=self.gyro_y_graph, pen=('r'), width=0.5)
+        self.gyro_z_graph.setData(x=self.time_rsc, y=self.gyro_z_graph, pen=('r'), width=0.5)
 
     # Слот для разбора пакета imu_isc
     @QtCore.pyqtSlot(list)
     def imu_isc_msg(self, msgs):
         for i in range(len(msgs)):
-            pass
+            self.accel_isc_x.append(msgs[i].accel[0])
+            self.accel_isc_y.append(msgs[i].accel[1])
+            self.accel_isc_z.append(msgs[i].accel[2])
+
+            self.magn_x.append(msgs[i].magn[0])
+            self.magn_y.append(msgs[i].magn[1])
+            self.magn_z.append(msgs[i].magn[2])
+
+            self.q0.append(msgs[i].quaternion[0])
+            self.q1.append(msgs[i].quaternion[1])
+            self.q2.append(msgs[i].quaternion[2])
+            self.q3.append(msgs[i].quaternion[2])
+
+            self.time_isc.append(msgs[i].time)
+
+        if len(self.time_isc) > self.length:
+            self.time_isc = self.time_isc[self.cut:(self.lenght - 1)]
+
+            self.accel_isc_x = self.accel_isc_x[self.cut:(self.length - 1)]
+            self.accel_isc_y = self.accel_isc_y[self.cut:(self.length - 1)]
+            self.accel_isc_z = self.accel_isc_z[self.cut:(self.length - 1)]
+
+            self.magn_x = self.magn_x[self.cut:(self.length - 1)]
+            self.magn_y = self.magn_y[self.cut:(self.length - 1)]
+            self.magn_z = self.magn_z[self.cut:(self.length - 1)]
+
+            self.q0 = self.q0[self.cut:(self.length - 1)]
+            self.q1 = self.q1[self.cut:(self.length - 1)]
+            self.q2 = self.q2[self.cut:(self.length - 1)]
+            self.q3 = self.q3[self.cut:(self.length - 1)]
+
+        self.accel_isc_x_graph.setData(x=self.time_isc, y=self.accel_isc_x, pen=('r'), width=0.5)
+        self.accel_isc_y_graph.setData(x=self.time_isc, y=self.accel_isc_y, pen=('r'), width=0.5)
+        self.accel_isc_z_graph.setData(x=self.time_isc, y=self.accel_isc_z, pen=('r'), width=0.5)
+
+        self.magn_x_graph.setData(x=self.time_isc, y=self.magn_x_graph, pen=('r'), width=0.5)
+        self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y_graph, pen=('r'), width=0.5)
+        self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z_graph, pen=('r'), width=0.5)
+
+
+        # TODO: ADD 3D VIS

@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QThread, pyqtSignal
-from pymavlink.dialects.v10.mavmessages import *
+from pymavlink.dialects.v20.mavmessages import *
 from pymavlink import mavutil
 import struct
 
@@ -41,7 +41,7 @@ class MavlinkThread(QThread):
 
     def run(self):
         mav = mavutil.mavlink_connection("udpin:0.0.0.0:10000")
-
+        # mav = mavutil.mavlink_connection(device='/dev/ttyUSB0')
         while True:
             pack = mav.recv_match(blocking=False)
             if pack:

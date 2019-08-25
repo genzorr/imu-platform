@@ -17,6 +17,9 @@
 #include "MPU9255.h"
 #include "nRF24L01.h"
 #include "xprintf.h"
+#include "dbgu.h"
+
+//#include "mavmessages/mavlink.h"
 
 
 // ----- main() ---------------------------------------------------------------
@@ -43,7 +46,6 @@ state_system_t		state_system_prev;
 
 
 void _init_leds();
-void _init_usart_dbg();
 
 
 
@@ -88,7 +90,12 @@ int main(int argc, char* argv[])
 		#endif
 
 		#if (DBGU)
-			xprintf("hey\n");
+//			mavlink_message_t msg;
+//			//	uint16_t len = mavlink_msg_imu_isc_encode(0x00, 0x00, &msg, &msg_imu_isc);
+//			uint16_t len = mavlink_msg_imu_isc_pack(1, 1, &msg, stateIMU_isc.accel, stateIMU_isc.magn, stateIMU_isc.quaternion, (float)HAL_GetTick() / 1000);
+//			uint8_t buffer[100];
+//			len = mavlink_msg_to_send_buffer(buffer, &msg);
+//			HAL_USART_Transmit(&usart_dbg, buffer, len, 1);
 		#endif
 
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);

@@ -139,7 +139,7 @@ uint8_t nRF24L01_init (SPI_HandleTypeDef* hspi){
 	}
 
 	value = (0b0011 << ARD)|
-			(0b1111 << ARC);
+			(0b0011 << ARC);
 	PROCESS_ERROR(nRF24L01_write_register(hspi, nRF24L01_ARC_CNT_ADDR, value));
 	HAL_Delay(10);
 	PROCESS_ERROR(nRF24L01_read_register(hspi, nRF24L01_ARC_CNT_ADDR, &_read_value))
@@ -158,8 +158,8 @@ uint8_t nRF24L01_init (SPI_HandleTypeDef* hspi){
 		goto end;
 	}
 
-	value = (0 << RF_DR)|
-			(0b11 << RF_PWR)|
+	value = (0 << RF_DR_LOW) | (0 << RF_DR)|
+			(0b10 << RF_PWR)|
 			(0 << LNA_HCURR);
 	PROCESS_ERROR(nRF24L01_write_register(hspi, nRF24L01_RF_SETUP_ADDR, value));
 	HAL_Delay(10);

@@ -144,6 +144,7 @@ typedef enum {			//Частота канала
 }nRF24L01_RF_CH_t;
 
 typedef enum {
+	RF_DR_LOW = 5,
 	RF_DR     = 3,		//Скорость передачи данных (0 - 1 Mbps, 1 - 2 Mbps)
 	RF_PWR    = 1,		//[2:1] Усиление сигнала
 						//(00 – -18dBm, 01 – -12dBm, 10 – -6dBm, 11 – 0dBm)
