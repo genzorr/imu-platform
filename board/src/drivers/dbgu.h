@@ -11,8 +11,6 @@
 #include <stdint.h>
 #include "state.h"
 
-#if (DBGU)
 void _init_usart_dbg();
-#endif
 
 #endif /* DRIVERS_DBGU_H_ */

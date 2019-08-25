@@ -15,6 +15,7 @@
 #include "sensors.h"
 #include "telemetry.h"
 #include "MPU9255.h"
+#include "lsm6ds3.h"
 #include "nRF24L01.h"
 #include "xprintf.h"
 #include "dbgu.h"
@@ -82,8 +83,22 @@ int main(int argc, char* argv[])
 	for (; ; )
 	{
 		#if (IMU)
-			IMU_updateDataAll();
-			_IMUtask_updateData();
+//			IMU_updateDataAll();
+//			_IMUtask_updateData();
+			struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
+			float ddx[3] = {}, ddg[3] = {};
+			lsm6ds3_gxl_pull(&hlsm6ds3, &rd);
+			lsm6ds3_scale_xl(&hlsm6ds3.conf.xl, rd.xl, ddx, 3);
+			lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, ddg, 3);
+
+			stateIMU_rsc.accel[0] = ddx[0];
+			stateIMU_rsc.accel[1] = ddx[1];
+			stateIMU_rsc.accel[2] = ddx[2];
+
+			stateIMU_rsc.gyro[0] = ddg[0];
+			stateIMU_rsc.gyro[1] = ddg[1];
+			stateIMU_rsc.gyro[2] = ddg[2];
+
 		#endif
 
 		#if (RF)

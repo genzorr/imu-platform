@@ -40,7 +40,6 @@ class MavlinkThread(QThread):
 
     def run(self):
         mav = mavutil.mavlink_connection("udpin:0.0.0.0:10000", dialect='mavmessages')
-        # mav = mavutil.mavlink_connection(device='/dev/ttyUSB0')
         while True:
             pack = mav.recv_match(blocking=False)
             self.process_message(pack)

@@ -15,9 +15,12 @@
 #include "state.h"
 #include "sensors.h"
 #include "MPU9255.h"
+#include "lsm6ds3.h"
 
 
 I2C_HandleTypeDef 	i2c_mpu9255;
+SPI_HandleTypeDef	spi_lsm6ds3;
+struct lsm6ds3_dev_s hlsm6ds3;
 
 
 static uint8_t	get_gyro_staticShift(float* gyro_staticShift);
@@ -54,8 +57,15 @@ static uint8_t get_gyro_staticShift(float* gyro_staticShift)
 		}
 
 		//	Collect data
-		PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
-		mpu9255_recalcGyro(gyroData, gyro);
+		if (MPU9255)
+		{
+			PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
+			mpu9255_recalcGyro(gyroData, gyro);
+		}
+		else if (LSM)
+		{
+//			PROCESS_ERROR();
+		}
 
 		for (int m = 0; m < 3; m++)
 			gyro_staticShift[m] += gyro[m];
@@ -138,7 +148,7 @@ void get_staticShifts()
   */
 void IMU_Init()
 {
-	if(IMU)
+	if(MPU9255)
 	{
 		//	I2C init
 		i2c_mpu9255.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
@@ -172,6 +182,38 @@ void IMU_Init()
 		trace_printf("mpu: %d\n", mpu9255_initError);
 		state_system.MPU_state = mpu9255_initError;
 	}
+
+	else if (LSM)
+	{
+		int error = 0;
+
+		//	SPI init
+		spi_lsm6ds3.Instance = SPI2;
+		spi_lsm6ds3.Init.Mode = SPI_MODE_MASTER;
+		spi_lsm6ds3.Init.Direction = SPI_DIRECTION_2LINES;
+		spi_lsm6ds3.Init.DataSize = SPI_DATASIZE_8BIT;
+		spi_lsm6ds3.Init.CLKPolarity = SPI_POLARITY_LOW;
+		spi_lsm6ds3.Init.CLKPhase = SPI_PHASE_1EDGE;
+		spi_lsm6ds3.Init.NSS = SPI_NSS_SOFT;
+		spi_lsm6ds3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+		spi_lsm6ds3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+		spi_lsm6ds3.Init.TIMode = SPI_TIMODE_DISABLE;
+		spi_lsm6ds3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+
+		int spi_lsm6ds3_init_error = HAL_SPI_Init(&spi_lsm6ds3);
+		HAL_Delay(300);
+
+		trace_printf("spi_lsm6ds3: %d\n", spi_lsm6ds3_init_error);
+
+		//	LSM6DS3 init
+		lsm6ds3_register_spi(&hlsm6ds3, &spi_lsm6ds3, LSM6DS3_PORT, LSM6DS3_CS_PIN);
+		lsm6ds3_conf_default(&hlsm6ds3);
+		lsm6ds3_push_conf(&hlsm6ds3);
+
+	end:
+		trace_printf("LSM6DS3 init error: %d\n", error);
+	}
+
 }
 
 
@@ -198,13 +240,16 @@ int IMU_updateDataAll()
 	/////////////////	GET IMU DATA  //////////////////
 	////////////////////////////////////////////////////
 
-		PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
-		PROCESS_ERROR(mpu9255_readCompass(magnData));
+		if (MPU9255)
+		{
+			PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
+			PROCESS_ERROR(mpu9255_readCompass(magnData));
 
-		//	Recalc data to floats
-		mpu9255_recalcAccel(accelData, accel);
-		mpu9255_recalcGyro(gyroData, gyro);
-		mpu9255_recalcMagn(magnData, magn);
+			//	Recalc data to floats
+			mpu9255_recalcAccel(accelData, accel);
+			mpu9255_recalcGyro(gyroData, gyro);
+			mpu9255_recalcMagn(magnData, magn);
+		}
 
 //	taskENTER_CRITICAL();
 		float _time = (float)HAL_GetTick() / 1000;

@@ -27,10 +27,6 @@ uint8_t mavlink_msg_state_send()
 	len = mavlink_msg_to_send_buffer(buffer, &msg);
 	uint8_t error = nRF24L01_send(&spi_nRF24L01, buffer, len, 1);
 
-	for (int i = 0; i < len; i++)
-		trace_printf("%x ", buffer[i]);
-	trace_printf("\n");
-
 	return error;
 }
 
@@ -59,22 +55,21 @@ uint8_t mavlink_msg_imu_rsc_send()
 
 uint8_t mavlink_msg_imu_isc_send()
 {
-//	mavlink_imu_isc_t msg_imu_isc;
-//	msg_imu_isc.time = (float)HAL_GetTick() / 1000;
-////taskENTER_CRITICAL();
-//	for (int i = 0; i < 3; i++)
-//	{
-//		msg_imu_isc.accel[i] = stateIMU_isc.accel[i];
-//		msg_imu_isc.magn[i] = stateIMU_isc.magn[i];
-//	}
-//	for (int j = 0; j < 4; j++) {
-//		msg_imu_isc.quaternion[j] = stateIMU_isc.quaternion[j];
-//	}
-////taskEXIT_CRITICAL();
+	mavlink_imu_isc_t msg_imu_isc;
+	msg_imu_isc.time = (float)HAL_GetTick() / 1000;
+//taskENTER_CRITICAL();
+	for (int i = 0; i < 3; i++)
+	{
+		msg_imu_isc.accel[i] = stateIMU_isc.accel[i];
+		msg_imu_isc.magn[i] = stateIMU_isc.magn[i];
+	}
+	for (int j = 0; j < 4; j++) {
+		msg_imu_isc.quaternion[j] = stateIMU_isc.quaternion[j];
+	}
+//taskEXIT_CRITICAL();
 
 	mavlink_message_t msg;
-//	uint16_t len = mavlink_msg_imu_isc_encode(0x00, 0x00, &msg, &msg_imu_isc);
-	uint16_t len = mavlink_msg_imu_isc_pack(1, 1, &msg, stateIMU_isc.accel, stateIMU_isc.magn, stateIMU_isc.quaternion, (float)HAL_GetTick() / 1000);
+	uint16_t len = mavlink_msg_imu_isc_encode(1, 1, &msg, &msg_imu_isc);
 	uint8_t buffer[100];
 	len = mavlink_msg_to_send_buffer(buffer, &msg);
 	uint8_t error = nRF24L01_send(&spi_nRF24L01, buffer, len, 1);

@@ -191,6 +191,8 @@ class MyWin(QtWidgets.QMainWindow):
             self.accel_rsc_y.append(msgs[i].accel[1])
             self.accel_rsc_z.append(msgs[i].accel[2])
 
+            # print('{:.2f}\t{:.2f}\t{:.2f}'.format(*msgs[i].accel))
+
             self.gyro_x.append(msgs[i].gyro[0])
             self.gyro_y.append(msgs[i].gyro[1])
             self.gyro_z.append(msgs[i].gyro[2])
@@ -256,8 +258,6 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y, pen=('g'), width=0.5)
         self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z, pen=('b'), width=0.5)
 
-        quat = pyquaternion.Quaternion(msgs[i].quaternion)
-        self.plane_widget._update_rotation(quat)
+        # quat = pyquaternion.Quaternion(msgs[i].quaternion)
+        # self.plane_widget._update_rotation(quat)
 
-
-        # TODO: ADD 3D VIS
