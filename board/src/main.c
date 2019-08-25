@@ -59,6 +59,9 @@ int main(int argc, char* argv[])
 	memset(&stateIMU_isc_prev, 		0x00, sizeof(stateIMU_isc_prev));
 	memset(&state_system_prev, 		0x00, sizeof(state_system_prev));
 
+	state_system.MPU_state = 111;
+	state_system.NRF_state = 111;
+
 
 	_init_leds();
 

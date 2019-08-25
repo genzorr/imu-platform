@@ -2,161 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fae6f51-5e9b-4340-9cf2-34d749d6f0e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pymavlink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/checksum.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/common.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_actuator_control_target.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_adsb_vehicle.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_altitude.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_att_pos_mocap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_attitude.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_attitude_quaternion.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_attitude_quaternion_cov.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_attitude_target.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_auth_key.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_autopilot_version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_battery_status.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_camera_trigger.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_change_operator_control.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_change_operator_control_ack.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_collision.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_command_ack.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_command_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_command_long.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_control_system_state.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_data_stream.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_data_transmission_handshake.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_debug.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_debug_vect.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_distance_sensor.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_encapsulated_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_estimator_status.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_extended_sys_state.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_file_transfer_protocol.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_follow_target.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_global_position_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_global_position_int_cov.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_global_vision_position_estimate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps2_raw.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps2_rtk.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_global_origin.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_inject_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_input.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_raw_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_rtcm_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_rtk.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_gps_status.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_heartbeat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_high_latency.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_high_latency2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_highres_imu.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_actuator_controls.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_controls.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_gps.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_optical_flow.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_rc_inputs_raw.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_sensor.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_state.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_hil_state_quaternion.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_home_position.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_landing_target.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_local_position_ned.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_local_position_ned_cov.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_local_position_ned_system_global_offset.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_log_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_log_entry.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_log_erase.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_log_request_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_log_request_end.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_log_request_list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_manual_control.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_manual_setpoint.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_memory_vect.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_message_interval.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_ack.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_clear_all.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_count.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_current.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_item.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_item_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_item_reached.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_request.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_request_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_request_list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_request_partial_list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_set_current.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_mission_write_partial_list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_named_value_float.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_named_value_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_nav_controller_output.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_optical_flow.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_optical_flow_rad.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_param_map_rc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_param_request_list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_param_request_read.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_param_set.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_param_value.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_ping.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_position_target_global_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_position_target_local_ned.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_power_status.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_radio_status.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_raw_imu.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_raw_pressure.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_rc_channels.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_rc_channels_override.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_rc_channels_raw.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_rc_channels_scaled.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_request_data_stream.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_resource_request.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_safety_allowed_area.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_safety_set_allowed_area.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_scaled_imu.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_scaled_imu2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_scaled_imu3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_scaled_pressure.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_scaled_pressure2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_scaled_pressure3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_serial_control.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_servo_output_raw.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_actuator_control_target.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_attitude_target.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_gps_global_origin.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_home_position.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_mode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_position_target_global_int.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_set_position_target_local_ned.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_sim_state.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_statustext.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_sys_status.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_system_time.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_terrain_check.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_terrain_data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_terrain_report.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_terrain_request.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_timesync.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_v2_extension.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_vfr_hud.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_vibration.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_vicon_position_estimate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_vision_position_estimate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_vision_speed_estimate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/mavlink_msg_wind_cov.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/testsuite.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/common/version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavlink_conversions.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavlink_helpers.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavlink_types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/mavlink.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/mavlink_msg_imu_isc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/mavlink_msg_imu_rsc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/mavlink_msg_state.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/mavmessages.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/testsuite.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/mavmessages/version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/message_definitions/protocol.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/Debug/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/board/Debug/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/Debug/sources.mk" beforeDir="false" afterPath="$PROJECT_DIR$/board/Debug/sources.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/_initialize_hardware.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/_initialize_hardware.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/drivers/nRF24L01.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/nRF24L01.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/tasks/telemetry.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/tasks/telemetry.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/system/src/stm32f4-hal/stm32f4xx_hal_rcc.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/system/src/stm32f4-hal/stm32f4xx_hal_rcc.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcs/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/gcs_graphing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcs/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/mavlink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/checksum.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/checksum.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/common.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/common.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_att_pos_mocap.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_att_pos_mocap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_autopilot_version.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_autopilot_version.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_battery_status.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_battery_status.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_button_change.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_camera_capture_status.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_camera_image_captured.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_camera_information.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_camera_settings.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_command_ack.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_command_ack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_debug_float_array.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_flight_information.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_global_vision_position_estimate.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_global_vision_position_estimate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_gps_global_origin.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_gps_global_origin.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_gps_raw_int.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_gps_raw_int.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_home_position.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_home_position.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_landing_target.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_landing_target.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_logging_ack.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_logging_data.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_logging_data_acked.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_ack.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_ack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_clear_all.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_clear_all.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_count.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_count.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_item.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_item.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_item_int.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_item_int.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request_int.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request_int.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request_list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request_partial_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_request_partial_list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_write_partial_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mission_write_partial_list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_mount_orientation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_obstacle_distance.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_odometry.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_optical_flow.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_optical_flow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_param_ext_ack.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_param_ext_request_list.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_param_ext_request_read.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_param_ext_set.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_param_ext_value.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_play_tune.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_protocol_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_rc_channels_override.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_rc_channels_override.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_servo_output_raw.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_servo_output_raw.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_set_gps_global_origin.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_set_gps_global_origin.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_set_home_position.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_set_home_position.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_set_video_stream_settings.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_setup_signing.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_storage_information.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_trajectory_representation_bezier.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_trajectory_representation_waypoints.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_uavcan_node_info.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_uavcan_node_status.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_vicon_position_estimate.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_vicon_position_estimate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_video_stream_information.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_vision_position_estimate.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_vision_position_estimate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_vision_speed_estimate.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_vision_speed_estimate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/mavlink_msg_wifi_config_ap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/testsuite.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/testsuite.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/common/version.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/common/version.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavlink_conversions.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/mavlink_conversions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavlink_get_info.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavlink_helpers.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/mavlink_helpers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavlink_sha256.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavlink_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/mavlink_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavmessages/mavlink.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/mavmessages/mavlink.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavmessages/mavmessages.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/mavmessages/mavmessages.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/mavmessages/version.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/mavmessages/version.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_definitions/generated/protocol.h" beforeDir="false" afterPath="$PROJECT_DIR$/message_definitions/generated/protocol.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -166,20 +91,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56406">
-              <caret line="3324" column="30" selection-start-line="3324" selection-start-column="21" selection-end-line="3324" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="198" column="32" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
+            <state relative-caret-position="34">
+              <caret line="233" column="27" selection-start-line="233" selection-start-column="27" selection-end-line="233" selection-end-column="27" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -196,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+            <state relative-caret-position="-238">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -231,12 +147,18 @@
       <find>magn</find>
       <find>accel_isc</find>
       <find>magn_x</find>
+      <find>mavlink_sta</find>
+      <find>MAVLINK_TYPE_UINT8_T</find>
+      <find>lenght</find>
+      <find>gyro_graph</find>
+      <find>accel_rsc</find>
       <find>gyro</find>
     </findStrings>
     <replaceStrings>
       <replace>q</replace>
       <replace>accel_isc</replace>
       <replace>magn</replace>
+      <replace>length</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -249,8 +171,8 @@
         <option value="$PROJECT_DIR$/gcs/gcs_ui.py" />
         <option value="$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py" />
         <option value="$PROJECT_DIR$/gcs/main.py" />
-        <option value="$PROJECT_DIR$/gcs/gcs_graphing.py" />
         <option value="$PROJECT_DIR$/gcs/mavlink.py" />
+        <option value="$PROJECT_DIR$/gcs/gcs_graphing.py" />
       </list>
     </option>
   </component>
@@ -265,7 +187,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="40" />
     <option name="width" value="1400" />
@@ -539,9 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v20/mavmessages.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pymavlink/generator/mavcrc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -556,13 +475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56406">
-          <caret line="3324" column="30" selection-start-line="3324" selection-start-column="21" selection-end-line="3324" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gcs/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -573,6 +485,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="3324" column="30" selection-start-line="3324" selection-start-column="21" selection-end-line="3324" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v20/mavmessages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="76" lean-forward="true" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymavlink/mavutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="68" column="23" lean-forward="true" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v20/mavmessages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="152" column="25" lean-forward="true" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/pyqtgraph/graphicsItems/PlotItem/PlotItem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="618" column="8" selection-start-line="618" selection-start-column="8" selection-end-line="618" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -580,29 +527,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/pyqtgraph/graphicsItems/PlotCurveItem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="198" column="32" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pymavlink/mavutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="1612" column="4" selection-start-line="1612" selection-start-column="4" selection-end-line="1612" selection-end-column="4" />
+        <state relative-caret-position="-3234">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        <state relative-caret-position="-238">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="233" column="27" selection-start-line="233" selection-start-column="27" selection-end-line="233" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

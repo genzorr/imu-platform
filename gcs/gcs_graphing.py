@@ -110,10 +110,7 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y = []
         self.magn_z = []
 
-        self.q0 = []
-        self.q1 = []
-        self.q2 = []
-        self.q3 = []
+        self.quaternion = []
 
         self.time_rsc = []
         self.time_isc = []
@@ -131,29 +128,21 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.plot_item_accel_rsc = pg.PlotItem(title='Accelerometer RSC')
         self.ui.glv.ci.addItem(self.plot_item_accel_rsc)
-        self.accel_rsc_graph = pg.PlotCurveItem()
-        self.plot_item_accel_rsc.addItem(self.accel_rsc_graph)
 
         self.ui.glv.ci.nextRow()
 
         self.plot_item_accel_isc = pg.PlotItem(title='Accelerometer ISC')
         self.ui.glv.ci.addItem(self.plot_item_accel_isc)
-        self.accel_isc_graph = pg.PlotCurveItem()
-        self.plot_item_accel_isc.addItem(self.accel_isc_graph)
 
         self.ui.glv.ci.nextRow()
 
         self.plot_item_gyro = pg.PlotItem(title='Gyroscope')
         self.ui.glv.ci.addItem(self.plot_item_gyro)
-        self.gyro_graph = pg.PlotCurveItem()
-        self.plot_item_gyro.addItem(self.gyro_graph)
 
         self.ui.glv.ci.nextRow()
 
         self.plot_item_magn = pg.PlotItem(title='Magnetometer')
         self.ui.glv.ci.addItem(self.plot_item_magn)
-        self.magn_graph = pg.PlotCurveItem()
-        self.plot_item_magn.addItem(self.magn_graph)
 
 
         # Text and 3D
@@ -171,9 +160,9 @@ class MyWin(QtWidgets.QMainWindow):
         self.accel_rsc_y_graph = self.plot_item_accel_rsc.plot()
         self.accel_rsc_z_graph = self.plot_item_accel_rsc.plot()
 
-        self.accel_isc_x_graph = self.plot_item_accel_rsc.plot()
-        self.accel_isc_y_graph = self.plot_item_accel_rsc.plot()
-        self.accel_isc_z_graph = self.plot_item_accel_rsc.plot()
+        self.accel_isc_x_graph = self.plot_item_accel_isc.plot()
+        self.accel_isc_y_graph = self.plot_item_accel_isc.plot()
+        self.accel_isc_z_graph = self.plot_item_accel_isc.plot()
 
         self.gyro_x_graph = self.plot_item_gyro.plot()
         self.gyro_y_graph = self.plot_item_gyro.plot()
@@ -197,7 +186,6 @@ class MyWin(QtWidgets.QMainWindow):
 
     @QtCore.pyqtSlot(list)
     def imu_rsc_msg(self, msgs):
-        print('got')
         for i in range(len(msgs)):
             self.accel_rsc_x.append(msgs[i].accel[0])
             self.accel_rsc_y.append(msgs[i].accel[1])
@@ -213,7 +201,7 @@ class MyWin(QtWidgets.QMainWindow):
             # self.compass_f.write("%f\t%f\t%f\n" % (msgs[i].compass[0], msgs[i].compass[1], msgs[i].compass[2]))
 
         if len(self.time_rsc) > self.length:
-            self.time_rsc = self.time_rsc[self.cut:(self.lenght - 1)]
+            self.time_rsc = self.time_rsc[self.cut:(self.length - 1)]
 
             self.accel_rsc_x = self.accel_rsc_x[self.cut:(self.length - 1)]
             self.accel_rsc_y = self.accel_rsc_y[self.cut:(self.length - 1)]
@@ -224,12 +212,12 @@ class MyWin(QtWidgets.QMainWindow):
             self.gyro_z = self.gyro_z[self.cut:(self.length - 1)]
 
         self.accel_rsc_x_graph.setData(x=self.time_rsc, y=self.accel_rsc_x, pen=('r'), width=0.5)
-        self.accel_rsc_y_graph.setData(x=self.time_rsc, y=self.accel_rsc_y, pen=('r'), width=0.5)
-        self.accel_rsc_z_graph.setData(x=self.time_rsc, y=self.accel_rsc_z, pen=('r'), width=0.5)
+        self.accel_rsc_y_graph.setData(x=self.time_rsc, y=self.accel_rsc_y, pen=('g'), width=0.5)
+        self.accel_rsc_z_graph.setData(x=self.time_rsc, y=self.accel_rsc_z, pen=('b'), width=0.5)
 
-        self.gyro_x_graph.setData(x=self.time_rsc, y=self.gyro_x_graph, pen=('r'), width=0.5)
-        self.gyro_y_graph.setData(x=self.time_rsc, y=self.gyro_y_graph, pen=('r'), width=0.5)
-        self.gyro_z_graph.setData(x=self.time_rsc, y=self.gyro_z_graph, pen=('r'), width=0.5)
+        self.gyro_x_graph.setData(x=self.time_rsc, y=self.gyro_x, pen=('r'), width=0.5)
+        self.gyro_y_graph.setData(x=self.time_rsc, y=self.gyro_y, pen=('g'), width=0.5)
+        self.gyro_z_graph.setData(x=self.time_rsc, y=self.gyro_z, pen=('b'), width=0.5)
 
     # Слот для разбора пакета imu_isc
     @QtCore.pyqtSlot(list)
@@ -243,15 +231,12 @@ class MyWin(QtWidgets.QMainWindow):
             self.magn_y.append(msgs[i].magn[1])
             self.magn_z.append(msgs[i].magn[2])
 
-            self.q0.append(msgs[i].quaternion[0])
-            self.q1.append(msgs[i].quaternion[1])
-            self.q2.append(msgs[i].quaternion[2])
-            self.q3.append(msgs[i].quaternion[2])
+            # self.quaternion.append(msgs[i].quaternion)
 
             self.time_isc.append(msgs[i].time)
 
         if len(self.time_isc) > self.length:
-            self.time_isc = self.time_isc[self.cut:(self.lenght - 1)]
+            self.time_isc = self.time_isc[self.cut:(self.length - 1)]
 
             self.accel_isc_x = self.accel_isc_x[self.cut:(self.length - 1)]
             self.accel_isc_y = self.accel_isc_y[self.cut:(self.length - 1)]
@@ -261,18 +246,18 @@ class MyWin(QtWidgets.QMainWindow):
             self.magn_y = self.magn_y[self.cut:(self.length - 1)]
             self.magn_z = self.magn_z[self.cut:(self.length - 1)]
 
-            self.q0 = self.q0[self.cut:(self.length - 1)]
-            self.q1 = self.q1[self.cut:(self.length - 1)]
-            self.q2 = self.q2[self.cut:(self.length - 1)]
-            self.q3 = self.q3[self.cut:(self.length - 1)]
+            self.quaternion = self.quaternion[self.cut:(self.length - 1)]
 
         self.accel_isc_x_graph.setData(x=self.time_isc, y=self.accel_isc_x, pen=('r'), width=0.5)
-        self.accel_isc_y_graph.setData(x=self.time_isc, y=self.accel_isc_y, pen=('r'), width=0.5)
-        self.accel_isc_z_graph.setData(x=self.time_isc, y=self.accel_isc_z, pen=('r'), width=0.5)
+        self.accel_isc_y_graph.setData(x=self.time_isc, y=self.accel_isc_y, pen=('g'), width=0.5)
+        self.accel_isc_z_graph.setData(x=self.time_isc, y=self.accel_isc_z, pen=('b'), width=0.5)
 
-        self.magn_x_graph.setData(x=self.time_isc, y=self.magn_x_graph, pen=('r'), width=0.5)
-        self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y_graph, pen=('r'), width=0.5)
-        self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z_graph, pen=('r'), width=0.5)
+        self.magn_x_graph.setData(x=self.time_isc, y=self.magn_x, pen=('r'), width=0.5)
+        self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y, pen=('g'), width=0.5)
+        self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z, pen=('b'), width=0.5)
+
+        quat = pyquaternion.Quaternion(msgs[i].quaternion)
+        self.plane_widget._update_rotation(quat)
 
 
         # TODO: ADD 3D VIS

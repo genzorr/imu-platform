@@ -66,7 +66,7 @@ uint8_t nRF24L01_init (SPI_HandleTypeDef* hspi){
 	hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
 	hspi->Init.NSS = SPI_NSS_SOFT;
 	hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
-	hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
+	hspi->Init.FirstBit = SPI_FIRSTBIT_MSB	;
 	hspi->Init.TIMode = SPI_TIMODE_DISABLE;
 	hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
 

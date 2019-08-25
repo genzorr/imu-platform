@@ -23,9 +23,13 @@ uint8_t mavlink_msg_state_send()
 
 	mavlink_message_t msg;
 	uint16_t len = mavlink_msg_state_encode(1, 1, &msg, &msg_state);
-	uint8_t buffer[50];
+	uint8_t buffer[50] = {};
 	len = mavlink_msg_to_send_buffer(buffer, &msg);
 	uint8_t error = nRF24L01_send(&spi_nRF24L01, buffer, len, 1);
+
+	for (int i = 0; i < len; i++)
+		trace_printf("%x ", buffer[i]);
+	trace_printf("\n");
 
 	return error;
 }
