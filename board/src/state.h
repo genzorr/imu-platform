@@ -27,8 +27,10 @@
 //#define SD 			0
 #define RF				1
 #define IMU				1
+
 #define MPU9255			0
-#define LSM				1
+#define LSM6DS3			1
+#define LSM303C			0
 #define IMU_CALIBRATION	0
 //#define GPS			0
 
@@ -111,8 +113,10 @@ extern USART_HandleTypeDef	usart_dbg;
 extern SPI_HandleTypeDef	spi_nRF24L01;
 extern I2C_HandleTypeDef 	i2c_mpu9255;
 extern SPI_HandleTypeDef	spi_lsm6ds3;
+extern I2C_HandleTypeDef	i2c_lsm303c;
 
 extern struct lsm6ds3_dev_s hlsm6ds3;
+extern struct lsm303c_handler_s hlsm303c;
 
 // глобальные структуры
 extern stateGPS_t 			stateGPS;

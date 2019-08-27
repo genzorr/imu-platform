@@ -72,6 +72,33 @@ int main(int argc, char* argv[])
 	//	Peripheral initialization
 	if (IMU)
 	{
+//		//	SPI init
+//		spi_lsm6ds3.Instance = SPI2;
+//		spi_lsm6ds3.Init.Mode = SPI_MODE_MASTER;
+//		spi_lsm6ds3.Init.Direction = SPI_DIRECTION_2LINES;
+//		spi_lsm6ds3.Init.DataSize = SPI_DATASIZE_8BIT;
+//		spi_lsm6ds3.Init.CLKPolarity = SPI_POLARITY_LOW;
+//		spi_lsm6ds3.Init.CLKPhase = SPI_PHASE_1EDGE;
+//		spi_lsm6ds3.Init.NSS = SPI_NSS_SOFT;
+//		spi_lsm6ds3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+//		spi_lsm6ds3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+//		spi_lsm6ds3.Init.TIMode = SPI_TIMODE_DISABLE;
+//		spi_lsm6ds3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+//		spi_lsm6ds3.Init.CRCPolynomial = 7;
+//
+//		HAL_SPI_Init(&spi_lsm6ds3);
+//		HAL_Delay(200);
+//
+//		uint8_t reg = 0;
+//		uint8_t reg_num = 0xF | 0x80;
+//
+//		HAL_GPIO_WritePin(LSM6DS3_PORT, LSM6DS3_CS_PIN, GPIO_PIN_RESET);
+//		int error = HAL_SPI_Transmit(&spi_lsm6ds3, &reg_num, 1, 100);
+//		error |= HAL_SPI_Receive(&spi_lsm6ds3, &reg, 1, 100); //(0b11010110, 0b00001111, &reg, 1);
+//		HAL_GPIO_WritePin(LSM6DS3_PORT, LSM6DS3_CS_PIN, GPIO_PIN_SET);
+//
+//		trace_printf("error: %d\treg: %X\n", error, reg);
+
 		IMU_Init();
 		get_staticShifts();
 	}
@@ -83,22 +110,9 @@ int main(int argc, char* argv[])
 	for (; ; )
 	{
 		#if (IMU)
-//			IMU_updateDataAll();
-//			_IMUtask_updateData();
-			struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
-			float ddx[3] = {}, ddg[3] = {};
-			lsm6ds3_gxl_pull(&hlsm6ds3, &rd);
-			lsm6ds3_scale_xl(&hlsm6ds3.conf.xl, rd.xl, ddx, 3);
-			lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, ddg, 3);
-
-			stateIMU_rsc.accel[0] = ddx[0];
-			stateIMU_rsc.accel[1] = ddx[1];
-			stateIMU_rsc.accel[2] = ddx[2];
-
-			stateIMU_rsc.gyro[0] = ddg[0];
-			stateIMU_rsc.gyro[1] = ddg[1];
-			stateIMU_rsc.gyro[2] = ddg[2];
-
+		//	TODO: USE ACCELEROMETER ON LSM303C
+			IMU_updateDataAll();
+			_IMUtask_updateData();
 		#endif
 
 		#if (RF)
@@ -108,12 +122,7 @@ int main(int argc, char* argv[])
 		#endif
 
 		#if (DBGU)
-//			mavlink_message_t msg;
-//			//	uint16_t len = mavlink_msg_imu_isc_encode(0x00, 0x00, &msg, &msg_imu_isc);
-//			uint16_t len = mavlink_msg_imu_isc_pack(1, 1, &msg, stateIMU_isc.accel, stateIMU_isc.magn, stateIMU_isc.quaternion, (float)HAL_GetTick() / 1000);
-//			uint8_t buffer[100];
-//			len = mavlink_msg_to_send_buffer(buffer, &msg);
-//			HAL_USART_Transmit(&usart_dbg, buffer, len, 1);
+			;
 		#endif
 
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);

@@ -948,13 +948,13 @@ int lsm6ds3_register_spi(struct lsm6ds3_dev_s * config, SPI_HandleTypeDef* bus,
     priv->readmode = LSM6DS3_READMODE_SCALED;
 
 
-    // reset the sensor
-    rc = lsm6ds3_sw_reset(priv);
-    if (rc < 0)
-    {
-        snerr("can`t reset device: %d\n", rc);
-        return rc;
-    }
+//    // reset the sensor
+//    rc = lsm6ds3_sw_reset(priv);
+//    if (rc < 0)
+//    {
+//        snerr("can`t reset device: %d\n", rc);
+//        return rc;
+//    }
 
     // checking whoami register
     uint8_t reg_whoami;

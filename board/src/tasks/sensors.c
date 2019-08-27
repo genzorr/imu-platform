@@ -16,11 +16,14 @@
 #include "sensors.h"
 #include "MPU9255.h"
 #include "lsm6ds3.h"
+#include "lsm303c.h"
 
 
 I2C_HandleTypeDef 	i2c_mpu9255;
 SPI_HandleTypeDef	spi_lsm6ds3;
+I2C_HandleTypeDef	i2c_lsm303c;
 struct lsm6ds3_dev_s hlsm6ds3;
+struct lsm303c_handler_s hlsm303c;
 
 
 static uint8_t	get_gyro_staticShift(float* gyro_staticShift);
@@ -42,29 +45,25 @@ static uint8_t get_gyro_staticShift(float* gyro_staticShift)
 	uint8_t error = 0;
 	uint16_t zero_orientCnt = 3000;
 
-	int16_t accelData[3] = {0, 0, 0};
-	int16_t gyroData[3] = {0, 0, 0};
 	float gyro[3] = {0, 0, 0};
 
 	//	Get static gyro shift
 	for (int i = 0; i < zero_orientCnt; i++)
 	{
-		for (int k = 0; k < 3; k++)
-		{
-			accelData[k] = 0;
-			gyroData[k] = 0;
-			gyro[k] = 0;
-		}
-
 		//	Collect data
 		if (MPU9255)
 		{
+			int16_t accelData[3] = {0, 0, 0};
+			int16_t gyroData[3] = {0, 0, 0};
 			PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
 			mpu9255_recalcGyro(gyroData, gyro);
 		}
-		else if (LSM)
+		else if (LSM6DS3)
 		{
-//			PROCESS_ERROR();
+			struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
+
+			PROCESS_ERROR(lsm6ds3_gxl_pull(&hlsm6ds3, &rd));
+			lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, gyro, 3);
 		}
 
 		for (int m = 0; m < 3; m++)
@@ -91,15 +90,27 @@ static uint8_t get_accel_staticShift(float* gyro_staticShift, float* accel_stati
 
 	for (int i = 0; i < zero_orientCnt; i++)
 	{
-		int16_t accelData[3] = {0, 0, 0};
-		int16_t gyroData[3] = {0, 0, 0};
 		float accel[3] = {0, 0, 0};
 		float gyro[3] = {0, 0, 0};
 
 		//	Collect data
-		PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
-		mpu9255_recalcGyro(gyroData, gyro);
-		mpu9255_recalcAccel(accelData, accel);
+		if (MPU9255)
+		{
+			int16_t accelData[3] = {0, 0, 0};
+			int16_t gyroData[3] = {0, 0, 0};
+
+			PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
+			mpu9255_recalcGyro(gyroData, gyro);
+			mpu9255_recalcAccel(accelData, accel);
+		}
+		else if (LSM6DS3)
+		{
+			struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
+
+			PROCESS_ERROR(lsm6ds3_gxl_pull(&hlsm6ds3, &rd));
+			lsm6ds3_scale_xl(&hlsm6ds3.conf.xl, rd.xl, accel, 3);
+			lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, gyro, 3);
+		}
 
 		for (int k = 0; k < 3; k++) {
 			gyro[k] -= gyro_staticShift[k];
@@ -183,35 +194,57 @@ void IMU_Init()
 		state_system.MPU_state = mpu9255_initError;
 	}
 
-	else if (LSM)
+	else
 	{
-		int error = 0;
+		if (LSM6DS3)
+		{
+			//	SPI init
+			spi_lsm6ds3.Instance = SPI2;
+			spi_lsm6ds3.Init.Mode = SPI_MODE_MASTER;
+			spi_lsm6ds3.Init.Direction = SPI_DIRECTION_2LINES;
+			spi_lsm6ds3.Init.DataSize = SPI_DATASIZE_8BIT;
+			spi_lsm6ds3.Init.CLKPolarity = SPI_POLARITY_LOW;
+			spi_lsm6ds3.Init.CLKPhase = SPI_PHASE_1EDGE;
+			spi_lsm6ds3.Init.NSS = SPI_NSS_SOFT;
+			spi_lsm6ds3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+			spi_lsm6ds3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+			spi_lsm6ds3.Init.TIMode = SPI_TIMODE_DISABLE;
+			spi_lsm6ds3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
 
-		//	SPI init
-		spi_lsm6ds3.Instance = SPI2;
-		spi_lsm6ds3.Init.Mode = SPI_MODE_MASTER;
-		spi_lsm6ds3.Init.Direction = SPI_DIRECTION_2LINES;
-		spi_lsm6ds3.Init.DataSize = SPI_DATASIZE_8BIT;
-		spi_lsm6ds3.Init.CLKPolarity = SPI_POLARITY_LOW;
-		spi_lsm6ds3.Init.CLKPhase = SPI_PHASE_1EDGE;
-		spi_lsm6ds3.Init.NSS = SPI_NSS_SOFT;
-		spi_lsm6ds3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
-		spi_lsm6ds3.Init.FirstBit = SPI_FIRSTBIT_MSB;
-		spi_lsm6ds3.Init.TIMode = SPI_TIMODE_DISABLE;
-		spi_lsm6ds3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+			int spi_lsm6ds3_init_error = HAL_SPI_Init(&spi_lsm6ds3);
+			HAL_Delay(200);
+			trace_printf("spi_lsm6ds3: %d\n", spi_lsm6ds3_init_error);
 
-		int spi_lsm6ds3_init_error = HAL_SPI_Init(&spi_lsm6ds3);
-		HAL_Delay(300);
+			//	LSM6DS3 init
+			lsm6ds3_register_spi(&hlsm6ds3, &spi_lsm6ds3, LSM6DS3_PORT, LSM6DS3_CS_PIN);
+			lsm6ds3_conf_default(&hlsm6ds3);
+			lsm6ds3_push_conf(&hlsm6ds3);
+		}
 
-		trace_printf("spi_lsm6ds3: %d\n", spi_lsm6ds3_init_error);
+		if (LSM303C)
+		{
+			// I2C init
+			i2c_lsm303c.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+			i2c_lsm303c.Init.ClockSpeed = 200000;
+			i2c_lsm303c.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+			i2c_lsm303c.Init.DutyCycle = I2C_DUTYCYCLE_2;
+			i2c_lsm303c.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+			i2c_lsm303c.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+			i2c_lsm303c.Init.OwnAddress1 = 0x00;
+			i2c_lsm303c.Instance = I2C1;
+			i2c_lsm303c.Mode = HAL_I2C_MODE_MASTER;
 
-		//	LSM6DS3 init
-		lsm6ds3_register_spi(&hlsm6ds3, &spi_lsm6ds3, LSM6DS3_PORT, LSM6DS3_CS_PIN);
-		lsm6ds3_conf_default(&hlsm6ds3);
-		lsm6ds3_push_conf(&hlsm6ds3);
+			int i2c_lsm303c_init_error = HAL_I2C_Init(&i2c_lsm303c);
+			HAL_Delay(200);
+			trace_printf("i2c_lsm303c: %d\n", i2c_lsm303c_init_error);
 
-	end:
-		trace_printf("LSM6DS3 init error: %d\n", error);
+			// LSM303C init
+			int error = lsm303c_register_i2c(&hlsm303c, &i2c_lsm303c);
+			lsm303c_m_conf_default(&hlsm303c);
+			lsm303c_m_push_conf(&hlsm303c, &hlsm303c.conf.m);
+
+			state_system.MPU_state = error;
+		}
 	}
 
 }
@@ -226,9 +259,6 @@ int IMU_updateDataAll()
 	int error = 0;
 
 	//	Arrays
-	int16_t accelData[3] = {0, 0, 0};
-	int16_t gyroData[3] = {0, 0, 0};
-	int16_t magnData[3] = {0, 0, 0};
 	float accel[3] = {0, 0, 0};
 	float gyro[3] = {0, 0, 0};
 	float magn[3] = {0, 0, 0};
@@ -242,6 +272,10 @@ int IMU_updateDataAll()
 
 		if (MPU9255)
 		{
+			int16_t accelData[3] = {0, 0, 0};
+			int16_t gyroData[3] = {0, 0, 0};
+			int16_t magnData[3] = {0, 0, 0};
+
 			PROCESS_ERROR(mpu9255_readIMU(accelData, gyroData));
 			PROCESS_ERROR(mpu9255_readCompass(magnData));
 
@@ -249,6 +283,25 @@ int IMU_updateDataAll()
 			mpu9255_recalcAccel(accelData, accel);
 			mpu9255_recalcGyro(gyroData, gyro);
 			mpu9255_recalcMagn(magnData, magn);
+		}
+		else
+		{
+			if (LSM6DS3)
+			{
+				struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
+				PROCESS_ERROR(lsm6ds3_gxl_pull(&hlsm6ds3, &rd));
+
+				lsm6ds3_scale_xl(&hlsm6ds3.conf.xl, rd.xl, accel, 3);
+				lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, gyro, 3);
+			}
+
+			if (LSM303C)
+			{
+				struct lsm303c_raw_data_m_s rdm = {{0, 0, 0}};
+				PROCESS_ERROR(lsm303c_m_pull(&hlsm303c, &rdm));
+
+				lsm303c_scale_m(&hlsm303c, rdm.m, magn, 3);
+			}
 		}
 
 //	taskENTER_CRITICAL();
@@ -293,7 +346,7 @@ int IMU_updateDataAll()
 
 		//	Rotate accel and magn vectors to ISC
 		vect_rotate(accel, quaternion, accel_ISC);
-		vect_rotate(magn, quaternion, magn_ISC);
+//		vect_rotate(magn, quaternion, magn_ISC);
 
 		//	Copy vectors to global structure
 //	taskENTER_CRITICAL();

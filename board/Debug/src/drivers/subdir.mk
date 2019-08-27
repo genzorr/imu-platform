@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/drivers/MPU9255.c \
 ../src/drivers/dbgu.c \
+../src/drivers/lsm303c.c \
 ../src/drivers/lsm6ds3.c \
 ../src/drivers/lsm6ds3_math.c \
 ../src/drivers/nRF24L01.c 
@@ -13,6 +14,7 @@ C_SRCS += \
 OBJS += \
 ./src/drivers/MPU9255.o \
 ./src/drivers/dbgu.o \
+./src/drivers/lsm303c.o \
 ./src/drivers/lsm6ds3.o \
 ./src/drivers/lsm6ds3_math.o \
 ./src/drivers/nRF24L01.o 
@@ -20,6 +22,7 @@ OBJS += \
 C_DEPS += \
 ./src/drivers/MPU9255.d \
 ./src/drivers/dbgu.d \
+./src/drivers/lsm303c.d \
 ./src/drivers/lsm6ds3.d \
 ./src/drivers/lsm6ds3_math.d \
 ./src/drivers/nRF24L01.d 

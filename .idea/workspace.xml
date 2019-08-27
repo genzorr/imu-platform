@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7fae6f51-5e9b-4340-9cf2-34d749d6f0e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/board/Debug/src/drivers/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/board/Debug/src/drivers/subdir.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/drivers/dbgu.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/dbgu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/state.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/state.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/stm32f4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/stm32f4xx_hal_msp.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/tasks/sensors.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/tasks/sensors.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/tasks/telemetry.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/tasks/telemetry.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/gcs_graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/mavlink.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="194" selection-start-line="194" selection-end-line="194" />
+            <state relative-caret-position="-520">
+              <caret line="186" column="26" selection-start-line="186" selection-start-column="26" selection-end-line="186" selection-end-column="26" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -35,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="646">
               <caret line="38" column="24" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="24" />
             </state>
           </provider>
@@ -44,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
+            <state relative-caret-position="731">
               <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
@@ -128,6 +124,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,7 +182,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,7 +315,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.35729614" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39914164" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39914164" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -404,16 +400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -456,9 +442,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="186" column="26" selection-start-line="186" selection-start-column="26" selection-end-line="186" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="24" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
+        <state relative-caret-position="731">
           <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
@@ -466,19 +469,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
+    <entry file="file://$PROJECT_DIR$/gcs/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="38" column="24" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="194" selection-start-line="194" selection-end-line="194" />
+        <state relative-caret-position="187">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

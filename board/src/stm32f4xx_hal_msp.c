@@ -112,9 +112,11 @@ void HAL_PPP_MspDeInit(void)
 
 }
 
-void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c) {
+void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)
+{
 
-	if(hi2c->Instance == I2C1) {
+	if(hi2c->Instance == I2C1)
+	{
 		__I2C1_CLK_ENABLE();
 		__GPIOB_CLK_ENABLE();
 
@@ -255,13 +257,13 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 			gpio.Alternate = GPIO_AF5_SPI2;
 			gpio.Mode = GPIO_MODE_AF_PP;
 			gpio.Pin = LSM6DS3_SCK_PIN | LSM6DS3_MISO_PIN | LSM6DS3_MOSI_PIN;
-			gpio.Pull = GPIO_NOPULL;
+			gpio.Pull = GPIO_PULLUP;
 			gpio.Speed = GPIO_SPEED_FREQ_HIGH;
 			HAL_GPIO_Init(LSM6DS3_PORT, &gpio);
 
 			gpio.Mode = GPIO_MODE_OUTPUT_PP;
 			gpio.Pin = LSM6DS3_CS_PIN;
-			gpio.Pull = GPIO_NOPULL;
+			gpio.Pull = GPIO_PULLUP;
 			gpio.Speed = GPIO_SPEED_FREQ_HIGH;
 			HAL_GPIO_Init(LSM6DS3_PORT, &gpio);
 
