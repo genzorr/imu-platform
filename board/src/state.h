@@ -21,6 +21,8 @@
 #include "stm32f4xx_hal_gpio.h"
 #include "stm32f4xx_hal_dma.h"
 
+#include "lsm/lsm6ds3_reg.h"
+
 #include "quaternion.h"
 
 #define DBGU			0
@@ -35,7 +37,7 @@
 //#define GPS			0
 
 //--------- LSM ---------------
-#define LSM6DS3_PORT		GPIOB
+#define LSM6DS3_PORT		GPIOA
 #define LSM6DS3_CS_PIN		GPIO_PIN_12
 #define LSM6DS3_SCK_PIN		GPIO_PIN_13
 #define LSM6DS3_MISO_PIN	GPIO_PIN_14
@@ -110,13 +112,13 @@ typedef struct {
 /*##################################################*/
 
 extern USART_HandleTypeDef	usart_dbg;
+
 extern SPI_HandleTypeDef	spi_nRF24L01;
 extern I2C_HandleTypeDef 	i2c_mpu9255;
 extern SPI_HandleTypeDef	spi_lsm6ds3;
-extern I2C_HandleTypeDef	i2c_lsm303c;
+extern I2C_HandleTypeDef	i2c_lsm6ds3;
 
-extern struct lsm6ds3_dev_s hlsm6ds3;
-extern struct lsm303c_handler_s hlsm303c;
+extern lsm6ds3_ctx_t dev_ctx;
 
 // глобальные структуры
 extern stateGPS_t 			stateGPS;

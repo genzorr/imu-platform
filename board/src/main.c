@@ -15,7 +15,6 @@
 #include "sensors.h"
 #include "telemetry.h"
 #include "MPU9255.h"
-#include "lsm6ds3.h"
 #include "nRF24L01.h"
 #include "xprintf.h"
 #include "dbgu.h"
@@ -72,33 +71,6 @@ int main(int argc, char* argv[])
 	//	Peripheral initialization
 	if (IMU)
 	{
-//		//	SPI init
-//		spi_lsm6ds3.Instance = SPI2;
-//		spi_lsm6ds3.Init.Mode = SPI_MODE_MASTER;
-//		spi_lsm6ds3.Init.Direction = SPI_DIRECTION_2LINES;
-//		spi_lsm6ds3.Init.DataSize = SPI_DATASIZE_8BIT;
-//		spi_lsm6ds3.Init.CLKPolarity = SPI_POLARITY_LOW;
-//		spi_lsm6ds3.Init.CLKPhase = SPI_PHASE_1EDGE;
-//		spi_lsm6ds3.Init.NSS = SPI_NSS_SOFT;
-//		spi_lsm6ds3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
-//		spi_lsm6ds3.Init.FirstBit = SPI_FIRSTBIT_MSB;
-//		spi_lsm6ds3.Init.TIMode = SPI_TIMODE_DISABLE;
-//		spi_lsm6ds3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-//		spi_lsm6ds3.Init.CRCPolynomial = 7;
-//
-//		HAL_SPI_Init(&spi_lsm6ds3);
-//		HAL_Delay(200);
-//
-//		uint8_t reg = 0;
-//		uint8_t reg_num = 0xF | 0x80;
-//
-//		HAL_GPIO_WritePin(LSM6DS3_PORT, LSM6DS3_CS_PIN, GPIO_PIN_RESET);
-//		int error = HAL_SPI_Transmit(&spi_lsm6ds3, &reg_num, 1, 100);
-//		error |= HAL_SPI_Receive(&spi_lsm6ds3, &reg, 1, 100); //(0b11010110, 0b00001111, &reg, 1);
-//		HAL_GPIO_WritePin(LSM6DS3_PORT, LSM6DS3_CS_PIN, GPIO_PIN_SET);
-//
-//		trace_printf("error: %d\treg: %X\n", error, reg);
-
 		IMU_Init();
 		get_staticShifts();
 	}

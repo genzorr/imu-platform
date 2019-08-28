@@ -30,7 +30,9 @@ CPP_DEPS :=
 SUBDIRS := \
 src \
 src/drivers \
+src/drivers/lsm \
 src/library \
+src/lsm_old \
 src/tasks \
 system/src/cmsis \
 system/src/cortexm \

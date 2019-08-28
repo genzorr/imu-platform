@@ -14,7 +14,9 @@ RM := rm -rf
 -include system/src/cortexm/subdir.mk
 -include system/src/cmsis/subdir.mk
 -include src/tasks/subdir.mk
+-include src/lsm_old/subdir.mk
 -include src/library/subdir.mk
+-include src/drivers/lsm/subdir.mk
 -include src/drivers/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
