@@ -10,4 +10,7 @@
 
 int32_t lsm6ds3_platform_init();
 
+uint32_t lsm6ds3_get_xl_data_g(float* accel);
+uint32_t lsm6ds3_get_g_data_rps(float* gyro);
+
 #endif /* DRIVERS_LSM_LSM_TOOLS_H_ */

@@ -60,10 +60,7 @@ static uint8_t get_gyro_staticShift(float* gyro_staticShift)
 		}
 		else if (LSM6DS3)
 		{
-//			struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
-//
-//			PROCESS_ERROR(lsm6ds3_gxl_pull(&hlsm6ds3, &rd));
-//			lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, gyro, 3);
+			PROCESS_ERROR(lsm6ds3_get_g_data_rps(gyro));
 		}
 
 		for (int m = 0; m < 3; m++)
@@ -105,11 +102,8 @@ static uint8_t get_accel_staticShift(float* gyro_staticShift, float* accel_stati
 		}
 		else if (LSM6DS3)
 		{
-//			struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
-//
-//			PROCESS_ERROR(lsm6ds3_gxl_pull(&hlsm6ds3, &rd));
-//			lsm6ds3_scale_xl(&hlsm6ds3.conf.xl, rd.xl, accel, 3);
-//			lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, gyro, 3);
+			PROCESS_ERROR(lsm6ds3_get_xl_data_g(accel));
+			PROCESS_ERROR(lsm6ds3_get_g_data_rps(gyro));
 		}
 
 		for (int k = 0; k < 3; k++) {
@@ -198,30 +192,9 @@ void IMU_Init()
 	{
 		if (LSM6DS3)
 		{
-			int error = 0;
-
 			//	LSM6DS3 init
-			error = lsm6ds3_platform_init();
+			int error = lsm6ds3_platform_init();
 			trace_printf("lsm6ds3: %d\n", error);
-
-//			//	I2C init
-//			i2c_lsm6ds3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-//			i2c_lsm6ds3.Init.ClockSpeed = 100000;
-//			i2c_lsm6ds3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-//			i2c_lsm6ds3.Init.DutyCycle = I2C_DUTYCYCLE_2;
-//			i2c_lsm6ds3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-//			i2c_lsm6ds3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-//			i2c_lsm6ds3.Init.OwnAddress1 = 0x00;
-//			i2c_lsm6ds3.Instance = I2C1;
-//			i2c_lsm6ds3.Mode = HAL_I2C_MODE_MASTER;
-//
-//			error |= HAL_I2C_Init(&i2c_lsm6ds3);
-//			HAL_Delay(200);
-//			trace_printf("i2c_lsm6ds: %d\n", error);
-//
-//			uint8_t whoami = 0;
-//			error = HAL_I2C_Mem_Read(&i2c_lsm6ds3, 0b11010110, 0xF, I2C_MEMADD_SIZE_8BIT, &whoami, 1, 1000);
-//			trace_printf("whoami: %d, error: %d\n", whoami, error);
 		}
 //		if (LSM303C)
 //		{
@@ -290,11 +263,8 @@ int IMU_updateDataAll()
 		{
 			if (LSM6DS3)
 			{
-//				struct lsm6ds3_raw_data_s rd = {{0,0,0},{0,0,0}};
-//				PROCESS_ERROR(lsm6ds3_gxl_pull(&hlsm6ds3, &rd));
-//
-//				lsm6ds3_scale_xl(&hlsm6ds3.conf.xl, rd.xl, accel, 3);
-//				lsm6ds3_scale_g(&hlsm6ds3.conf.g, rd.g, gyro, 3);
+				PROCESS_ERROR(lsm6ds3_get_xl_data_g(accel));
+				PROCESS_ERROR(lsm6ds3_get_g_data_rps(gyro));
 			}
 
 			if (LSM303C)
