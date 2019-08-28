@@ -72,12 +72,7 @@ int main(int argc, char* argv[])
 	//	Peripheral initialization
 	if (IMU)
 	{
-//		IMU_Init();
-		//	LSM6DS3 init
-		int error = lsm6ds3_platform_init();
-		trace_printf("lsm6ds3: %d\n", error);
-		axis3bit16_t data_raw_angular_rate;
-		error = lsm6ds3_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate.u8bit);
+		IMU_Init();
 		get_staticShifts();
 	}
 

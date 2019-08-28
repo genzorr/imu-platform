@@ -55,7 +55,6 @@ static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp, uint16_t 
 	{
 		error = HAL_I2C_Mem_Read(handle, LSM6DS3_I2C_ADD, reg, I2C_MEMADD_SIZE_8BIT, bufp, len, LSM_TIMEOUT);
 	}
-
 	else if (handle == &spi_lsm6ds3)
 	{
 		reg |= 0x80;
@@ -82,7 +81,7 @@ int32_t lsm6ds3_bus_init(void* handle)
 		i2c_lsm6ds3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
 		i2c_lsm6ds3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
 		i2c_lsm6ds3.Init.OwnAddress1 = 0x00;
-		i2c_lsm6ds3.Instance = I2C1;
+		i2c_lsm6ds3.Instance = I2C2;
 		i2c_lsm6ds3.Mode = HAL_I2C_MODE_MASTER;
 
 		error |= HAL_I2C_Init(&i2c_lsm6ds3);
@@ -119,7 +118,6 @@ int32_t lsm6ds3_platform_init()
 {
 	int error = 0;
 
-	lsm6ds3_ctx_t dev_ctx;
 	dev_ctx.write_reg = platform_write;
 	dev_ctx.read_reg = platform_read;
 	dev_ctx.handle = &i2c_lsm6ds3;
@@ -149,6 +147,7 @@ int32_t lsm6ds3_platform_init()
 	else
 		trace_printf("lsm6ds3 OK\n");
 
+	error |= lsm6ds3_fifo_mode_set(&dev_ctx, PROPERTY_DISABLE);
 
 	error |= lsm6ds3_block_data_update_set(&dev_ctx, PROPERTY_DISABLE);
 
