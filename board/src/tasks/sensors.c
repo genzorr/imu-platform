@@ -263,7 +263,7 @@ int IMU_updateDataAll()
 				error = lsm303c_get_m_data_mG(magn);
 				if (error)
 				{
-					state_system.NRF_state = error;
+  					state_system.NRF_state = error;
 					goto end;
 				}
 			}
@@ -306,12 +306,9 @@ int IMU_updateDataAll()
 	/////////////////////////////////////////////////////
 	///////////  ROTATE VECTORS TO ISC  /////////////////
 	/////////////////////////////////////////////////////
-		float accel_ISC[3] = {0, 0, 0};
-		float magn_ISC[3] = {0, 0, 0};
 
-		//	Rotate accel and magn vectors to ISC
+		float accel_ISC[3] = {0, 0, 0};
 		vect_rotate(accel, quaternion, accel_ISC);
-		vect_rotate(magn, quaternion, magn_ISC);
 
 		//	Copy vectors to global structure
 //	taskENTER_CRITICAL();
@@ -321,9 +318,9 @@ int IMU_updateDataAll()
 		stateIMU_isc.accel[0] = accel_ISC[0];
 		stateIMU_isc.accel[1] = accel_ISC[1];
 		stateIMU_isc.accel[2] = accel_ISC[2];
-		stateIMU_isc.magn[0] = magn_ISC[0];
-		stateIMU_isc.magn[1] = magn_ISC[1];
-		stateIMU_isc.magn[2] = magn_ISC[2];
+		stateIMU_isc.magn[0] = magn[0];
+		stateIMU_isc.magn[1] = magn[1];
+		stateIMU_isc.magn[2] = magn[2];
 //	taskEXIT_CRITICAL();
 	}
 

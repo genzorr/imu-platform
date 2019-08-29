@@ -2,7 +2,7 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from pymavlink.dialects.v10.mavmessages import *
 from pymavlink import mavutil
 
-ACCUM_LEN = 2
+ACCUM_LEN = 5
 
 class MsgAccumulator:
     def __init__(self, batch_size, signal):

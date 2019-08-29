@@ -15,6 +15,9 @@ MESH_PATH = '/home/michael/stm/stm32f4-imu/gcs/theplane.stl'
 ACCEL_PATH = '/home/michael/stm/stm32f4-imu/accel.txt'
 MAGN_PATH = '/home/michael/stm/stm32f4-imu/magn.txt'
 
+accel_calibration = 0
+magn_calibration = 0
+
 
 class PlaneWidget(gl.GLViewWidget):
     def __init__(self, mesh_path, *args, **kwargs):
@@ -40,6 +43,8 @@ class PlaneWidget(gl.GLViewWidget):
         self.addItem(self.mesh)
         self.mesh.scale(1/50, 1/50, 1/50)
 
+        self.rotation = 0
+
 
     def _get_mesh_points(self, mesh_path):
         your_mesh = mesh.Mesh.from_file(mesh_path)
@@ -61,7 +66,7 @@ class PlaneWidget(gl.GLViewWidget):
             target.rotate(degrees(self.rotation.angle), self.rotation.axis[0], self.rotation.axis[1],
                           self.rotation.axis[2])
 
-    def _update_rotation(self, record):
+    def update_rotation(self, record):
         quat = pyquaternion.Quaternion(record)
         self.rotation = quat
         # print(self.rotation.angle)
@@ -82,10 +87,12 @@ class MyWin(QtWidgets.QMainWindow):
         self.setWindowTitle('gcs')
 
         # ----------------------------------------------
-        # self.accel_file = open(ACCEL_PATH, 'w')
-        # self.magn_file = open(MAGN_PATH, 'w')
-        # self.accel_file.close()
-        # self.magn_file.close()
+        if accel_calibration:
+            self.accel_file = open(ACCEL_PATH, 'w')
+        if magn_calibration:
+            self.magn_file = open(MAGN_PATH, 'w')
+            self.magn_file.close()
+        # ----------------------------------------------
 
         pg.setConfigOption('background', 'w')
         pg.setConfigOption('foreground', 'k')
@@ -145,12 +152,13 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.dockwid = QtWidgets.QDockWidget()
         self.ui.graph_3d_layout.addWidget(self.ui.dockwid)
 
-        self.plane_widget = PlaneWidget(mesh_path=MESH_PATH, parent=self)
-        self.ui.glwid = self.plane_widget
-        self.ui.dockwid.setWidget(self.ui.glwid)
-        self.isc_coord = gl.GLAxisItem()
-        self.isc_coord.setSize(25, 25, 25)
-        self.ui.glwid.show()
+        if not accel_calibration and not magn_calibration:
+            self.plane_widget = PlaneWidget(mesh_path=MESH_PATH, parent=self)
+            self.ui.glwid = self.plane_widget
+            self.ui.dockwid.setWidget(self.ui.glwid)
+            self.isc_coord = gl.GLAxisItem()
+            self.isc_coord.setSize(25, 25, 25)
+            self.ui.glwid.show()
 
         # graphs
         self.accel_rsc_x_graph = self.plot_item_accel_rsc.plot()
@@ -194,16 +202,16 @@ class MyWin(QtWidgets.QMainWindow):
             self.accel_rsc_y.append(msgs[i].accel[1])
             self.accel_rsc_z.append(msgs[i].accel[2])
 
-            # print('{:.2f}\t{:.2f}\t{:.2f}'.format(*msgs[i].accel))
-
             self.gyro_x.append(msgs[i].gyro[0])
             self.gyro_y.append(msgs[i].gyro[1])
             self.gyro_z.append(msgs[i].gyro[2])
 
             self.time_rsc.append(msgs[i].time)
 
-            # self.accel_f.write("%f\t%f\t%f\n" % (msgs[i].accel[0], msgs[i].accel[1], msgs[i].accel[2]))
-            # self.compass_f.write("%f\t%f\t%f\n" % (msgs[i].compass[0], msgs[i].compass[1], msgs[i].compass[2]))
+            if accel_calibration:
+                self.accel_file = open(ACCEL_PATH, 'a')
+                self.accel_file.write("%f\t%f\t%f\n" % (msgs[i].accel[0], msgs[i].accel[1], msgs[i].accel[2]))
+                self.accel_file.close()
 
         if len(self.time_rsc) > self.length:
             self.time_rsc = self.time_rsc[self.cut:(self.length - 1)]
@@ -236,9 +244,12 @@ class MyWin(QtWidgets.QMainWindow):
             self.magn_y.append(msgs[i].magn[1])
             self.magn_z.append(msgs[i].magn[2])
 
-            # self.quaternion.append(msgs[i].quaternion)
-
             self.time_isc.append(msgs[i].time)
+
+            if magn_calibration:
+                self.magn_file = open(MAGN_PATH, 'a')
+                self.magn_file.write("%f\t%f\t%f\n" % (msgs[i].magn[0], msgs[i].magn[1], msgs[i].magn[2]))
+                self.magn_file.close()
 
         if len(self.time_isc) > self.length:
             self.time_isc = self.time_isc[self.cut:(self.length - 1)]
@@ -261,6 +272,7 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y, pen=('g'), width=0.5)
         self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z, pen=('b'), width=0.5)
 
-        quat = pyquaternion.Quaternion(msgs[i].quaternion)
-        self.plane_widget._update_rotation(quat)
+        if not accel_calibration and not magn_calibration:
+            quat = pyquaternion.Quaternion(msgs[i].quaternion)
+            self.plane_widget.update_rotation(quat)
 

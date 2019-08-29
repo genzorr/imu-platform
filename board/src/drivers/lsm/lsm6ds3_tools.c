@@ -12,11 +12,25 @@
 #include <diag/Trace.h>
 
 #include "lsm6ds3_reg.h"
-
 #include "state.h"
+#include "vector.h"
+
 
 #define LSM_TIMEOUT	1000
+#define MG_TO_MPS2	9.80665 / 1000
 #define MDPS_TO_RAD	M_PI / 180 / 1000
+
+//	Accelerometer bias & transform matrix
+#define X_ACCEL_OFFSET		0.073985
+#define Y_ACCEL_OFFSET		0.064143
+#define Z_ACCEL_OFFSET		0.094132
+#define XX_ACCEL_TRANSFORM_MATIX	 1.005659
+#define YY_ACCEL_TRANSFORM_MATIX	 1.003159
+#define ZZ_ACCEL_TRANSFORM_MATIX	 1.007635
+#define XY_ACCEL_TRANSFORM_MATIX	 0.000026
+#define XZ_ACCEL_TRANSFORM_MATIX	-0.002485
+#define YZ_ACCEL_TRANSFORM_MATIX	 0.000322
+
 
 static uint8_t whoamI, rst;
 
@@ -158,6 +172,8 @@ int32_t lsm6ds3_platform_init()
 	error |= lsm6ds3_xl_data_rate_set(&lsm6ds3_dev_ctx, LSM6DS3_XL_ODR_104Hz);
 	error |= lsm6ds3_gy_data_rate_set(&lsm6ds3_dev_ctx, LSM6DS3_GY_ODR_104Hz);
 
+	error |= lsm6ds3_xl_filter_analog_set(&lsm6ds3_dev_ctx, LSM6DS3_ANTI_ALIASING_200Hz);
+
 	return error;
 }
 
@@ -167,10 +183,24 @@ uint32_t lsm6ds3_get_xl_data_g(float* accel)
 	axis3bit16_t data_raw_acceleration;
 	uint8_t error;
 	//	Read acceleration field data
-	error = lsm6ds3_acceleration_raw_get(&lsm6ds3_dev_ctx, data_raw_acceleration.u8bit);
-	accel[0] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[0]) / 1000;
-	accel[1] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[1]) / 1000;
-	accel[2] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[2]) / 1000;
+	PROCESS_ERROR(lsm6ds3_acceleration_raw_get(&lsm6ds3_dev_ctx, data_raw_acceleration.u8bit));
+	accel[0] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[0]) * MG_TO_MPS2;
+	accel[1] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[1]) * MG_TO_MPS2;
+	accel[2] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[2]) * MG_TO_MPS2;
+
+	if (!IMU_CALIBRATION)
+	{
+		//	Accelerometer bias and transform matrix (to provide real values)
+		float offset_vector[3] = {X_ACCEL_OFFSET, Y_ACCEL_OFFSET, Z_ACCEL_OFFSET};
+		float transform_matrix[3][3] =	{{XX_ACCEL_TRANSFORM_MATIX, XY_ACCEL_TRANSFORM_MATIX, XZ_ACCEL_TRANSFORM_MATIX},
+										 {XY_ACCEL_TRANSFORM_MATIX, YY_ACCEL_TRANSFORM_MATIX, YZ_ACCEL_TRANSFORM_MATIX},
+										 {XZ_ACCEL_TRANSFORM_MATIX, YZ_ACCEL_TRANSFORM_MATIX, ZZ_ACCEL_TRANSFORM_MATIX}};
+
+		vmv(accel, offset_vector, accel);
+		mxv(transform_matrix, accel, accel);
+	}
+
+end:
 	return error;
 }
 

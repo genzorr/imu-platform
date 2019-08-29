@@ -12,10 +12,23 @@
 
 #include "lis3mdl_reg.h"
 #include "state.h"
+#include "vector.h"
 
 
 #define LSM_TIMEOUT	1000
 #define MDPS_TO_RAD	M_PI / 180 / 1000
+
+//	Magnetometer bias & transform matrix
+#define X_MAGN_OFFSET		-292.920973
+#define Y_MAGN_OFFSET		 224.742275
+#define Z_MAGN_OFFSET		-130.841676
+#define XX_MAGN_TRANSFORM_MATIX	 0.002098
+#define YY_MAGN_TRANSFORM_MATIX	 0.002186
+#define ZZ_MAGN_TRANSFORM_MATIX	 0.002267
+#define XY_MAGN_TRANSFORM_MATIX	 0.000118
+#define XZ_MAGN_TRANSFORM_MATIX	-0.000354
+#define YZ_MAGN_TRANSFORM_MATIX	 0.000003
+
 
 static uint8_t whoamI, rst;
 
@@ -128,7 +141,6 @@ int32_t lsm303c_platform_init()
 
 	error |= lis3mdl_operating_mode_set(&lsm303c_dev_ctx, LIS3MDL_CONTINUOUS_MODE);
 
-
 	return error;
 }
 
@@ -138,9 +150,23 @@ uint32_t lsm303c_get_m_data_mG(float* magn)
 	axis3bit16_t data_raw_magnetic;
 	uint8_t error;
 	//	Read data
-	error = lis3mdl_magnetic_raw_get(&lsm303c_dev_ctx, data_raw_magnetic.u8bit);
+	PROCESS_ERROR(lis3mdl_magnetic_raw_get(&lsm303c_dev_ctx, data_raw_magnetic.u8bit));
 	magn[0] = 1000 * LIS3MDL_FROM_FS_16G_TO_G(data_raw_magnetic.i16bit[0]);
 	magn[1] = 1000 * LIS3MDL_FROM_FS_16G_TO_G(data_raw_magnetic.i16bit[1]);
 	magn[2] = 1000 * LIS3MDL_FROM_FS_16G_TO_G(data_raw_magnetic.i16bit[2]);
+
+	if (!IMU_CALIBRATION)
+	{
+		//	Magnetometer bias and transform matrix (to provide real values)
+		float offset_vector[3] = {X_MAGN_OFFSET, Y_MAGN_OFFSET, Z_MAGN_OFFSET};
+		float transform_matrix[3][3] =	{	{XX_MAGN_TRANSFORM_MATIX, XY_MAGN_TRANSFORM_MATIX, XZ_MAGN_TRANSFORM_MATIX},
+											{XY_MAGN_TRANSFORM_MATIX, YY_MAGN_TRANSFORM_MATIX, YZ_MAGN_TRANSFORM_MATIX},
+											{XZ_MAGN_TRANSFORM_MATIX, YZ_MAGN_TRANSFORM_MATIX, ZZ_MAGN_TRANSFORM_MATIX}};
+
+		vmv(magn, offset_vector, magn);
+		mxv(transform_matrix, magn, magn);
+	}
+
+end:
 	return error;
 }

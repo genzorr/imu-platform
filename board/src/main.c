@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
 
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
 
-		HAL_Delay(50);
+		HAL_Delay(10);
 	}
 
 	return 0;

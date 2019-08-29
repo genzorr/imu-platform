@@ -2,22 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fae6f51-5e9b-4340-9cf2-34d749d6f0e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/Debug/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/board/Debug/makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/Debug/sources.mk" beforeDir="false" afterPath="$PROJECT_DIR$/board/Debug/sources.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/drivers/lsm/lsm_tools.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/lsm/lsm6ds3_tools.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/drivers/lsm/lsm_tools.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/lsm/lsm6ds3_tools.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/lsm_old/lsm303c.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/lsm_old/lsm303c.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/lsm_old/lsm6ds3.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/lsm_old/lsm6ds3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/lsm_old/lsm6ds3_math.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/drivers/MPU9255.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/MPU9255.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/drivers/MPU9255.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/MPU9255.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/drivers/lsm/lsm303c_tools.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/lsm/lsm303c_tools.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/src/drivers/lsm/lsm6ds3_tools.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/lsm/lsm6ds3_tools.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/state.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/state.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/stm32f4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/stm32f4xx_hal_msp.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/tasks/sensors.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/tasks/sensors.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gcs/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/gcs_graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcs/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/mavlink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/magn.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v10/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v10/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v20/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v20/.gitignore" afterDir="false" />
@@ -30,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+            <state relative-caret-position="306">
+              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -45,13 +39,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="272">
               <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -66,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="426">
+              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -92,6 +86,7 @@
       <find>gyro_graph</find>
       <find>accel_rsc</find>
       <find>gyro</find>
+      <find>self.rotation</find>
     </findStrings>
     <replaceStrings>
       <replace>q</replace>
@@ -110,8 +105,8 @@
         <option value="$PROJECT_DIR$/gcs/gcs_ui.py" />
         <option value="$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py" />
         <option value="$PROJECT_DIR$/gcs/main.py" />
-        <option value="$PROJECT_DIR$/gcs/mavlink.py" />
         <option value="$PROJECT_DIR$/gcs/gcs_graphing.py" />
+        <option value="$PROJECT_DIR$/gcs/mavlink.py" />
       </list>
     </option>
   </component>
@@ -456,16 +451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.6/ntpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3561">
@@ -480,10 +465,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/-1247971763/PyQt5/QtCore/QThread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111">
+          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gcs/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/-1247971763/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="341" column="4" selection-start-line="341" selection-start-column="4" selection-end-line="341" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="272">
           <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -493,16 +512,6 @@
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
