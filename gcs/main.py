@@ -17,6 +17,7 @@ if __name__ == "__main__":
     # self.centralwidget.setLayout(self.horizontalLayout)
 
     myapp.show()
+    myapp.showFullScreen()
     ######################################
 
     thread = MavlinkThread()

@@ -128,6 +128,28 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)
 		gpiob.Speed = GPIO_SPEED_FREQ_HIGH;
 		HAL_GPIO_Init(GPIOB, &gpiob);
 	}
+	else if (hi2c->Instance == I2C3)
+	{
+		__I2C3_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
+		__GPIOC_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpio;
+		gpio.Alternate = GPIO_AF4_I2C3;
+		gpio.Mode = GPIO_MODE_AF_OD;
+		gpio.Pin = GPIO_PIN_8;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpio);
+
+		gpio.Alternate = GPIO_AF4_I2C3;
+		gpio.Mode = GPIO_MODE_AF_OD;
+		gpio.Pin = GPIO_PIN_9;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOC, &gpio);
+
+	}
 	else abort();
 }
 

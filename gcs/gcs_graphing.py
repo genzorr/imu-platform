@@ -10,7 +10,7 @@ from stl import mesh
 from itertools import chain
 import pyquaternion
 
-MESH_PATH = os.path.abspath('theplane.stl')
+MESH_PATH = '/home/michael/stm/stm32f4-imu/gcs/theplane.stl'
 
 ACCEL_PATH = '/home/michael/stm/stm32f4-imu/accel.txt'
 MAGN_PATH = '/home/michael/stm/stm32f4-imu/magn.txt'
@@ -22,22 +22,20 @@ class PlaneWidget(gl.GLViewWidget):
         self.setCameraPosition(distance=15)
         self.setBackgroundColor([120, 120, 120, 0])
         g = gl.GLGridItem()
-        g.scale(2, 2, 1)
-        g.setSize(350, 350, 350)
         self.addItem(g)
 
         isc_coord = gl.GLAxisItem()
-        isc_coord.setSize(350, 350, 350)
+        isc_coord.setSize(10, 10, 10)
         isc_coord.translate(0, 0, 0.5)
         self.addItem(isc_coord)
 
         self.plane_axis = gl.GLAxisItem()
-        self.plane_axis.setSize(x=300, y=300, z=300)
+        self.plane_axis.setSize(x=10, y=10, z=10)
         self.addItem(self.plane_axis)
 
         verts = self._get_mesh_points(mesh_path)
         faces = np.array([(i, i+1, i+2,) for i in range(0, len(verts), 3)])
-        colors = np.array([(0.0, 1.0, 0.0, 1.0,) for i in range(0, len(verts), 3)])
+        colors = np.array([(1.0, 0.0, 0.0, 1.0,) for i in range(0, len(verts), 3)])
         self.mesh = gl.GLMeshItem(vertexes=verts, faces=faces, faceColors=colors, smooth=False, shader='shaded')
         self.addItem(self.mesh)
         self.mesh.scale(1/50, 1/50, 1/50)
@@ -82,7 +80,6 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         # self
         self.setWindowTitle('gcs')
-        self.plane_widget = PlaneWidget(mesh_path=MESH_PATH, parent=self)
 
         # ----------------------------------------------
         # self.accel_file = open(ACCEL_PATH, 'w')
@@ -114,7 +111,6 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.time_rsc = []
         self.time_isc = []
-        self.time_state = []
 
         self.imu_state = 255
         self.nrf_state = 255
@@ -149,6 +145,7 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.dockwid = QtWidgets.QDockWidget()
         self.ui.graph_3d_layout.addWidget(self.ui.dockwid)
 
+        self.plane_widget = PlaneWidget(mesh_path=MESH_PATH, parent=self)
         self.ui.glwid = self.plane_widget
         self.ui.dockwid.setWidget(self.ui.glwid)
         self.isc_coord = gl.GLAxisItem()
@@ -179,8 +176,14 @@ class MyWin(QtWidgets.QMainWindow):
             tmp = msgs[i].MPU_state
             if tmp != self.imu_state:
                 self.imu_state = tmp
-                phrase = 'IMU state {}'.format(tmp)
-                self.ui.textBrowser.setText(phrase)
+                phrase = 'LSM6DS3 state {}'.format(tmp)
+                self.ui.textBrowser.append(phrase)
+
+            tmp = msgs[i].NRF_state
+            if tmp != self.nrf_state:
+                self.nrf_state = tmp
+                phrase = 'LSM303C state {}'.format(tmp)
+                self.ui.textBrowser.append(phrase)
             else:
                 pass
 
@@ -258,6 +261,6 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y, pen=('g'), width=0.5)
         self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z, pen=('b'), width=0.5)
 
-        # quat = pyquaternion.Quaternion(msgs[i].quaternion)
-        # self.plane_widget._update_rotation(quat)
+        quat = pyquaternion.Quaternion(msgs[i].quaternion)
+        self.plane_widget._update_rotation(quat)
 

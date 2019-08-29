@@ -1,5 +1,5 @@
 /*
- * lsm_tools.c
+ * lsm6ds3_tools.c
  *
  *  Created on: Aug 27, 2019
  *      Author: michael
@@ -22,11 +22,12 @@ static uint8_t whoamI, rst;
 
 SPI_HandleTypeDef	spi_lsm6ds3;
 I2C_HandleTypeDef	i2c_lsm6ds3;
+lsm6ds3_ctx_t lsm6ds3_dev_ctx;
 
 #define LSM6DS3_I2C_ADD	0b11010111
 
 
-int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp, uint16_t len)
+static int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp, uint16_t len)
 {
 	int error = 0;
 
@@ -75,7 +76,7 @@ int32_t lsm6ds3_bus_init(void* handle)
 	{
 		//	I2C init
 		i2c_lsm6ds3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-		i2c_lsm6ds3.Init.ClockSpeed = 100000;
+		i2c_lsm6ds3.Init.ClockSpeed = 400000;
 		i2c_lsm6ds3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
 		i2c_lsm6ds3.Init.DutyCycle = I2C_DUTYCYCLE_2;
 		i2c_lsm6ds3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
@@ -118,24 +119,24 @@ int32_t lsm6ds3_platform_init()
 {
 	int error = 0;
 
-	dev_ctx.write_reg = platform_write;
-	dev_ctx.read_reg = platform_read;
-	dev_ctx.handle = &i2c_lsm6ds3;
+	lsm6ds3_dev_ctx.write_reg = platform_write;
+	lsm6ds3_dev_ctx.read_reg = platform_read;
+	lsm6ds3_dev_ctx.handle = &i2c_lsm6ds3;
 
 	//	Set needed bus parameters
-	error |= lsm6ds3_bus_init(dev_ctx.handle);
+	error |= lsm6ds3_bus_init(lsm6ds3_dev_ctx.handle);
 
 	// Reset to defaults
-	error |= lsm6ds3_reset_set(&dev_ctx, PROPERTY_ENABLE);
+	error |= lsm6ds3_reset_set(&lsm6ds3_dev_ctx, PROPERTY_ENABLE);
 	do {
-		error = lsm6ds3_reset_get(&dev_ctx, &rst);
+		error = lsm6ds3_reset_get(&lsm6ds3_dev_ctx, &rst);
 	} while (rst);
 
 	// Check who_am_i
-	error |= lsm6ds3_device_id_get(&dev_ctx, &whoamI);
+	error |= lsm6ds3_device_id_get(&lsm6ds3_dev_ctx, &whoamI);
 	if (whoamI != LSM6DS3_ID)
 	{
-		error |= lsm6ds3_device_id_get(&dev_ctx, &whoamI);
+		error |= lsm6ds3_device_id_get(&lsm6ds3_dev_ctx, &whoamI);
 		if (whoamI != LSM6DS3_ID)
 		{
 			trace_printf("lsm6ds3 not found, %d\terror: %d\n", whoamI, error);
@@ -147,15 +148,15 @@ int32_t lsm6ds3_platform_init()
 	else
 		trace_printf("lsm6ds3 OK\n");
 
-	error |= lsm6ds3_fifo_mode_set(&dev_ctx, PROPERTY_DISABLE);
+	error |= lsm6ds3_fifo_mode_set(&lsm6ds3_dev_ctx, PROPERTY_DISABLE);
 
-	error |= lsm6ds3_block_data_update_set(&dev_ctx, PROPERTY_DISABLE);
+	error |= lsm6ds3_block_data_update_set(&lsm6ds3_dev_ctx, PROPERTY_DISABLE);
 
-	error |= lsm6ds3_xl_full_scale_set(&dev_ctx, LSM6DS3_4g);
-	error |= lsm6ds3_gy_full_scale_set(&dev_ctx, LSM6DS3_1000dps);
+	error |= lsm6ds3_xl_full_scale_set(&lsm6ds3_dev_ctx, LSM6DS3_4g);
+	error |= lsm6ds3_gy_full_scale_set(&lsm6ds3_dev_ctx, LSM6DS3_1000dps);
 
-	error |= lsm6ds3_xl_data_rate_set(&dev_ctx, LSM6DS3_XL_ODR_104Hz);
-	error |= lsm6ds3_gy_data_rate_set(&dev_ctx, LSM6DS3_GY_ODR_104Hz);
+	error |= lsm6ds3_xl_data_rate_set(&lsm6ds3_dev_ctx, LSM6DS3_XL_ODR_104Hz);
+	error |= lsm6ds3_gy_data_rate_set(&lsm6ds3_dev_ctx, LSM6DS3_GY_ODR_104Hz);
 
 	return error;
 }
@@ -166,7 +167,7 @@ uint32_t lsm6ds3_get_xl_data_g(float* accel)
 	axis3bit16_t data_raw_acceleration;
 	uint8_t error;
 	//	Read acceleration field data
-	error = lsm6ds3_acceleration_raw_get(&dev_ctx, data_raw_acceleration.u8bit);
+	error = lsm6ds3_acceleration_raw_get(&lsm6ds3_dev_ctx, data_raw_acceleration.u8bit);
 	accel[0] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[0]) / 1000;
 	accel[1] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[1]) / 1000;
 	accel[2] = lsm6ds3_from_fs4g_to_mg(data_raw_acceleration.i16bit[2]) / 1000;
@@ -179,7 +180,7 @@ uint32_t lsm6ds3_get_g_data_rps(float* gyro)
 	axis3bit16_t data_raw_angular_rate;
 	uint8_t error;
 	//	Read acceleration field data
-	error = lsm6ds3_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate.u8bit);
+	error = lsm6ds3_angular_rate_raw_get(&lsm6ds3_dev_ctx, data_raw_angular_rate.u8bit);
 	gyro[0] = lsm6ds3_from_fs1000dps_to_mdps(data_raw_angular_rate.i16bit[0]) * MDPS_TO_RAD;
 	gyro[1] = lsm6ds3_from_fs1000dps_to_mdps(data_raw_angular_rate.i16bit[1]) * MDPS_TO_RAD;
 	gyro[2] = lsm6ds3_from_fs1000dps_to_mdps(data_raw_angular_rate.i16bit[2]) * MDPS_TO_RAD;

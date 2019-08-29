@@ -4,6 +4,7 @@
  *  Created on: Jul 6, 2019
  *      Author: michael
  */
+#include <lsm/lsm6ds3_tools.h>
 #include <math.h>
 #include <string.h>
 
@@ -14,10 +15,10 @@
 #include "MadgwickAHRS.h"
 #include "state.h"
 #include "sensors.h"
-#include "MPU9255.h"
 
-#include "lsm/lsm6ds3_reg.h"
-#include "lsm/lsm_tools.h"
+#include "MPU9255.h"
+#include "lsm/lsm6ds3_tools.h"
+#include "lsm/lsm303c_tools.h"
 
 
 I2C_HandleTypeDef 	i2c_mpu9255;
@@ -195,31 +196,16 @@ void IMU_Init()
 			//	LSM6DS3 init
 			int error = lsm6ds3_platform_init();
 			trace_printf("lsm6ds3: %d\n", error);
+			state_system.MPU_state = error;
 		}
-//		if (LSM303C)
-//		{
-//			// I2C init
-//			i2c_lsm303c.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-//			i2c_lsm303c.Init.ClockSpeed = 200000;
-//			i2c_lsm303c.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-//			i2c_lsm303c.Init.DutyCycle = I2C_DUTYCYCLE_2;
-//			i2c_lsm303c.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-//			i2c_lsm303c.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-//			i2c_lsm303c.Init.OwnAddress1 = 0x00;
-//			i2c_lsm303c.Instance = I2C1;
-//			i2c_lsm303c.Mode = HAL_I2C_MODE_MASTER;
-//
-//			int i2c_lsm303c_init_error = HAL_I2C_Init(&i2c_lsm303c);
-//			HAL_Delay(200);
-//			trace_printf("i2c_lsm303c: %d\n", i2c_lsm303c_init_error);
-//
-//			// LSM303C init
-//			int error = lsm303c_register_i2c(&hlsm303c, &i2c_lsm303c);
-//			lsm303c_m_conf_default(&hlsm303c);
-//			lsm303c_m_push_conf(&hlsm303c, &hlsm303c.conf.m);
-//
-//			state_system.MPU_state = error;
-//		}
+		if (LSM303C)
+		{
+			//	LSM303C init
+			int error = lsm303c_platform_init();
+			trace_printf("lsm303c: %d\n", error);
+			//	FEXME: TEMPORARY
+			state_system.NRF_state = error;
+		}
 	}
 
 }
@@ -263,16 +249,23 @@ int IMU_updateDataAll()
 		{
 			if (LSM6DS3)
 			{
-				PROCESS_ERROR(lsm6ds3_get_xl_data_g(accel));
-				PROCESS_ERROR(lsm6ds3_get_g_data_rps(gyro));
+				error = lsm6ds3_get_xl_data_g(accel);
+				error |= lsm6ds3_get_g_data_rps(gyro);
+				if (error)
+				{
+					state_system.MPU_state = error;
+					goto end;
+				}
 			}
 
 			if (LSM303C)
 			{
-//				struct lsm303c_raw_data_m_s rdm = {{0, 0, 0}};
-//				PROCESS_ERROR(lsm303c_m_pull(&hlsm303c, &rdm));
-//
-//				lsm303c_scale_m(&hlsm303c, rdm.m, magn, 3);
+				error = lsm303c_get_m_data_mG(magn);
+				if (error)
+				{
+					state_system.NRF_state = error;
+					goto end;
+				}
 			}
 		}
 
@@ -318,7 +311,7 @@ int IMU_updateDataAll()
 
 		//	Rotate accel and magn vectors to ISC
 		vect_rotate(accel, quaternion, accel_ISC);
-//		vect_rotate(magn, quaternion, magn_ISC);
+		vect_rotate(magn, quaternion, magn_ISC);
 
 		//	Copy vectors to global structure
 //	taskENTER_CRITICAL();

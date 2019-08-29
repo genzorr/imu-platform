@@ -22,6 +22,7 @@
 #include "stm32f4xx_hal_dma.h"
 
 #include "lsm/lsm6ds3_reg.h"
+#include "lsm/lis3mdl_reg.h"
 
 #include "quaternion.h"
 
@@ -32,16 +33,17 @@
 
 #define MPU9255			0
 #define LSM6DS3			1
-#define LSM303C			0
+#define LSM303C			1
 #define IMU_CALIBRATION	0
 //#define GPS			0
 
-//--------- LSM ---------------
+//--------- LSM6DS3 ---------------
 #define LSM6DS3_PORT		GPIOA
 #define LSM6DS3_CS_PIN		GPIO_PIN_12
 #define LSM6DS3_SCK_PIN		GPIO_PIN_13
 #define LSM6DS3_MISO_PIN	GPIO_PIN_14
 #define LSM6DS3_MOSI_PIN	GPIO_PIN_15
+
 
 // if error set value and go to end
 #define PROCESS_ERROR(x) if (0 != (error = (x))) { goto end; }
@@ -117,8 +119,10 @@ extern SPI_HandleTypeDef	spi_nRF24L01;
 extern I2C_HandleTypeDef 	i2c_mpu9255;
 extern SPI_HandleTypeDef	spi_lsm6ds3;
 extern I2C_HandleTypeDef	i2c_lsm6ds3;
+extern I2C_HandleTypeDef	i2c_lsm303c;
 
-extern lsm6ds3_ctx_t dev_ctx;
+extern lsm6ds3_ctx_t lsm6ds3_dev_ctx;
+extern lis3mdl_ctx_t lsm303c_dev_ctx;
 
 // глобальные структуры
 extern stateGPS_t 			stateGPS;

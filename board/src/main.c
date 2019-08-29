@@ -1,3 +1,4 @@
+#include <lsm/lsm6ds3_tools.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,7 +19,6 @@
 #include "nRF24L01.h"
 #include "xprintf.h"
 #include "dbgu.h"
-#include "lsm/lsm_tools.h"
 
 //#include "mavmessages/mavlink.h"
 
