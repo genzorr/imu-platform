@@ -184,13 +184,21 @@ class MyWin(QtWidgets.QMainWindow):
             tmp = msgs[i].MPU_state
             if tmp != self.imu_state:
                 self.imu_state = tmp
-                phrase = 'LSM6DS3 state {}'.format(tmp)
+                phrase = 'LSM6DS3 state '
+                if tmp == 0:
+                    phrase += 'OK'
+                else:
+                    phrase += 'ERROR: {}'.format(tmp)
                 self.ui.textBrowser.append(phrase)
 
             tmp = msgs[i].NRF_state
             if tmp != self.nrf_state:
                 self.nrf_state = tmp
-                phrase = 'LSM303C state {}'.format(tmp)
+                phrase = 'LSM303C state '
+                if tmp == 0:
+                    phrase += 'OK'
+                else:
+                    phrase += 'ERROR: {}'.format(tmp)
                 self.ui.textBrowser.append(phrase)
             else:
                 pass

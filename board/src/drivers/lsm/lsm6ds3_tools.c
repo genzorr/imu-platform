@@ -21,15 +21,27 @@
 #define MDPS_TO_RAD	M_PI / 180 / 1000
 
 //	Accelerometer bias & transform matrix
-#define X_ACCEL_OFFSET		0.073985
-#define Y_ACCEL_OFFSET		0.064143
-#define Z_ACCEL_OFFSET		0.094132
-#define XX_ACCEL_TRANSFORM_MATIX	 1.005659
-#define YY_ACCEL_TRANSFORM_MATIX	 1.003159
-#define ZZ_ACCEL_TRANSFORM_MATIX	 1.007635
-#define XY_ACCEL_TRANSFORM_MATIX	 0.000026
-#define XZ_ACCEL_TRANSFORM_MATIX	-0.002485
-#define YZ_ACCEL_TRANSFORM_MATIX	 0.000322
+// FIRST
+//#define X_ACCEL_OFFSET		0.073985
+//#define Y_ACCEL_OFFSET		0.064143
+//#define Z_ACCEL_OFFSET		0.094132
+//#define XX_ACCEL_TRANSFORM_MATIX	 1.005659
+//#define YY_ACCEL_TRANSFORM_MATIX	 1.003159
+//#define ZZ_ACCEL_TRANSFORM_MATIX	 1.007635
+//#define XY_ACCEL_TRANSFORM_MATIX	 0.000026
+//#define XZ_ACCEL_TRANSFORM_MATIX	-0.002485
+//#define YZ_ACCEL_TRANSFORM_MATIX	 0.000322
+
+// SECOND
+#define X_ACCEL_OFFSET		0.014983
+#define Y_ACCEL_OFFSET		0.086828
+#define Z_ACCEL_OFFSET		0.028621
+#define XX_ACCEL_TRANSFORM_MATIX	 1.003357
+#define YY_ACCEL_TRANSFORM_MATIX	 1.009286
+#define ZZ_ACCEL_TRANSFORM_MATIX	 1.002768
+#define XY_ACCEL_TRANSFORM_MATIX	 0.000575
+#define XZ_ACCEL_TRANSFORM_MATIX	-0.002213
+#define YZ_ACCEL_TRANSFORM_MATIX	 0.001784
 
 
 static uint8_t whoamI, rst;
@@ -150,14 +162,8 @@ int32_t lsm6ds3_platform_init()
 	error |= lsm6ds3_device_id_get(&lsm6ds3_dev_ctx, &whoamI);
 	if (whoamI != LSM6DS3_ID)
 	{
-		error |= lsm6ds3_device_id_get(&lsm6ds3_dev_ctx, &whoamI);
-		if (whoamI != LSM6DS3_ID)
-		{
-			trace_printf("lsm6ds3 not found, %d\terror: %d\n", whoamI, error);
-			return -19;
-		}
-		else
-			trace_printf("lsm6ds3 OK\n");
+		trace_printf("lsm6ds3 not found, %d\terror: %d\n", whoamI, error);
+		return -19;
 	}
 	else
 		trace_printf("lsm6ds3 OK\n");

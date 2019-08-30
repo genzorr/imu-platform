@@ -2,6 +2,8 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from pymavlink.dialects.v10.mavmessages import *
 from pymavlink import mavutil
 
+import time
+
 ACCUM_LEN = 5
 
 class MsgAccumulator:
@@ -40,6 +42,10 @@ class MavlinkThread(QThread):
 
     def run(self):
         mav = mavutil.mavlink_connection("udpin:0.0.0.0:10000", dialect='mavmessages')
+        t = time.time()
         while True:
             pack = mav.recv_match(blocking=False)
+            t_prev = t
+            t = time.time()
+            print(t - t_prev)
             self.process_message(pack)

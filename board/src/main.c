@@ -72,6 +72,9 @@ int main(int argc, char* argv[])
 	//	Peripheral initialization
 	if (IMU)
 	{
+		if (IMU_CALIBRATION)
+			trace_printf("IMU calibration enable\n");
+
 		IMU_Init();
 		get_staticShifts();
 	}

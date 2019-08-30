@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fae6f51-5e9b-4340-9cf2-34d749d6f0e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/drivers/MPU9255.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/MPU9255.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/drivers/MPU9255.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/MPU9255.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/drivers/lsm/lsm303c_tools.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/lsm/lsm303c_tools.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/drivers/lsm/lsm6ds3_tools.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/drivers/lsm/lsm6ds3_tools.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/src/tasks/sensors.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/tasks/sensors.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gcs/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/gcs_graphing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gcs/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/mavlink.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/magn.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v10/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v10/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v20/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v20/.gitignore" afterDir="false" />
@@ -24,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+            <state relative-caret-position="340">
+              <caret line="186" column="33" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -45,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="833">
+              <caret line="49" column="29" selection-start-line="47" selection-start-column="12" selection-end-line="49" selection-end-column="29" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -105,8 +103,8 @@
         <option value="$PROJECT_DIR$/gcs/gcs_ui.py" />
         <option value="$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.py" />
         <option value="$PROJECT_DIR$/gcs/main.py" />
-        <option value="$PROJECT_DIR$/gcs/gcs_graphing.py" />
         <option value="$PROJECT_DIR$/gcs/mavlink.py" />
+        <option value="$PROJECT_DIR$/gcs/gcs_graphing.py" />
       </list>
     </option>
   </component>
@@ -133,6 +131,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,7 +189,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -323,7 +321,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34549356" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34549356" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39914164" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -472,6 +470,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/-1247971763/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="341" column="4" selection-start-line="341" selection-start-column="4" selection-end-line="341" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gcs/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
@@ -482,13 +487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/-1247971763/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="341" column="4" selection-start-line="341" selection-start-column="4" selection-end-line="341" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gcs/gcs_ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -496,22 +494,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
+    <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        <state relative-caret-position="833">
+          <caret line="49" column="29" selection-start-line="47" selection-start-column="12" selection-end-line="49" selection-end-column="29" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gcs/mavlink.py">
+    <entry file="file://$PROJECT_DIR$/gcs/gcs_graphing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="340">
+          <caret line="186" column="33" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

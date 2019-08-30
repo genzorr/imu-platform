@@ -44,7 +44,7 @@ void 			_IMUtask_updateData();
 static uint8_t get_gyro_staticShift(float* gyro_staticShift)
 {
 	uint8_t error = 0;
-	uint16_t zero_orientCnt = 3000;
+	uint16_t zero_orientCnt = 2000;
 
 	float gyro[3] = {0, 0, 0};
 

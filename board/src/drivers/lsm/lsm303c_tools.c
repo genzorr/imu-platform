@@ -165,6 +165,11 @@ uint32_t lsm303c_get_m_data_mG(float* magn)
 
 		vmv(magn, offset_vector, magn);
 		mxv(transform_matrix, magn, magn);
+
+		//	Change axes to be like in accelerometer
+		float tmp = magn[0];
+		magn[0] = -magn[1];
+		magn[1] = -tmp;
 	}
 
 end:
