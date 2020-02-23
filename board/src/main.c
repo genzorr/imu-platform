@@ -1,27 +1,46 @@
-#include <lsm/lsm6ds3_tools.h>
+/*
+ * This file is part of the µOS++ distribution.
+ *   (https://github.com/micro-os-plus)
+ * Copyright (c) 2014 Liviu Ionescu.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom
+ * the Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+// ----------------------------------------------------------------------------
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-#include <stm32f4xx_hal.h>
-#include <stm32f4xx_hal_cortex.h>
-#include <stm32f4xx_hal_i2c.h>
-#include <stm32f4xx_hal_usart.h>
-#include <stm32f4xx_hal_dma.h>
-#include <stm32f4xx_hal_gpio.h>
-
-
 #include "diag/Trace.h"
-#include "state.h"
-#include "sensors.h"
-#include "telemetry.h"
-#include "MPU9255.h"
-#include "nRF24L01.h"
-#include "xprintf.h"
-#include "dbgu.h"
 
-//#include "mavmessages/mavlink.h"
-
+// ----------------------------------------------------------------------------
+//
+// Standalone STM32F4 empty sample (trace via DEBUG).
+//
+// Trace support is enabled by adding the TRACE macro definition.
+// By default the trace messages are forwarded to the DEBUG output,
+// but can be rerouted to any device or completely suppressed, by
+// changing the definitions required in system/src/diag/trace_impl.c
+// (currently OS_USE_TRACE_ITM, OS_USE_TRACE_SEMIHOSTING_DEBUG/_STDOUT).
+//
 
 // ----- main() ---------------------------------------------------------------
 
@@ -32,97 +51,18 @@
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
 #pragma GCC diagnostic ignored "-Wreturn-type"
 
-
-// глобальные структуры
-USART_HandleTypeDef usart_dbg;
-
-//stateGPS_t 			stateGPS;
-stateIMU_rsc_t 		stateIMU_rsc;
-stateIMU_isc_t 		stateIMU_isc;
-state_system_t 		state_system;
-state_zero_t		state_zero;
-
-stateIMU_isc_t		stateIMU_isc_prev;
-state_system_t		state_system_prev;
-
-
-void _init_leds();
-
-
-
-int main(int argc, char* argv[])
+int
+main(int argc, char* argv[])
 {
-	//	Global structures init
-	memset(&stateIMU_rsc, 			0x00, sizeof(stateIMU_rsc));
-	memset(&stateIMU_isc, 			0x00, sizeof(stateIMU_isc));
-	memset(&state_system, 			0x00, sizeof(state_system));
+  // At this stage the system clock should have already been configured
+  // at high speed.
 
-	memset(&stateIMU_isc_prev, 		0x00, sizeof(stateIMU_isc_prev));
-	memset(&state_system_prev, 		0x00, sizeof(state_system_prev));
-
-	state_system.MPU_state = 111;
-	state_system.NRF_state = 111;
-
-
-	_init_leds();
-
-	if (DBGU)
-		_init_usart_dbg();
-
-	//	Peripheral initialization
-	if (IMU)
-	{
-		if (IMU_CALIBRATION)
-			trace_printf("IMU calibration enable\n");
-
-		IMU_Init();
-		get_staticShifts();
-	}
-
-	if (RF)
-		TM_Init();
-
-
-	for (; ; )
-	{
-		#if (IMU)
-		//	TODO: USE ACCELEROMETER ON LSM303C
-			IMU_updateDataAll();
-			_IMUtask_updateData();
-		#endif
-
-		#if (RF)
-			mavlink_msg_state_send();
-			mavlink_msg_imu_rsc_send();
-			mavlink_msg_imu_isc_send();
-		#endif
-
-		#if (DBGU)
-			;
-		#endif
-
-		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
-
-		HAL_Delay(10);
-	}
-
-	return 0;
+  // Infinite loop
+  while (1)
+    {
+       // Add your code here.
+    }
 }
-
-
-void _init_leds()
-{
-	__GPIOA_CLK_ENABLE();
-	GPIO_InitTypeDef gpio;
-	gpio.Mode = GPIO_MODE_OUTPUT_PP;
-	gpio.Pin = GPIO_PIN_6 | GPIO_PIN_7;
-	gpio.Pull = GPIO_PULLUP;
-	gpio.Speed = GPIO_SPEED_FAST;
-	HAL_GPIO_Init(GPIOA, &gpio);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-}
-
 
 #pragma GCC diagnostic pop
 
