@@ -35,6 +35,12 @@ static uint8_t whoamI, rst;
 I2C_HandleTypeDef	i2c_lsm303c;
 lis3mdl_ctx_t 		lsm303c_dev_ctx;
 
+int32_t lsm303c_bus_init(void* handle);
+int32_t lsm303c_platform_init(void);
+
+uint32_t lsm303c_get_m_data_mG(float* magn);
+
+
 
 static int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp, uint16_t len)
 {
@@ -106,7 +112,7 @@ int32_t lsm303c_bus_init(void* handle)
 }
 
 
-int32_t lsm303c_platform_init()
+int32_t lsm303c_platform_init(void)
 {
 	int error = 0;
 

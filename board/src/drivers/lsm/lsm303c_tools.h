@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 
-int32_t lsm303c_platform_init();
+int32_t lsm303c_platform_init(void);
 
 uint32_t lsm303c_get_m_data_mG(float* magn);
 

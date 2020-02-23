@@ -10,10 +10,10 @@ from stl import mesh
 from itertools import chain
 import pyquaternion
 
-MESH_PATH = '/home/michael/stm/stm32f4-imu/gcs/theplane.stl'
+MESH_PATH = '/home/michael/developing/stm/stm32f4-imu/gcs/theplane.stl'
 
-ACCEL_PATH = '/home/michael/stm/stm32f4-imu/accel.txt'
-MAGN_PATH = '/home/michael/stm/stm32f4-imu/magn.txt'
+ACCEL_PATH = '/home/michael/developing/stm/stm32f4-imu/accel.txt'
+MAGN_PATH = '/home/michael/developing/stm/stm32f4-imu/magn.txt'
 
 accel_calibration = 0
 magn_calibration = 0

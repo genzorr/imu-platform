@@ -1,5 +1,5 @@
 .metadata
-.idea
+#.idea
 
 !.project
 !.cproject

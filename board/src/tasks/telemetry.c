@@ -11,6 +11,12 @@
 #include "nRF24L01.h"
 #include "mavmessages/mavlink.h"
 
+uint8_t mavlink_msg_state_send(void);
+uint8_t mavlink_msg_imu_rsc_send(void);
+uint8_t mavlink_msg_imu_isc_send(void);
+
+void TM_Init(void);
+
 
 uint8_t mavlink_msg_state_send(void)
 {

@@ -52,6 +52,13 @@ lsm6ds3_ctx_t lsm6ds3_dev_ctx;
 
 #define LSM6DS3_I2C_ADD	0b11010111
 
+int32_t lsm6ds3_bus_init(void* handle);
+int32_t lsm6ds3_platform_init(void);
+
+uint32_t lsm6ds3_get_xl_data_g(float* accel);
+uint32_t lsm6ds3_get_g_data_rps(float* gyro);
+
+
 
 static int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp, uint16_t len)
 {

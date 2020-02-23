@@ -32,22 +32,22 @@ uint32_t tick_;
 
 
 
-static void _cs_enable()
+static void _cs_enable(void)
 {
 	HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CS_PIN, RESET);
 }
 
-static void _cs_disable()
+static void _cs_disable(void)
 {
 	HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CS_PIN, SET);
 }
 
-static void _ce_up()
+static void _ce_up(void)
 {
 	HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CE_PIN, SET);
 }
 
-static void _ce_down()
+static void _ce_down(void)
 {
 	HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CE_PIN, RESET);
 }
