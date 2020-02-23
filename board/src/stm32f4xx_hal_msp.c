@@ -39,6 +39,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "state.h"
+#include "nRF24L01.h"
 
 // [ILG]
 #if defined ( __GNUC__ )
@@ -108,6 +110,188 @@ void HAL_PPP_MspInit(void)
 void HAL_PPP_MspDeInit(void)
 {
 
+}
+
+void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)
+{
+
+	if(hi2c->Instance == I2C2)
+	{
+		__I2C2_CLK_ENABLE();
+		__GPIOB_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpiob;
+		gpiob.Alternate = GPIO_AF4_I2C2;
+		gpiob.Mode = GPIO_MODE_AF_OD;
+		gpiob.Pin = GPIO_PIN_10 | GPIO_PIN_11;
+		gpiob.Pull = GPIO_NOPULL;
+		gpiob.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOB, &gpiob);
+	}
+	else if (hi2c->Instance == I2C3)
+	{
+		__I2C3_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
+		__GPIOC_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpio;
+		gpio.Alternate = GPIO_AF4_I2C3;
+		gpio.Mode = GPIO_MODE_AF_OD;
+		gpio.Pin = GPIO_PIN_8;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpio);
+
+		gpio.Alternate = GPIO_AF4_I2C3;
+		gpio.Mode = GPIO_MODE_AF_OD;
+		gpio.Pin = GPIO_PIN_9;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOC, &gpio);
+
+	}
+	else abort();
+}
+
+
+void HAL_UART_MspInit(UART_HandleTypeDef* husart) {
+
+		//	uart_GPS
+	if(husart->Instance == USART2) {
+		__USART2_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpioa;
+		gpioa.Alternate = GPIO_AF7_USART2;
+		gpioa.Mode = GPIO_MODE_AF_PP;
+		gpioa.Pin = GPIO_PIN_2;
+		gpioa.Pull = GPIO_NOPULL;
+		gpioa.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpioa);
+
+		gpioa.Alternate = GPIO_AF7_USART2;
+		gpioa.Mode = GPIO_MODE_AF_OD;
+		gpioa.Pin = GPIO_PIN_3;
+		gpioa.Pull = GPIO_NOPULL;
+		gpioa.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpioa);
+	}
+	else if(husart->Instance == USART1) {
+		__USART1_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpiob;
+		gpiob.Alternate = GPIO_AF7_USART1;
+		gpiob.Mode = GPIO_MODE_AF_PP;
+		gpiob.Pin = GPIO_PIN_9;
+		gpiob.Pull = GPIO_NOPULL;
+		gpiob.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpiob);
+
+		gpiob.Alternate = GPIO_AF7_USART1;
+		gpiob.Mode = GPIO_MODE_AF_OD;
+		gpiob.Pin = GPIO_PIN_10;
+		gpiob.Pull = GPIO_NOPULL;
+		gpiob.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpiob);
+
+		//	usart_dbg
+	} else if(husart->Instance == USART3) {
+		__USART3_CLK_ENABLE();
+		__GPIOC_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpioc;
+		gpioc.Alternate = GPIO_AF7_USART3;
+		gpioc.Mode = GPIO_MODE_AF_PP;
+		gpioc.Pin = GPIO_PIN_10;
+		gpioc.Pull = GPIO_NOPULL;
+		gpioc.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOC, &gpioc);
+
+		gpioc.Alternate = GPIO_AF7_USART3;
+		gpioc.Mode = GPIO_MODE_AF_OD;
+		gpioc.Pin = GPIO_PIN_11;
+		gpioc.Pull = GPIO_NOPULL;
+		gpioc.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOC, &gpioc);
+	}
+	else abort();
+}
+
+
+void HAL_USART_MspInit(USART_HandleTypeDef* husart) {
+
+	//	usart_dbg
+	if(husart->Instance == USART1)
+	{
+		__USART1_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpiod;
+		gpiod.Alternate = GPIO_AF7_USART1;
+		gpiod.Mode = GPIO_MODE_AF_PP;
+		gpiod.Pin = GPIO_PIN_9;
+		gpiod.Pull = GPIO_NOPULL;
+		gpiod.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpiod);
+
+		gpiod.Alternate = GPIO_AF7_USART1;
+		gpiod.Mode = GPIO_MODE_AF_OD;
+		gpiod.Pin = GPIO_PIN_10;
+		gpiod.Pull = GPIO_NOPULL;
+		gpiod.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpiod);
+	}
+	else abort();
+}
+
+
+void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
+{
+	if (hspi->Instance == SPI1) {
+		__SPI1_CLK_ENABLE();
+		__GPIOB_CLK_ENABLE();
+
+		//	nRF24L01
+		GPIO_InitTypeDef gpio;
+		gpio.Alternate = GPIO_AF5_SPI1;
+		gpio.Mode = GPIO_MODE_AF_PP;
+		gpio.Pin = nRF24L01_SCK_PIN | nRF24L01_MISO_PIN | nRF24L01_MOSI_PIN;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(nRF24L01_PORT, &gpio);
+
+		gpio.Mode = GPIO_MODE_OUTPUT_PP;
+		gpio.Pin = nRF24L01_CS_PIN | nRF24L01_CE_PIN;
+		gpio.Pull = GPIO_NOPULL;
+		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(nRF24L01_PORT, &gpio);
+
+		HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CS_PIN, SET);
+	}
+
+	// For lsm6ds3
+//	else if (hspi->Instance == SPI2) {
+//		__SPI2_CLK_ENABLE();
+//		__GPIOB_CLK_ENABLE();
+//
+//		GPIO_InitTypeDef gpio;
+//		gpio.Alternate = GPIO_AF5_SPI2;
+//		gpio.Mode = GPIO_MODE_AF_PP;
+//		gpio.Pin = LSM6DS3_SCK_PIN | LSM6DS3_MISO_PIN | LSM6DS3_MOSI_PIN;
+//		gpio.Pull = GPIO_NOPULL;
+//		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+//		HAL_GPIO_Init(LSM6DS3_PORT, &gpio);
+//
+//		gpio.Mode = GPIO_MODE_OUTPUT_PP;
+//		gpio.Pin = LSM6DS3_CS_PIN;
+//		gpio.Pull = GPIO_NOPULL;
+//		gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+//		HAL_GPIO_Init(LSM6DS3_PORT, &gpio);
+//
+//		HAL_GPIO_WritePin(LSM6DS3_PORT, LSM6DS3_CS_PIN, SET);
+//	}
+	else abort();
 }
 
 /**
