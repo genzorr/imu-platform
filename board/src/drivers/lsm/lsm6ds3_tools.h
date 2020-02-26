@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 
-int32_t lsm6ds3_platform_init();
+int32_t lsm6ds3_platform_init(void);
 
 uint32_t lsm6ds3_get_xl_data_g(float* accel);
 uint32_t lsm6ds3_get_g_data_rps(float* gyro);

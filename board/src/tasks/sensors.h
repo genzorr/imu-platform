@@ -9,10 +9,10 @@
 #define TASKS_SENSORS_H_
 
 
-void get_staticShifts();
-void IMU_Init();
-int  IMU_updateDataAll();
-void _IMUtask_updateData();
+void get_staticShifts(void);
+void IMU_Init(void);
+int  IMU_updateDataAll(void);
+void _IMUtask_updateData(void);
 
 
 #endif /* TASKS_SENSORS_H_ */

@@ -10,13 +10,13 @@
 
 #include <stdint.h>
 
-uint8_t mavlink_msg_state_send();
+uint8_t mavlink_msg_state_send(void);
 
-uint8_t mavlink_msg_imu_rsc_send();
+uint8_t mavlink_msg_imu_rsc_send(void);
 
-uint8_t mavlink_msg_imu_isc_send();
+uint8_t mavlink_msg_imu_isc_send(void);
 
-void TM_Init();
+void TM_Init(void);
 
 
 #endif /* SRC_TASKS_TELEMETRY_H_ */

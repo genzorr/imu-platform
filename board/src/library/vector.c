@@ -6,6 +6,10 @@
  *  From SOFA library
  */
 
+void vmv(float a[3], float b[3], float amb[3]);
+void mxv(float m[3][3], float v[3], float mv[3]);
+
+
 void vmv(float a[3], float b[3], float amb[3])
 {
 	amb[0] = a[0] - b[0];

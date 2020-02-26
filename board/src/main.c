@@ -20,17 +20,15 @@
 #include "xprintf.h"
 #include "dbgu.h"
 
-//#include "mavmessages/mavlink.h"
-
 
 // ----- main() ---------------------------------------------------------------
 
 // Sample pragmas to cope with warnings. Please note the related line at
 // the end of this function, used to pop the compiler diagnostics status.
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wmissing-declarations"
-#pragma GCC diagnostic ignored "-Wreturn-type"
+//#pragma GCC diagnostic ignored "-Wunused-parameter"
+//#pragma GCC diagnostic ignored "-Wmissing-declarations"
+//#pragma GCC diagnostic ignored "-Wreturn-type"
 
 
 // глобальные структуры
@@ -46,7 +44,7 @@ stateIMU_isc_t		stateIMU_isc_prev;
 state_system_t		state_system_prev;
 
 
-void _init_leds();
+void _init_leds(void);
 
 
 
@@ -110,7 +108,7 @@ int main(int argc, char* argv[])
 }
 
 
-void _init_leds()
+void _init_leds(void)
 {
 	__GPIOA_CLK_ENABLE();
 	GPIO_InitTypeDef gpio;

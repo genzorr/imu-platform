@@ -29,11 +29,11 @@ lsm6ds3_ctx_t dev_ctx;
 
 static uint8_t	get_gyro_staticShift(float* gyro_staticShift);
 static uint8_t	get_accel_staticShift(float* gyro_staticShift, float* accel_staticShift);
-void 			get_staticShifts();
+void 			get_staticShifts(void);
 
-void 			IMU_Init();
-int 			IMU_updateDataAll();
-void 			_IMUtask_updateData();
+void 			IMU_Init(void);
+int 			IMU_updateDataAll(void);
+void 			_IMUtask_updateData(void);
 
 
 /**
@@ -129,7 +129,7 @@ end:
 /**
   * @brief	Used to combine getting IMU static shifts
   */
-void get_staticShifts()
+void get_staticShifts(void)
 {
 	float gyro_staticShift[3] = {0, 0, 0};
 	float accel_staticShift[3] = {0, 0, 0};
@@ -152,7 +152,7 @@ void get_staticShifts()
 /**
   * @brief	Initializes I2C for IMU and IMU too
   */
-void IMU_Init()
+void IMU_Init(void)
 {
 	if(MPU9255)
 	{
@@ -215,7 +215,7 @@ void IMU_Init()
   * @brief	Collects data from IMU, stores it and makes quat using S.Madgwick's algo
   * @retval	R/w IMU error
   */
-int IMU_updateDataAll()
+int IMU_updateDataAll(void)
 {
 	int error = 0;
 
@@ -338,7 +338,7 @@ end:
 /**
   * @brief	Special function for updating previous values structures by current values
   */
-void _IMUtask_updateData()
+void _IMUtask_updateData(void)
 {
 //taskENTER_CRITICAL();
 	memcpy(&stateIMU_isc_prev, 			&stateIMU_isc,			sizeof(stateIMU_isc));

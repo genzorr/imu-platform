@@ -11,8 +11,14 @@
 #include "nRF24L01.h"
 #include "mavmessages/mavlink.h"
 
+uint8_t mavlink_msg_state_send(void);
+uint8_t mavlink_msg_imu_rsc_send(void);
+uint8_t mavlink_msg_imu_isc_send(void);
 
-uint8_t mavlink_msg_state_send()
+void TM_Init(void);
+
+
+uint8_t mavlink_msg_state_send(void)
 {
 	mavlink_state_t msg_state;
 	msg_state.time = (float)HAL_GetTick() / 1000;
@@ -31,7 +37,7 @@ uint8_t mavlink_msg_state_send()
 }
 
 
-uint8_t mavlink_msg_imu_rsc_send()
+uint8_t mavlink_msg_imu_rsc_send(void)
 {
 	mavlink_imu_rsc_t msg_imu_rsc;
 	msg_imu_rsc.time = (float)HAL_GetTick() / 1000;
@@ -53,7 +59,7 @@ uint8_t mavlink_msg_imu_rsc_send()
 	return error;
 }
 
-uint8_t mavlink_msg_imu_isc_send()
+uint8_t mavlink_msg_imu_isc_send(void)
 {
 	mavlink_imu_isc_t msg_imu_isc;
 	msg_imu_isc.time = (float)HAL_GetTick() / 1000;
@@ -78,7 +84,7 @@ uint8_t mavlink_msg_imu_isc_send()
 }
 
 
-void TM_Init()
+void TM_Init(void)
 {
 	uint8_t error = nRF24L01_init(&spi_nRF24L01);
 	state_system.NRF_state = error;
