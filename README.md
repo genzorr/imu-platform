@@ -49,3 +49,7 @@ git submodule init && git submodule update
 python3 main.py
 ```
 
+3. To uninstall PyMAVLink and it's dependencies, run
+```bash
+./uninstall_pymavlink.sh
+```

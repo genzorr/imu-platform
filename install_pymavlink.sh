@@ -10,7 +10,7 @@ cd $MAVLINKDIR/pymavlink
 
 python3 -m pip install wheel future lxml numpy numpy-stl pyqtgraph pyopengl pyquaternion --user
 
-python3 setup.py bdist_wheel --user
+python3 setup.py bdist_wheel
 cd $BASEDIR
 
 python3 -m pip install pymavlink --no-index --find-links=$MAVLINKDIR/pymavlink/dist --user
