@@ -7,3 +7,4 @@
 !.classpath
 
 board/Debug/
+*.pyc
