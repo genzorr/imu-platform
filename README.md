@@ -1,7 +1,7 @@
 # imu-platform
 Device orientation determination project.
 
-Project is based on STM32F407VET6 controller, which gets data from LSM6DS3 and LS303C ST accelerometer, gyroscope and magnetometer. Data is processed with Sebastian Madgwick's [algorithm](http://x-io.co.uk/res/doc/madgwick_internal_report.pdf) and quaternion describing device orientation is produced. This quaternion and other data transferred to GCS (ground control system) via USART/nRF24L01. GCS plots acceleration, angle velocity, magnetometer data plots and rotates 3D-model similar to orientation of system, so you can see how is your system oriented.
+Project is based on STM32F407VET6 controller, which gets data from LSM6DS3 and LS303C ST accelerometer, gyroscope and magnetometer. Data is processed with Sebastian Madgwick's [algorithm](http://x-io.co.uk/res/doc/madgwick_internal_report.pdf) and quaternion describing device orientation is produced. This quaternion and other data transferred to GCS (ground control system) via USART or SPI (by nRF24L01). GCS plots acceleration, angle velocity, magnetometer data plots and rotates 3D-model similar to orientation of system, so you can see how is your system oriented.
 
 ## Structure
 1. **board** folder

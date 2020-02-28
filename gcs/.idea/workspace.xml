@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1937623f-afcf-4c78-8d50-1e326e73a7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../board/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../board/.settings/language.settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../install_pymavlink.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../install_pymavlink.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs_graphing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theplane.stl" beforeDir="false" afterPath="$PROJECT_DIR$/theplane.stl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/../pymavlink" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +21,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
