@@ -37,11 +37,10 @@ cd imu-platform/
 git submodule init && git submodule update
 ```
 
-2. Install GCS
+2. Install PyMAVLink for GCS
 
 ```bash
-pip3 install wheel future lxml numpy numpy-stl pyqtgraph pyopengl pyquaternion
-sudo -H ./install_pymavlink.sh
+./install_pymavlink.sh
 ```
 
  To run GCS simply execute:

@@ -4,7 +4,8 @@
     <list default="true" id="1937623f-afcf-4c78-8d50-1e326e73a7c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs_graphing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../install_pymavlink.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../install_pymavlink.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/../pymavlink" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
