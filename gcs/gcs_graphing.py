@@ -62,7 +62,7 @@ class PlaneWidget(gl.GLViewWidget):
     def _transform_object(self, target, move=True, rotate=True, scale=1 / 50):
         target.resetTransform()
         target.scale(scale, scale, scale)
-        if move: target.translate(0, 0, 0.5)
+        # if move: target.translate(0, 0, 0.5)
         if rotate:
             target.rotate(degrees(self.rotation.angle), self.rotation.axis[0], self.rotation.axis[1],
                           self.rotation.axis[2])

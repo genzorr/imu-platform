@@ -8,7 +8,7 @@ echo $BASEDIR
 export MDEF=$MAVLINKDIR/message_definitions
 cd $MAVLINKDIR/pymavlink
 
-python3 -m pip install wheel future lxml numpy numpy-stl pyqtgraph pyopengl pyquaternion --user
+python3 -m pip install wheel future lxml numpy numpy-stl pyqtgraph pyopengl pyquaternion pyserial --user
 
 python3 setup.py bdist_wheel
 cd $BASEDIR

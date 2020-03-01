@@ -154,11 +154,38 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)
 }
 
 
-void HAL_UART_MspInit(UART_HandleTypeDef* husart) {
+void HAL_UART_MspInit(UART_HandleTypeDef* husart)
+{
 
-		//	uart_GPS
-	if(husart->Instance == USART2) {
-		__USART2_CLK_ENABLE();
+}
+
+
+void HAL_USART_MspInit(USART_HandleTypeDef* husart)
+{
+
+	//	usart_dbg
+	if(husart->Instance == USART1)
+	{
+		__USART1_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
+
+		GPIO_InitTypeDef gpioa;
+		gpioa.Alternate = GPIO_AF7_USART1;
+		gpioa.Mode = GPIO_MODE_AF_PP;
+		gpioa.Pin = GPIO_PIN_9;
+		gpioa.Pull = GPIO_NOPULL;
+		gpioa.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpioa);
+
+		gpioa.Alternate = GPIO_AF7_USART1;
+		gpioa.Mode = GPIO_MODE_AF_OD;
+		gpioa.Pin = GPIO_PIN_10;
+		gpioa.Pull = GPIO_NOPULL;
+		gpioa.Speed = GPIO_SPEED_FREQ_HIGH;
+		HAL_GPIO_Init(GPIOA, &gpioa);
+	}
+	else if (husart->Instance == USART3) {
+		__USART3_CLK_ENABLE();
 		__GPIOA_CLK_ENABLE();
 
 		GPIO_InitTypeDef gpioa;
@@ -175,72 +202,6 @@ void HAL_UART_MspInit(UART_HandleTypeDef* husart) {
 		gpioa.Pull = GPIO_NOPULL;
 		gpioa.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
 		HAL_GPIO_Init(GPIOA, &gpioa);
-	}
-	else if(husart->Instance == USART1) {
-		__USART1_CLK_ENABLE();
-		__GPIOA_CLK_ENABLE();
-
-		GPIO_InitTypeDef gpiob;
-		gpiob.Alternate = GPIO_AF7_USART1;
-		gpiob.Mode = GPIO_MODE_AF_PP;
-		gpiob.Pin = GPIO_PIN_9;
-		gpiob.Pull = GPIO_NOPULL;
-		gpiob.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpiob);
-
-		gpiob.Alternate = GPIO_AF7_USART1;
-		gpiob.Mode = GPIO_MODE_AF_OD;
-		gpiob.Pin = GPIO_PIN_10;
-		gpiob.Pull = GPIO_NOPULL;
-		gpiob.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpiob);
-
-		//	usart_dbg
-	} else if(husart->Instance == USART3) {
-		__USART3_CLK_ENABLE();
-		__GPIOC_CLK_ENABLE();
-
-		GPIO_InitTypeDef gpioc;
-		gpioc.Alternate = GPIO_AF7_USART3;
-		gpioc.Mode = GPIO_MODE_AF_PP;
-		gpioc.Pin = GPIO_PIN_10;
-		gpioc.Pull = GPIO_NOPULL;
-		gpioc.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOC, &gpioc);
-
-		gpioc.Alternate = GPIO_AF7_USART3;
-		gpioc.Mode = GPIO_MODE_AF_OD;
-		gpioc.Pin = GPIO_PIN_11;
-		gpioc.Pull = GPIO_NOPULL;
-		gpioc.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOC, &gpioc);
-	}
-	else abort();
-}
-
-
-void HAL_USART_MspInit(USART_HandleTypeDef* husart) {
-
-	//	usart_dbg
-	if(husart->Instance == USART1)
-	{
-		__USART1_CLK_ENABLE();
-		__GPIOA_CLK_ENABLE();
-
-		GPIO_InitTypeDef gpiod;
-		gpiod.Alternate = GPIO_AF7_USART1;
-		gpiod.Mode = GPIO_MODE_AF_PP;
-		gpiod.Pin = GPIO_PIN_9;
-		gpiod.Pull = GPIO_NOPULL;
-		gpiod.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpiod);
-
-		gpiod.Alternate = GPIO_AF7_USART1;
-		gpiod.Mode = GPIO_MODE_AF_OD;
-		gpiod.Pin = GPIO_PIN_10;
-		gpiod.Pull = GPIO_NOPULL;
-		gpiod.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpiod);
 	}
 	else abort();
 }
