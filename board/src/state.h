@@ -29,7 +29,7 @@
 #define DBGU			0
 //#define SD 			0
 #define RF				1
-#define UDATA			0
+#define UDATA			1
 #define IMU				1
 
 #define MPU9255			0

@@ -5,6 +5,10 @@ import serial as ser
 
 import time
 
+# Select protocol.
+UDP = 0
+UART = 1
+
 ACCUM_LEN = 5
 serial_device = '/dev/ttyUSB0'
 serial_baud = 115200
@@ -42,7 +46,6 @@ class MavlinkThread(QThread):
         if isinstance(msg, MAVLink_imu_rsc_message):
             self.imu_rsc_accum.push_message(msg)
 
-
     def run(self):
         # try:
         #     # mav = mavutil.mavserial(serial_device, baud=serial_baud, autoreconnect=True)
@@ -50,14 +53,21 @@ class MavlinkThread(QThread):
         # except BaseException:
         #     print('error')
         #     return
-        # mav = mavutil.mavlink_connection(device=serial_device, baud=serial_baud, dialect='mavmessages')
-        # mav = mavutil.mavserial(device=serial_device, baud=serial_baud, autoreconnect=True)
         t = time.time()
-        mav = mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
+
+        try:
+            if UDP:
+                mav = mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
+            elif UART:
+                mav = mavutil.mavlink_connection(device=serial_device, baud=serial_baud, dialect='mavmessages')
+            else:
+                return
+        except BaseException as ex:
+            print('error', ex)
+            return
+
         while True:
             pack = mav.recv_match(blocking=False)
-            # if pack:
-            #     print(pack)
             t_prev = t
             t = time.time()
             print(t - t_prev)

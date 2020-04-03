@@ -4,20 +4,153 @@
     <list default="true" id="7fae6f51-5e9b-4340-9cf2-34d749d6f0e6" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/pymavlink/dialects/v10/mavmessages.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pymavlink/dialects/v20/mavmessages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/stm32f4-imu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/stm32f4-imu.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/state.h" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/state.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/stm32f4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/stm32f4xx_hal_msp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/src/tasks/telemetry.c" beforeDir="false" afterPath="$PROJECT_DIR$/board/src/tasks/telemetry.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs/.idea/gcs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/.idea/gcs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gcs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/gcs_graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs/mavlink.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/install_pymavlink.sh" beforeDir="false" afterPath="$PROJECT_DIR$/install_pymavlink.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uninstall_pymavlink.sh" beforeDir="false" afterPath="$PROJECT_DIR$/uninstall_pymavlink.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/.gitmodules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/APM_Mavtest/APM_Mavtest.pde" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/APM_Mavtest/APM_Mavtest.pde" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/APM_Mavtest/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/APM_Mavtest/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/COPYING" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/COPYING" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/DFReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/DFReader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/dialects/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v09/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v09/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v10/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v10/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v10/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v10/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v20/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v20/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/dialects/v20/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/dialects/v20/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/examples/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/examples/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/examples/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/examples/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/fgFDM.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/fgFDM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/files/archlinux/PKGBUILD" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/files/archlinux/PKGBUILD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/checksum.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/checksum.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/mavlink_helpers.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/mavlink_helpers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/mavlink_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/mavlink_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/protocol.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/protocol.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/mavlink.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/mavlink.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/mavlink_msg_test_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/mavlink_msg_test_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/test.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/test.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/testsuite.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/testsuite.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/version.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v0.9/test/version.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/checksum.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/checksum.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/mavlink_conversions.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/mavlink_conversions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/mavlink_helpers.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/mavlink_helpers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/mavlink_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/mavlink_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/protocol.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/protocol.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/mavlink.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/mavlink.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/mavlink_msg_test_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/mavlink_msg_test_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/test.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/test.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/testsuite.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/testsuite.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/version.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v1.0/test/version.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/checksum.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/checksum.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_conversions.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_conversions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_get_info.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_get_info.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_helpers.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_helpers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_sha256.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_sha256.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/mavlink_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/protocol.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/include_v2.0/protocol.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/sha256_test.c" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/sha256_test.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/testmav.c" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/posix/testmav.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/stdafx.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/stdafx.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/stdafx.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/stdafx.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/targetver.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/targetver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.sln" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.suo" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/C/test/windows/testmav.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CPP11/include_v2.0/message.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CPP11/include_v2.0/message.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CPP11/include_v2.0/msgmap.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CPP11/include_v2.0/msgmap.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CPP11/test/posix/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CPP11/test/posix/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CPP11/test/posix/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CPP11/test/posix/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CPP11/test/posix/mtest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CPP11/test/posix/mtest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CS/common/ByteArrayUtil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CS/common/ByteArrayUtil.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CS/common/FrameworkBitConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CS/common/FrameworkBitConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/CS/common/Mavlink.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/CS/common/Mavlink.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/java/examples/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/java/examples/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/java/examples/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/java/examples/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/java/lib/Messages/MAVLinkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/java/lib/Messages/MAVLinkMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/java/lib/Messages/MAVLinkPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/java/lib/Messages/MAVLinkPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/java/lib/Messages/MAVLinkStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/java/lib/Messages/MAVLinkStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/java/lib/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/java/lib/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/test/capture.mavlink" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/test/capture.mavlink" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/test/mavlink.js" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/test/mavlink.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/javascript/test/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/javascript/test/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavcrc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavcrc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_c.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_cpp11.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_cpp11.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_cs.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_cs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_java.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_java.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_javascript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_javascript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_objc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_objc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_python.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_python.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_swift.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_swift.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_typescript.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_typescript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavgen_wlua.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavgen_wlua.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavparse.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavparse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavschema.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavschema.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/mavtemplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/mavtemplate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/MAVLink.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/MAVLink.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/Base.lproj/MainMenu.xib" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/Base.lproj/MainMenu.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/MAVLink/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLink/MAVLink/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/CompareWithCImpTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/CompareWithCImpTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/DataExtensionsTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/DataExtensionsTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Delegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Delegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/MAVLink/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/MAVLink/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/MAVLinkTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/MAVLinkTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Testdata.swift" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Testdata.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Testdata/flight.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/MAVLinkTests/Testdata/flight.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/generator/swift/Tests/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavexpression.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavexpression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavextra.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavextra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavnative/mavlink_defaults.h" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavnative/mavlink_defaults.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavnative/mavnative.c" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavnative/mavnative.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavparm.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavparm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavutil.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavutil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mavwp.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mavwp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mission.proto" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mission.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/mission2.pb" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/mission2.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/quaternion.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/quaternion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tests/test.BIN" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tests/test.BIN" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tests/test.BIN.dumped" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tests/test.BIN.dumped" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tests/test.BIN.py3.dumped" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tests/test.BIN.py3.dumped" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tests/test_fgFDM.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tests/test_fgFDM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tests/test_mavexpression.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tests/test_mavexpression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tests/test_mavparm.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tests/test_mavparm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/gtk-quit.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/gtk-quit.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/media-playback-pause.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/media-playback-pause.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/media-playback-start.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/media-playback-start.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/media-playback-stop.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/media-playback-stop.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/media-seek-backward.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/media-seek-backward.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/media-seek-forward.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/media-seek-forward.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/images/player_end.gif" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/images/player_end.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/isb_extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/isb_extract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/mavlink_messages_size.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/mavlink_messages_size.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/mavsummarize.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/mavsummarize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/mavtelemetry_datarates.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/mavtelemetry_datarates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/python_array_test_recv.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/python_array_test_recv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymavlink/tools/python_array_test_send.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymavlink/tools/python_array_test_send.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +325,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

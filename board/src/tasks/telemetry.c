@@ -1,9 +1,3 @@
-/*
- * telemetry.c
- *
- *  Created on: Jul 19, 2019
- *      Author: michael
- */
 #include <stdint.h>
 #include "diag/Trace.h"
 
