@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1937623f-afcf-4c78-8d50-1e326e73a7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../board/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../board/.settings/language.settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../board/src/stm32f4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/../board/src/stm32f4xx_hal_msp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../board/src/tasks/telemetry.c" beforeDir="false" afterPath="$PROJECT_DIR$/../board/src/tasks/telemetry.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/mavlink.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/../pymavlink" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +63,7 @@
       <workItem from="1584880048021" duration="25000" />
       <workItem from="1585921764817" duration="696000" />
       <workItem from="1585922491257" duration="1001000" />
+      <workItem from="1585924650634" duration="14000" />
     </task>
     <servers />
   </component>

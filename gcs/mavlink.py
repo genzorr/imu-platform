@@ -47,12 +47,6 @@ class MavlinkThread(QThread):
             self.imu_rsc_accum.push_message(msg)
 
     def run(self):
-        # try:
-        #     # mav = mavutil.mavserial(serial_device, baud=serial_baud, autoreconnect=True)
-        #     # mav = mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
-        # except BaseException:
-        #     print('error')
-        #     return
         t = time.time()
 
         try:
