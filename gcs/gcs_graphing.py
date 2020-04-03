@@ -10,10 +10,11 @@ from stl import mesh
 from itertools import chain
 import pyquaternion
 
-MESH_PATH = '/home/michael/developing/stm/stm32f4-imu/gcs/theplane.stl'
+# MESH_PATH = '/home/michael/developing/stm/stm32f4-imu/gcs/theplane.stl'
 
-ACCEL_PATH = '/home/michael/developing/stm/stm32f4-imu/accel.txt'
-MAGN_PATH = '/home/michael/developing/stm/stm32f4-imu/magn.txt'
+MESH_PATH = 'theplane.stl'
+ACCEL_PATH = '../calibration/accel.txt'
+MAGN_PATH = '../calibration/magn.txt'
 
 accel_calibration = 0
 magn_calibration = 0
@@ -61,7 +62,7 @@ class PlaneWidget(gl.GLViewWidget):
     def _transform_object(self, target, move=True, rotate=True, scale=1 / 50):
         target.resetTransform()
         target.scale(scale, scale, scale)
-        if move: target.translate(0, 0, -3)
+        # if move: target.translate(0, 0, 0.5)
         if rotate:
             target.rotate(degrees(self.rotation.angle), self.rotation.axis[0], self.rotation.axis[1],
                           self.rotation.axis[2])

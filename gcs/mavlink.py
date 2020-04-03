@@ -1,10 +1,13 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 from pymavlink.dialects.v10.mavmessages import *
 from pymavlink import mavutil
+import serial as ser
 
 import time
 
 ACCUM_LEN = 5
+serial_device = '/dev/ttyUSB0'
+serial_baud = 115200
 
 class MsgAccumulator:
     def __init__(self, batch_size, signal):
@@ -41,11 +44,23 @@ class MavlinkThread(QThread):
 
 
     def run(self):
-        mav = mavutil.mavlink_connection("udpin:0.0.0.0:10000", dialect='mavmessages')
+        # try:
+        #     # mav = mavutil.mavserial(serial_device, baud=serial_baud, autoreconnect=True)
+        #     # mav = mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
+        # except BaseException:
+        #     print('error')
+        #     return
+        # mav = mavutil.mavlink_connection(device=serial_device, baud=serial_baud, dialect='mavmessages')
+        # mav = mavutil.mavserial(device=serial_device, baud=serial_baud, autoreconnect=True)
         t = time.time()
+        mav = mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
         while True:
             pack = mav.recv_match(blocking=False)
+            # if pack:
+            #     print(pack)
             t_prev = t
             t = time.time()
             print(t - t_prev)
             self.process_message(pack)
+
+# ;MAVLINK20=TRUE;MAVLINK_DIALECT=mavmessages

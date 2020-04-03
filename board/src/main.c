@@ -71,13 +71,13 @@ int main(int argc, char* argv[])
 	if (IMU)
 	{
 		if (IMU_CALIBRATION)
-			trace_printf("IMU calibration enable\n");
+			trace_printf("IMU calibration enabled\n");
 
 		IMU_Init();
 		get_staticShifts();
 	}
 
-	if (RF)
+	if (RF | UDATA)
 		TM_Init();
 
 
@@ -89,14 +89,10 @@ int main(int argc, char* argv[])
 			_IMUtask_updateData();
 		#endif
 
-		#if (RF)
+		#if (RF | UDATA)
 			mavlink_msg_state_send();
 			mavlink_msg_imu_rsc_send();
 			mavlink_msg_imu_isc_send();
-		#endif
-
-		#if (DBGU)
-			;
 		#endif
 
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);

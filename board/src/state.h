@@ -29,6 +29,7 @@
 #define DBGU			0
 //#define SD 			0
 #define RF				1
+#define UDATA			0
 #define IMU				1
 
 #define MPU9255			0
@@ -116,6 +117,7 @@ typedef struct {
 extern USART_HandleTypeDef	usart_dbg;
 
 extern SPI_HandleTypeDef	spi_nRF24L01;
+extern USART_HandleTypeDef	usart_data;
 extern I2C_HandleTypeDef 	i2c_mpu9255;
 extern SPI_HandleTypeDef	spi_lsm6ds3;
 extern I2C_HandleTypeDef	i2c_lsm6ds3;
