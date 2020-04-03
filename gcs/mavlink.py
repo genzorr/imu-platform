@@ -46,6 +46,7 @@ class MavlinkThread(QThread):
         if isinstance(msg, MAVLink_imu_rsc_message):
             self.imu_rsc_accum.push_message(msg)
 
+
     def run(self):
         t = time.time()
 
@@ -62,6 +63,8 @@ class MavlinkThread(QThread):
 
         while True:
             pack = mav.recv_match(blocking=False)
+            # if pack:
+            #     print(pack)
             t_prev = t
             t = time.time()
             print(t - t_prev)
