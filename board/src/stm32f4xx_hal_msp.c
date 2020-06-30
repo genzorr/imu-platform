@@ -184,32 +184,14 @@ void HAL_USART_MspInit(USART_HandleTypeDef* husart)
 		gpioa.Speed = GPIO_SPEED_FREQ_HIGH;
 		HAL_GPIO_Init(GPIOA, &gpioa);
 	}
-	else if (husart->Instance == USART3) {
-		__USART3_CLK_ENABLE();
-		__GPIOA_CLK_ENABLE();
-
-		GPIO_InitTypeDef gpioa;
-		gpioa.Alternate = GPIO_AF7_USART2;
-		gpioa.Mode = GPIO_MODE_AF_PP;
-		gpioa.Pin = GPIO_PIN_2;
-		gpioa.Pull = GPIO_NOPULL;
-		gpioa.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpioa);
-
-		gpioa.Alternate = GPIO_AF7_USART2;
-		gpioa.Mode = GPIO_MODE_AF_OD;
-		gpioa.Pin = GPIO_PIN_3;
-		gpioa.Pull = GPIO_NOPULL;
-		gpioa.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-		HAL_GPIO_Init(GPIOA, &gpioa);
-	}
 	else abort();
 }
 
 
 void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 {
-	if (hspi->Instance == SPI1) {
+	if (hspi->Instance == SPI1)
+	{
 		__SPI1_CLK_ENABLE();
 		__GPIOB_CLK_ENABLE();
 
@@ -230,7 +212,6 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 
 		HAL_GPIO_WritePin(nRF24L01_PORT, nRF24L01_CS_PIN, SET);
 	}
-
 	// For lsm6ds3
 //	else if (hspi->Instance == SPI2) {
 //		__SPI2_CLK_ENABLE();
