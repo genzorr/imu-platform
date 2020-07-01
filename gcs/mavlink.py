@@ -31,6 +31,8 @@ class MavlinkThread(QThread):
     new_state_record = pyqtSignal(list)
     new_imu_isc_record = pyqtSignal(list)
     new_imu_rsc_record = pyqtSignal(list)
+    set_status_signal = pyqtSignal(str, int)
+    blank_status_signal = pyqtSignal()
 
     def __init__(self):
         QThread.__init__(self)
@@ -46,23 +48,41 @@ class MavlinkThread(QThread):
         if isinstance(msg, MAVLink_imu_rsc_message):
             self.imu_rsc_accum.push_message(msg)
 
+    def connect(self, error):
+        try:
+            if UDP:
+                return mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
+            elif UART:
+                return mavutil.mavlink_connection(device=serial_device, baud=serial_baud, dialect='mavmessages')
+            else:
+                return None
+        except BaseException as ex:
+            if error: print('error', ex)
+            return None
 
     def run(self):
         t = time.time()
 
-        try:
-            if UDP:
-                mav = mavutil.mavlink_connection('udpin:0.0.0.0:10000', dialect='mavmessages')
-            elif UART:
-                mav = mavutil.mavlink_connection(device=serial_device, baud=serial_baud, dialect='mavmessages')
-            else:
-                return
-        except BaseException as ex:
-            print('error', ex)
-            return
+        mav = self.connect(True)
+        if not mav:
+            self.set_status_signal.emit("Check your connection", 0)
+            while not mav:
+                time.sleep(1)
+                mav = self.connect(False)
+            self.blank_status_signal.emit()
 
         while True:
-            pack = mav.recv_match(blocking=False)
+            try:
+                pack = mav.recv_match(blocking=False)
+            except BaseException:
+                mav.close()
+                mav = None
+                self.set_status_signal.emit("Check your connection", 0)
+                while not mav:
+                    time.sleep(1)
+                    mav = self.connect(False)
+                self.blank_status_signal.emit()
+                continue
             # if pack:
             #     print(pack)
             t_prev = t

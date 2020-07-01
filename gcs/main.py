@@ -1,6 +1,7 @@
 import sys
 import logging
 from PyQt5 import QtWidgets
+
 from mavlink import MavlinkThread
 from gcs_graphing import MyWin
 
@@ -21,9 +22,14 @@ if __name__ == "__main__":
     ######################################
 
     thread = MavlinkThread()
+
     thread.new_state_record.connect(myapp.state_msg)
     thread.new_imu_isc_record.connect(myapp.imu_isc_msg)
     thread.new_imu_rsc_record.connect(myapp.imu_rsc_msg)
+
+    thread.set_status_signal.connect(myapp.set_status)
+    thread.blank_status_signal.connect(myapp.blank_status)
+
     thread.start()
 
     sys.exit(app.exec_())

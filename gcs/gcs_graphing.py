@@ -10,8 +10,6 @@ from stl import mesh
 from itertools import chain
 import pyquaternion
 
-# MESH_PATH = '/home/michael/developing/stm/stm32f4-imu/gcs/theplane.stl'
-
 MESH_PATH = 'theplane.stl'
 ACCEL_PATH = '../calibration/accel.txt'
 MAGN_PATH = '../calibration/magn.txt'
@@ -24,7 +22,7 @@ class PlaneWidget(gl.GLViewWidget):
     def __init__(self, mesh_path, *args, **kwargs):
         super(PlaneWidget, self).__init__(*args, **kwargs)
         self.setCameraPosition(distance=15)
-        self.setBackgroundColor([120, 120, 120, 0])
+        # self.setBackgroundColor([120, 120, 120, 0])
         g = gl.GLGridItem()
         self.addItem(g)
 
@@ -95,8 +93,10 @@ class MyWin(QtWidgets.QMainWindow):
             self.magn_file.close()
         # ----------------------------------------------
 
-        pg.setConfigOption('background', 'w')
-        pg.setConfigOption('foreground', 'k')
+        # pg.setConfigOption('background', 'w')
+        # pg.setConfigOption('foreground', 'k')
+        pg.setConfigOption('background', 'k')
+        pg.setConfigOption('foreground', 'w')
 
         # Variables
         self.accel_rsc_x = []
@@ -123,8 +123,8 @@ class MyWin(QtWidgets.QMainWindow):
         self.imu_state = 255
         self.nrf_state = 255
 
-        self.length = 150
-        self.cut = 11
+        self.length = 150   # number of samples total on screen
+        self.cut = 1        # number of samples to be removed on iteration, 1 makes maximum smooth
 
         # GLV
         self.ui.glv = pg.GraphicsLayoutWidget(self.ui.centralwidget)
@@ -132,27 +132,22 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.plot_item_accel_rsc = pg.PlotItem(title='Accelerometer RSC')
         self.ui.glv.ci.addItem(self.plot_item_accel_rsc)
-
         self.ui.glv.ci.nextRow()
 
         self.plot_item_accel_isc = pg.PlotItem(title='Accelerometer ISC')
         self.ui.glv.ci.addItem(self.plot_item_accel_isc)
-
         self.ui.glv.ci.nextRow()
 
         self.plot_item_gyro = pg.PlotItem(title='Gyroscope')
         self.ui.glv.ci.addItem(self.plot_item_gyro)
-
         self.ui.glv.ci.nextRow()
 
         self.plot_item_magn = pg.PlotItem(title='Magnetometer')
         self.ui.glv.ci.addItem(self.plot_item_magn)
 
-
         # Text and 3D
-        self.ui.dockwid = QtWidgets.QDockWidget()
-        self.ui.graph_3d_layout.addWidget(self.ui.dockwid)
-
+        # self.ui.dockwid.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
+        self.ui.dockwid.setTitleBarWidget(QtWidgets.QWidget(self.ui.dockwid))
         if not accel_calibration and not magn_calibration:
             self.plane_widget = PlaneWidget(mesh_path=MESH_PATH, parent=self)
             self.ui.glwid = self.plane_widget
@@ -178,6 +173,13 @@ class MyWin(QtWidgets.QMainWindow):
         self.magn_y_graph = self.plot_item_magn.plot()
         self.magn_z_graph = self.plot_item_magn.plot()
 
+    @QtCore.pyqtSlot(str, int)
+    def set_status(self, message, time=0):
+        self.ui.statusBar.showMessage(message, time)
+
+    @QtCore.pyqtSlot()
+    def blank_status(self):
+        self.ui.statusBar.showMessage("")
 
     @QtCore.pyqtSlot(list)
     def state_msg(self, msgs):
@@ -272,6 +274,10 @@ class MyWin(QtWidgets.QMainWindow):
             self.magn_z = self.magn_z[self.cut:(self.length - 1)]
 
             self.quaternion = self.quaternion[self.cut:(self.length - 1)]
+
+            for k in range(self.length - 20, self.length - 10):
+                if (self.accel_isc_y[k] > 1):
+                    self.set_status("POSSIBLE GESTURE", 5000)
 
         self.accel_isc_x_graph.setData(x=self.time_isc, y=self.accel_isc_x, pen=('r'), width=0.5)
         self.accel_isc_y_graph.setData(x=self.time_isc, y=self.accel_isc_y, pen=('g'), width=0.5)
