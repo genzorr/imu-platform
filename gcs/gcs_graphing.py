@@ -294,6 +294,108 @@ class MyWin(QtWidgets.QMainWindow):
             quat = pyquaternion.Quaternion(msgs[i].quaternion)
             self.plane_widget.update_rotation(quat)
 
+    @QtCore.pyqtSlot(list)
+    def serial_msg(self, msgs):
+        for i in range(len(msgs)):
+            tmp = msgs[i].MPU_state
+            if tmp != self.imu_state:
+                self.imu_state = tmp
+                phrase = 'LSM6DS3 state '
+                if tmp == 0:
+                    phrase += 'OK'
+                else:
+                    phrase += 'ERROR: {}'.format(tmp)
+                self.ui.textBrowser.append(phrase)
+
+            tmp = msgs[i].NRF_state
+            if tmp != self.nrf_state:
+                self.nrf_state = tmp
+                phrase = 'LSM303C state '
+                if tmp == 0:
+                    phrase += 'OK'
+                else:
+                    phrase += 'ERROR: {}'.format(tmp)
+                self.ui.textBrowser.append(phrase)
+            else:
+                pass
+
+            self.accel_rsc_x.append(msgs[i].accel_rsc[0])
+            self.accel_rsc_y.append(msgs[i].accel_rsc[1])
+            self.accel_rsc_z.append(msgs[i].accel_rsc[2])
+
+            self.gyro_x.append(msgs[i].gyro[0])
+            self.gyro_y.append(msgs[i].gyro[1])
+            self.gyro_z.append(msgs[i].gyro[2])
+
+            self.time_rsc.append(msgs[i].time)
+
+            if accel_calibration:
+                self.accel_file = open(ACCEL_PATH, 'a')
+                self.accel_file.write("%f\t%f\t%f\n" % (msgs[i].accel[0], msgs[i].accel[1], msgs[i].accel[2]))
+                self.accel_file.close()
+
+            self.accel_isc_x.append(msgs[i].accel_isc[0])
+            self.accel_isc_y.append(msgs[i].accel_isc[1])
+            self.accel_isc_z.append(msgs[i].accel_isc[2])
+
+            self.magn_x.append(msgs[i].magn[0])
+            self.magn_y.append(msgs[i].magn[1])
+            self.magn_z.append(msgs[i].magn[2])
+
+            self.time_isc.append(msgs[i].time)
+
+            if magn_calibration:
+                self.magn_file = open(MAGN_PATH, 'a')
+                self.magn_file.write("%f\t%f\t%f\n" % (msgs[i].magn[0], msgs[i].magn[1], msgs[i].magn[2]))
+                self.magn_file.close()
+
+            if len(self.time_rsc) > self.length:
+                self.time_rsc = self.time_rsc[self.cut:(self.length - 1)]
+
+                self.accel_rsc_x = self.accel_rsc_x[self.cut:(self.length - 1)]
+                self.accel_rsc_y = self.accel_rsc_y[self.cut:(self.length - 1)]
+                self.accel_rsc_z = self.accel_rsc_z[self.cut:(self.length - 1)]
+
+                self.gyro_x = self.gyro_x[self.cut:(self.length - 1)]
+                self.gyro_y = self.gyro_y[self.cut:(self.length - 1)]
+                self.gyro_z = self.gyro_z[self.cut:(self.length - 1)]
+
+                self.time_isc = self.time_isc[self.cut:(self.length - 1)]
+
+                self.accel_isc_x = self.accel_isc_x[self.cut:(self.length - 1)]
+                self.accel_isc_y = self.accel_isc_y[self.cut:(self.length - 1)]
+                self.accel_isc_z = self.accel_isc_z[self.cut:(self.length - 1)]
+
+                self.magn_x = self.magn_x[self.cut:(self.length - 1)]
+                self.magn_y = self.magn_y[self.cut:(self.length - 1)]
+                self.magn_z = self.magn_z[self.cut:(self.length - 1)]
+
+                self.quaternion = self.quaternion[self.cut:(self.length - 1)]
+
+                for k in range(self.length - 20, self.length - 10):
+                    if (self.accel_isc_y[k] > 1):
+                        self.set_status("POSSIBLE GESTURE", 5000)
+
+            self.accel_rsc_x_graph.setData(x=self.time_rsc, y=self.accel_rsc_x, pen=('r'), width=0.5)
+            self.accel_rsc_y_graph.setData(x=self.time_rsc, y=self.accel_rsc_y, pen=('g'), width=0.5)
+            self.accel_rsc_z_graph.setData(x=self.time_rsc, y=self.accel_rsc_z, pen=('b'), width=0.5)
+
+            self.gyro_x_graph.setData(x=self.time_rsc, y=self.gyro_x, pen=('r'), width=0.5)
+            self.gyro_y_graph.setData(x=self.time_rsc, y=self.gyro_y, pen=('g'), width=0.5)
+            self.gyro_z_graph.setData(x=self.time_rsc, y=self.gyro_z, pen=('b'), width=0.5)
+
+            self.accel_isc_x_graph.setData(x=self.time_isc, y=self.accel_isc_x, pen=('r'), width=0.5)
+            self.accel_isc_y_graph.setData(x=self.time_isc, y=self.accel_isc_y, pen=('g'), width=0.5)
+            self.accel_isc_z_graph.setData(x=self.time_isc, y=self.accel_isc_z, pen=('b'), width=0.5)
+
+            self.magn_x_graph.setData(x=self.time_isc, y=self.magn_x, pen=('r'), width=0.5)
+            self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y, pen=('g'), width=0.5)
+            self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z, pen=('b'), width=0.5)
+
+            if not accel_calibration and not magn_calibration:
+                quat = pyquaternion.Quaternion(msgs[i].quaternion)
+                self.plane_widget.update_rotation(quat)
+
     @QtCore.pyqtSlot()
     def reset_graphs(self):
         self.accel_rsc_x = []
