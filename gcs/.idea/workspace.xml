@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1937623f-afcf-4c78-8d50-1e326e73a7c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs_graphing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../board/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../board/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../board/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../board/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/../pymavlink" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +77,7 @@
       <workItem from="1593635641628" duration="68000" />
       <workItem from="1593680513133" duration="2320000" />
       <workItem from="1593850117023" duration="15000" />
+      <workItem from="1593851244184" duration="748000" />
     </task>
     <servers />
   </component>
