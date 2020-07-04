@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1937623f-afcf-4c78-8d50-1e326e73a7c8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gcs_graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs_graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcs_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcs_ui.ui" beforeDir="false" afterPath="$PROJECT_DIR$/gcs_ui.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/mavlink.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pymavlink" beforeDir="false" afterPath="$PROJECT_DIR$/../pymavlink" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +22,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -77,6 +75,9 @@
       <workItem from="1585924650634" duration="14000" />
       <workItem from="1593538050709" duration="4317000" />
       <workItem from="1593615723792" duration="15384000" />
+      <workItem from="1593635641628" duration="68000" />
+      <workItem from="1593680513133" duration="2320000" />
+      <workItem from="1593850117023" duration="15000" />
     </task>
     <servers />
   </component>
@@ -96,26 +97,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1638" height="355" key="GridCell.Tab.0.bottom" timestamp="1593634936450">
-      <screen x="0" y="0" width="1680" height="1014" />
+    <state width="1878" height="283" key="GridCell.Tab.0.bottom" timestamp="1593683037888">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1638" height="355" key="GridCell.Tab.0.bottom/0.0.1680.1014@0.0.1680.1014" timestamp="1593634936450" />
-    <state width="1878" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1593548349309" />
-    <state width="1638" height="355" key="GridCell.Tab.0.center" timestamp="1593634936449">
-      <screen x="0" y="0" width="1680" height="1014" />
+    <state width="1638" height="253" key="GridCell.Tab.0.bottom/0.0.1680.1014@0.0.1680.1014" timestamp="1593635709112" />
+    <state width="1878" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1593683037888" />
+    <state width="1878" height="283" key="GridCell.Tab.0.center" timestamp="1593683037887">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1638" height="355" key="GridCell.Tab.0.center/0.0.1680.1014@0.0.1680.1014" timestamp="1593634936449" />
-    <state width="1878" height="285" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1593548349308" />
-    <state width="1638" height="355" key="GridCell.Tab.0.left" timestamp="1593634936449">
-      <screen x="0" y="0" width="1680" height="1014" />
+    <state width="1638" height="253" key="GridCell.Tab.0.center/0.0.1680.1014@0.0.1680.1014" timestamp="1593635709111" />
+    <state width="1878" height="283" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1593683037887" />
+    <state width="1878" height="283" key="GridCell.Tab.0.left" timestamp="1593683037886">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1638" height="355" key="GridCell.Tab.0.left/0.0.1680.1014@0.0.1680.1014" timestamp="1593634936449" />
-    <state width="1878" height="285" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1593548349308" />
-    <state width="1638" height="355" key="GridCell.Tab.0.right" timestamp="1593634936450">
-      <screen x="0" y="0" width="1680" height="1014" />
+    <state width="1638" height="253" key="GridCell.Tab.0.left/0.0.1680.1014@0.0.1680.1014" timestamp="1593635709111" />
+    <state width="1878" height="283" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1593683037886" />
+    <state width="1878" height="283" key="GridCell.Tab.0.right" timestamp="1593683037887">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1638" height="355" key="GridCell.Tab.0.right/0.0.1680.1014@0.0.1680.1014" timestamp="1593634936450" />
-    <state width="1878" height="285" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1593548349309" />
+    <state width="1638" height="253" key="GridCell.Tab.0.right/0.0.1680.1014@0.0.1680.1014" timestamp="1593635709111" />
+    <state width="1878" height="283" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1593683037887" />
     <state width="1638" height="355" key="GridCell.Tab.1.bottom" timestamp="1593634936452">
       <screen x="0" y="0" width="1680" height="1014" />
     </state>
@@ -137,18 +138,7 @@
     </state>
     <state x="374" y="147" width="932" height="734" key="SettingsEditor/0.0.1680.1014@0.0.1680.1014" timestamp="1593616422423" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mavlink.py</url>
-          <line>79</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/gcs$main.coverage" NAME="main Coverage Results" MODIFIED="1593634893918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/gcs$main.coverage" NAME="main Coverage Results" MODIFIED="1593682939585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

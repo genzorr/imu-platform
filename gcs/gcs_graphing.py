@@ -126,6 +126,9 @@ class MyWin(QtWidgets.QMainWindow):
         self.length = 150   # number of samples total on screen
         self.cut = 1        # number of samples to be removed on iteration, 1 makes maximum smooth
 
+        # GUI
+        self.ui.resetButton.pressed.connect(self.reset_graphs)
+
         # GLV
         self.ui.glv = pg.GraphicsLayoutWidget(self.ui.centralwidget)
         self.ui.graph_layout.addWidget(self.ui.glv)
@@ -291,3 +294,35 @@ class MyWin(QtWidgets.QMainWindow):
             quat = pyquaternion.Quaternion(msgs[i].quaternion)
             self.plane_widget.update_rotation(quat)
 
+    @QtCore.pyqtSlot()
+    def reset_graphs(self):
+        self.accel_rsc_x = []
+        self.accel_rsc_y = []
+        self.accel_rsc_z = []
+        self.accel_isc_x = []
+        self.accel_isc_y = []
+        self.accel_isc_z = []
+        self.gyro_x = []
+        self.gyro_y = []
+        self.gyro_z = []
+        self.magn_x = []
+        self.magn_y = []
+        self.magn_z = []
+        self.time_isc = []
+        self.time_rsc = []
+
+        self.accel_rsc_x_graph.setData(x=self.time_rsc, y=self.accel_rsc_x, pen=('r'), width=0.5)
+        self.accel_rsc_y_graph.setData(x=self.time_rsc, y=self.accel_rsc_y, pen=('g'), width=0.5)
+        self.accel_rsc_z_graph.setData(x=self.time_rsc, y=self.accel_rsc_z, pen=('b'), width=0.5)
+
+        self.gyro_x_graph.setData(x=self.time_rsc, y=self.gyro_x, pen=('r'), width=0.5)
+        self.gyro_y_graph.setData(x=self.time_rsc, y=self.gyro_y, pen=('g'), width=0.5)
+        self.gyro_z_graph.setData(x=self.time_rsc, y=self.gyro_z, pen=('b'), width=0.5)
+
+        self.accel_isc_x_graph.setData(x=self.time_isc, y=self.accel_isc_x, pen=('r'), width=0.5)
+        self.accel_isc_y_graph.setData(x=self.time_isc, y=self.accel_isc_y, pen=('g'), width=0.5)
+        self.accel_isc_z_graph.setData(x=self.time_isc, y=self.accel_isc_z, pen=('b'), width=0.5)
+
+        self.magn_x_graph.setData(x=self.time_isc, y=self.magn_x, pen=('r'), width=0.5)
+        self.magn_y_graph.setData(x=self.time_isc, y=self.magn_y, pen=('g'), width=0.5)
+        self.magn_z_graph.setData(x=self.time_isc, y=self.magn_z, pen=('b'), width=0.5)
